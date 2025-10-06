@@ -353,18 +353,20 @@ All colors MUST be HSL.
     animation: slideUp 180ms ease-out;
   }
 
-  /* Pulse animation for CTA */
+  /* Pulse animation for CTA - suave e elegante */
   @keyframes pulse-cta {
     0%, 100% {
       transform: scale(1);
+      box-shadow: 0 8px 20px rgba(108, 74, 182, 0.4);
     }
     50% {
-      transform: scale(1.01);
+      transform: scale(1.02);
+      box-shadow: 0 10px 26px rgba(108, 74, 182, 0.5);
     }
   }
 
   .animate-pulse-cta {
-    animation: pulse-cta 5s ease-in-out infinite;
+    animation: pulse-cta 3s ease-in-out infinite;
   }
 
   /* Float sparkle animation */

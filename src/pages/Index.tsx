@@ -14,7 +14,6 @@ declare global {
 const Index = () => {
   const { trackViewContent } = useTracking();
   const [showMore, setShowMore] = useState(false);
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
 
   useEffect(() => {
     // Track landing page view
@@ -22,26 +21,6 @@ const Index = () => {
       content_name: 'Landing Page',
       content_category: 'home',
     });
-
-    // Scroll tracking
-    const handleScroll = () => {
-      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      
-      // Show sticky CTA after 30% scroll
-      if (scrollPercent > 30) {
-        setShowStickyCTA(true);
-      } else {
-        setShowStickyCTA(false);
-      }
-
-      // Track 50% scroll
-      if (scrollPercent >= 50 && typeof window.fbq === 'function') {
-        window.fbq('trackCustom', 'LP_50_Scroll');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -213,38 +192,6 @@ const Index = () => {
           Ver como funciona ↓
         </button>
       </div>
-
-      {/* Sticky CTA Mobile */}
-      {showStickyCTA && (
-        <div 
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t border-gray-200 shadow-lg md:hidden animate-fade-in"
-          style={{
-            animation: 'slideUp 180ms ease-out',
-          }}
-        >
-          <Button 
-            asChild
-            size="lg"
-            className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03] animate-pulse-cta"
-            style={{
-              height: '56px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #6C4AB6 0%, #B69FFF 100%)',
-              color: '#FFFFFF',
-              boxShadow: '0 6px 16px rgba(108, 74, 182, 0.4)',
-            }}
-            onClick={() => {
-              if (typeof window.fbq === 'function') {
-                window.fbq('trackCustom', 'StartQuiz');
-              }
-            }}
-          >
-            <Link to="/quiz">
-              🔥 Receber Minha Revelação Agora
-            </Link>
-          </Button>
-        </div>
-      )}
 
       {/* More Details Section */}
       {showMore && (
