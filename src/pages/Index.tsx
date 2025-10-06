@@ -30,7 +30,7 @@ const Index = () => {
         {/* Hero Gradient Background */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={heroGradientBg} 
+            src={heroGradientBg}
             alt="Gradiente profético - Mapa do Amor"
             className="w-full h-full object-cover"
             loading="eager"
