@@ -1,27 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Lock } from "lucide-react";
-import { useDashboardAuth } from "@/hooks/useDashboardAuth";
+import { Lock, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 const DashboardLogin = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useDashboardAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { isAdmin, loading } = useAdminAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (login(password)) {
+  // Redirect if already logged in as admin
+  useEffect(() => {
+    if (!loading && isAdmin) {
       navigate("/dashboard", { replace: true });
-    } else {
-      setError("Senha incorreta. Tente novamente.");
-      setPassword("");
     }
+  }, [isAdmin, loading, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (signInError) {
+      setError("Email ou senha incorretos.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Check if user is admin
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: isAdminUser, error: roleError } = await supabase
+        .rpc('has_role', { _user_id: user.id, _role: 'admin' });
+      
+      if (roleError || !isAdminUser) {
+        setError("Você não tem permissão para acessar o dashboard.");
+        await supabase.auth.signOut();
+        setIsLoading(false);
+        return;
+      }
+
+      navigate("/dashboard", { replace: true });
+    }
+    
+    setIsLoading(false);
   };
 
   return (
@@ -37,13 +71,32 @@ const DashboardLogin = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
+            <Label htmlFor="email" className="text-base font-medium text-text-primary mb-2 block">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="seu@email.com"
+              className="h-12 rounded-xl text-base"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+              }}
+              required
+              autoFocus
+            />
+          </div>
+
+          <div>
             <Label htmlFor="password" className="text-base font-medium text-text-primary mb-2 block">
-              Senha de Acesso
+              Senha
             </Label>
             <Input
               id="password"
               type="password"
-              placeholder="Digite a senha"
+              placeholder="Digite sua senha"
               className="h-12 rounded-xl text-base"
               value={password}
               onChange={(e) => {
@@ -51,7 +104,6 @@ const DashboardLogin = () => {
                 setError("");
               }}
               required
-              autoFocus
             />
           </div>
 
@@ -65,8 +117,16 @@ const DashboardLogin = () => {
             type="submit" 
             size="lg" 
             className="w-full h-12 rounded-full font-semibold"
+            disabled={isLoading}
           >
-            Acessar Dashboard
+            {isLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Entrando...
+              </>
+            ) : (
+              "Acessar Dashboard"
+            )}
           </Button>
 
           <p className="text-xs text-center text-text-muted">

@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useDashboardAuth } from "@/hooks/useDashboardAuth";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 import localAnalytics, { QuizEvent } from "@/lib/localAnalytics";
 import { supabase } from "@/integrations/supabase/client";
 import { 
@@ -30,7 +30,7 @@ interface Contact {
 }
 
 const Dashboard = () => {
-  const { isAuthenticated, loading, logout } = useDashboardAuth();
+  const { isAdmin, loading, logout } = useAdminAuth();
   const navigate = useNavigate();
   const [events, setEvents] = useState<QuizEvent[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -69,21 +69,21 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAdmin) {
       loadData();
     }
-  }, [isAuthenticated, dateFilter]);
+  }, [isAdmin, dateFilter]);
 
   // Auto-refresh every 60s
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAdmin) return;
     
     const interval = setInterval(() => {
       loadData();
     }, 60000);
 
     return () => clearInterval(interval);
-  }, [isAuthenticated, dateFilter]);
+  }, [isAdmin, dateFilter]);
 
   if (loading) {
     return (
@@ -93,7 +93,7 @@ const Dashboard = () => {
     );
   }
 
-  if (!isAuthenticated) {
+  if (!isAdmin) {
     return <Navigate to="/dashboard/login" replace />;
   }
 
