@@ -34,19 +34,14 @@ const Index = () => {
             alt="Casal romântico ao pôr do sol - Mapa Profético do Amor"
             className="w-full h-full object-cover"
             loading="eager"
+            style={{ filter: 'blur(4px)' }}
           />
           
           <div 
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(135deg, rgba(108, 74, 182, 0.7) 0%, rgba(118, 75, 162, 0.65) 25%, rgba(182, 143, 255, 0.6) 50%, rgba(108, 74, 182, 0.65) 75%, rgba(118, 75, 162, 0.7) 100%)',
-            }}
-          />
-          
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%)',
+              background: 'linear-gradient(135deg, rgba(108, 74, 182, 0.85) 0%, rgba(118, 75, 162, 0.8) 25%, rgba(182, 143, 255, 0.75) 50%, rgba(108, 74, 182, 0.8) 75%, rgba(118, 75, 162, 0.85) 100%)',
+              backdropFilter: 'blur(12px)',
             }}
           />
 
@@ -70,21 +65,13 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Main Card */}
-        <div className="relative z-10 w-full max-w-md animate-fade-in">
-          <div 
-            className="bg-white/10 backdrop-blur-xl rounded-3xl p-6 pb-2 xs:p-8 xs:pb-3 sm:pb-8 shadow-2xl border border-white/20"
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(20px)',
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-            }}
-          >
-            <div className="flex justify-center mb-4 xs:mb-6">
-              <div className="w-14 h-14 xs:w-16 xs:h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center shadow-lg">
-                <span className="text-2xl xs:text-3xl">✨</span>
-              </div>
+        {/* Main Content */}
+        <div className="relative z-10 w-full max-w-md animate-fade-in px-6">
+          <div className="flex justify-center mb-4 xs:mb-6">
+            <div className="w-14 h-14 xs:w-16 xs:h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center shadow-lg">
+              <span className="text-2xl xs:text-3xl">✨</span>
             </div>
+          </div>
 
             <h1 
               className="text-[24px] xs:text-[26px] md:text-3xl font-bold text-center leading-tight"
@@ -139,7 +126,7 @@ const Index = () => {
               className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03]"
               style={{
                 height: '60px',
-                borderRadius: '14px',
+                borderRadius: '30px',
                 background: 'linear-gradient(135deg, #6C4AB6 0%, #B69FFF 100%)',
                 color: '#FFFFFF',
                 boxShadow: '0 8px 20px rgba(108, 74, 182, 0.4)',
@@ -178,11 +165,10 @@ const Index = () => {
               >
                 <span>✍️ Sem cadastro</span>
                 <span>•</span>
-                <span>📖 Alinhado à Bíblia</span>
+              <span>📖 Alinhado à Bíblia</span>
               </p>
             </div>
           </div>
-        </div>
 
         <button 
           onClick={() => setShowMore(true)}
