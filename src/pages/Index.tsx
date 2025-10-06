@@ -5,9 +5,16 @@ import { CheckCircle2, Shield, Sparkles, Heart, Clock } from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
 import landingBg from "@/assets/landing-bg-couple.jpg";
 
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 const Index = () => {
   const { trackViewContent } = useTracking();
   const [showMore, setShowMore] = useState(false);
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
 
   useEffect(() => {
     // Track landing page view
@@ -15,6 +22,26 @@ const Index = () => {
       content_name: 'Landing Page',
       content_category: 'home',
     });
+
+    // Scroll tracking
+    const handleScroll = () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      
+      // Show sticky CTA after 30% scroll
+      if (scrollPercent > 30) {
+        setShowStickyCTA(true);
+      } else {
+        setShowStickyCTA(false);
+      }
+
+      // Track 50% scroll
+      if (scrollPercent >= 50 && typeof window.fbq === 'function') {
+        window.fbq('trackCustom', 'LP_50_Scroll');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -25,8 +52,9 @@ const Index = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={landingBg} 
-            alt="Romantic couple at sunset"
+            alt="Casal romântico ao pôr do sol - Mapa Profético do Amor"
             className="w-full h-full object-cover"
+            loading="eager"
           />
           
           <div 
@@ -79,38 +107,58 @@ const Index = () => {
             </div>
 
             <h1 
-              className="text-[26px] xs:text-3xl md:text-4xl font-bold text-center mb-3 xs:mb-4 leading-tight text-white"
+              className="text-[24px] xs:text-[26px] md:text-3xl font-bold text-center mb-2 xs:mb-3 leading-tight"
               style={{
-                textShadow: '0 1px 2px rgba(0,0,0,0.4)',
+                color: '#3F3D56',
+                textShadow: '0 1px 2px rgba(0,0,0,0.1)',
               }}
             >
-              Acredite. <span style={{ color: '#FFD700' }}>Deus</span> tem alguém <span style={{ color: '#FFD700' }}>reservado</span> para você.
+              Descubra quando você vai conhecer o amor da sua vida,{' '}
+              <span 
+                style={{ 
+                  background: 'linear-gradient(135deg, #F9D65C 0%, #F5A623 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                como será essa pessoa e os sinais que Deus vai te mostrar.
+              </span>
             </h1>
 
-            <p className="text-center text-white text-[15px] xs:text-base mb-4 xs:mb-6 leading-relaxed">
-              Descubra <strong className="text-white font-bold">quando</strong> você vai conhecer o amor da sua vida, 
-              <strong className="text-white font-bold"> como será essa pessoa</strong> e <strong className="text-white font-bold">qual o tempo espiritual</strong> que 
-              você está vivendo agora no amor.
+            <p 
+              className="text-center text-[14px] xs:text-base mb-4 xs:mb-6 leading-relaxed"
+              style={{ color: '#7A7A8C', marginTop: '8px' }}
+            >
+              Leva menos de 2 minutos. Resultado imediato e personalizado.
             </p>
 
             <div 
-              className="rounded-xl p-2 xs:p-3 mb-3 xs:mb-5 border border-white/20"
+              className="rounded-xl p-3 xs:p-3 mb-4 xs:mb-5"
               style={{
                 backdropFilter: 'blur(8px)',
-                background: 'rgba(255, 255, 255, 0.15)',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid #E9E6FF',
+                borderRadius: '12px',
               }}
             >
-              <div className="flex items-center justify-center gap-2 text-white text-[13px] xs:text-sm font-medium">
-                <span 
-                  className="flex items-center justify-center w-7 h-7 rounded-full"
-                  style={{
-                    background: 'rgba(255, 215, 0, 0.2)',
-                  }}
-                >
-                  <span className="text-[#FFD700] text-lg">✨</span>
-                </span>
+              <div className="flex items-center justify-center gap-2 text-[13px] xs:text-sm font-medium" style={{ color: '#3F3D56' }}>
+                <div className="flex -space-x-2 mr-2">
+                  {['M', 'A', 'J', 'L', 'C', 'R'].map((initial, i) => (
+                    <div
+                      key={i}
+                      className="w-6 h-6 xs:w-7 xs:h-7 rounded-full flex items-center justify-center text-[10px] xs:text-xs font-semibold border-2 border-white"
+                      style={{
+                        background: `hsl(${i * 60}, 70%, 60%)`,
+                        color: 'white',
+                      }}
+                    >
+                      {initial}
+                    </div>
+                  ))}
+                </div>
                 <span>
-                  +1.247 pessoas receberam seu Mapa esta semana • Vagas limitadas nesta rodada
+                  ✦ +1.247 pessoas receberam seu Mapa esta semana • Atualizado hoje
                 </span>
               </div>
             </div>
@@ -118,39 +166,99 @@ const Index = () => {
             <Button 
               asChild
               size="lg"
-              className="w-full h-[48px] xs:h-[52px] text-[15px] xs:text-base font-semibold rounded-full hover:shadow-2xl font-[Poppins] animate-pulse-subtle mb-2 xs:mb-3"
+              className="w-full text-[15px] xs:text-base font-semibold transition-all duration-200"
               style={{
-                background: '#3F51B5',
+                height: '56px',
+                borderRadius: '14px',
+                background: '#6C4AB6',
                 color: '#FFFFFF',
+                boxShadow: '0 8px 18px rgba(108, 74, 182, 0.25)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#5A3CA1';
+                e.currentTarget.style.transform = 'scale(1.02)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#6C4AB6';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)';
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)';
+              }}
+              onClick={() => {
+                if (typeof window.fbq === 'function') {
+                  window.fbq('trackCustom', 'StartQuiz');
+                }
               }}
             >
               <Link to="/quiz">
-                Descobrir Meu Mapa Agora
+                Começar minha revelação agora ✨
               </Link>
             </Button>
 
-            <p className="text-center text-[#E2E8F0] text-[12px] xs:text-[13px] mb-1 xs:mb-2 flex items-center justify-center gap-2">
-              <span className="text-[#FFD700]">✨</span>
-              <span>Conteúdo 100% cristão e confiável • Sem promessas mágicas</span>
+            <p 
+              className="text-center text-[12px] xs:text-[13px] mt-2 xs:mt-3 mb-3 xs:mb-4"
+              style={{ color: '#5E5E70' }}
+            >
+              Gratuito • Sem cadastro • 6 perguntas
             </p>
 
-            <p className="text-center text-white/80 text-[12px] xs:text-[13px] mb-1 xs:mb-2 flex flex-wrap items-center justify-center gap-2 xs:gap-3">
-              <span>⚡ Apenas 2 minutos</span>
-              <span>•</span>
-              <span>Resultado imediato</span>
-              <span>•</span>
-              <span>100% gratuito</span>
+            <p 
+              className="text-center text-[12px] xs:text-[13px] mb-2 flex flex-wrap items-center justify-center gap-2"
+              style={{ color: '#7A7A8C' }}
+            >
+              <span>Alinhado à Bíblia</span>
+              <span>·</span>
+              <span>Conteúdo 100% cristão</span>
+              <span>·</span>
+              <span>Seguro e privado</span>
             </p>
           </div>
         </div>
 
         <button 
           onClick={() => setShowMore(true)}
-          className="absolute bottom-6 left-0 right-0 z-10 text-center text-[#E2E8F0] text-sm hover:text-white transition-colors animate-bounce-slow"
+          className="absolute bottom-6 left-0 right-0 z-10 text-center text-[12px] xs:text-[13px] hover:opacity-100 transition-opacity"
+          style={{ color: '#E2E8F0', opacity: 0.8 }}
         >
           Ver como funciona ↓
         </button>
       </div>
+
+      {/* Sticky CTA Mobile */}
+      {showStickyCTA && (
+        <div 
+          className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t border-gray-200 shadow-lg md:hidden animate-fade-in"
+          style={{
+            animation: 'slideUp 180ms ease-out',
+          }}
+        >
+          <Button 
+            asChild
+            size="lg"
+            className="w-full text-[15px] font-semibold transition-all duration-200"
+            style={{
+              height: '52px',
+              borderRadius: '12px',
+              background: '#6C4AB6',
+              color: '#FFFFFF',
+              boxShadow: '0 4px 12px rgba(108, 74, 182, 0.25)',
+            }}
+            onClick={() => {
+              if (typeof window.fbq === 'function') {
+                window.fbq('trackCustom', 'StartQuiz');
+              }
+            }}
+          >
+            <Link to="/quiz">
+              Começar minha revelação agora ✨
+            </Link>
+          </Button>
+        </div>
+      )}
 
       {/* More Details Section */}
       {showMore && (

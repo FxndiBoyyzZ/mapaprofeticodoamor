@@ -336,4 +336,20 @@ All colors MUST be HSL.
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-primary;
   }
+
+  /* Slide up animation for sticky CTA */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 180ms ease-out;
+  }
 }
