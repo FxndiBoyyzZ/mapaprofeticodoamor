@@ -84,7 +84,7 @@ const Resultado = () => {
   const handleCheckoutClick = () => {
     // Track custom checkout_click event only (not InitiateCheckout)
     if (typeof window.fbq !== 'undefined') {
-      window.fbq('trackCustom', 'checkout_click', { value: 47, currency: 'BRL' });
+      window.fbq('trackCustom', 'checkout_click', { value: 27, currency: 'BRL' });
     }
     
     // Navigate to checkout
@@ -205,8 +205,8 @@ const Resultado = () => {
               <div>
                 <p className="text-sm text-text-muted line-through mb-1">De R$ 97</p>
                 <div className="flex items-center justify-center gap-3 mb-2">
-                  <h2 className="text-primary text-5xl font-bold">R$ 47</h2>
-                  <Badge className="bg-destructive text-white font-bold">-51% OFF</Badge>
+                  <h2 className="text-primary text-5xl font-bold">R$ 27</h2>
+                  <Badge className="bg-destructive text-white font-bold">-72% OFF</Badge>
                 </div>
                 <p className="text-sm text-text-secondary">Pagamento único • Acesso vitalício • Sem mensalidade</p>
               </div>
@@ -240,7 +240,7 @@ const Resultado = () => {
                 onClick={handleCheckoutClick}
               >
                 <Key className="w-5 h-5 flex-shrink-0" />
-                <span className="leading-tight">✨ Desbloquear meu Mapa Completo por R$47</span>
+                <span className="leading-tight whitespace-normal">✨ Desbloquear Mapa Completo por R$27</span>
               </Button>
             </div>
           </Card>
@@ -317,7 +317,7 @@ const Resultado = () => {
       {/* Sticky CTA Bar */}
       <StickyCTABar 
         text="Pronto para desbloquear seu Mapa?"
-        buttonText="✨ Desbloquear meu Mapa Completo por R$47"
+        buttonText="✨ Desbloquear Mapa por R$27"
         href="/checkout"
       />
     </div>

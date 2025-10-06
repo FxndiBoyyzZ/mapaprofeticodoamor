@@ -11,7 +11,7 @@ import tracking from "@/lib/tracking";
 const Checkout = () => {
   const CHECKOUT_URL = "https://pay.cakto.com.br/7k6p9n7_596897";
   const WHATSAPP_URL = "https://wa.me/+5511966138651?text=Ol%C3%A1%2C%20estou%20com%20d%C3%BAvida%20em%20rela%C3%A7%C3%A3o%20ao%20meu%20Mapa...";
-  const PRECO = "47";
+  const PRECO = "27";
   
   const { trackViewContent, trackInitiateCheckout } = useTracking();
   const [showSticky, setShowSticky] = useState(false);
