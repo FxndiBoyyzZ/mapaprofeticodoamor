@@ -9,7 +9,7 @@ import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 
 const Checkout = () => {
-  const CHECKOUT_URL = "https://pay.hotmart.com/XXXXXXXXX";
+  const CHECKOUT_URL = "https://pay.cakto.com.br/7k6p9n7_596897";
   const WHATSAPP_URL = "https://wa.me/5511999999999";
   const PRECO = "47";
   
