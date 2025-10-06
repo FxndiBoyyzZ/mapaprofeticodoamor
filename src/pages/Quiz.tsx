@@ -102,14 +102,22 @@ const Quiz = () => {
       // Save contact to Supabase
       if (quizData.nome && quizData.whatsapp) {
         try {
-          await supabase
+          console.log('Salvando contato:', { nome: quizData.nome, whatsapp: quizData.whatsapp });
+          const { data, error } = await supabase
             .from('contacts')
             .insert([{
               name: quizData.nome,
               whatsapp: quizData.whatsapp
-            }]);
+            }])
+            .select();
+          
+          if (error) {
+            console.error('Erro ao salvar contato:', error);
+          } else {
+            console.log('Contato salvo com sucesso:', data);
+          }
         } catch (error) {
-          console.error('Erro ao salvar contato:', error);
+          console.error('Exceção ao salvar contato:', error);
         }
       }
       
