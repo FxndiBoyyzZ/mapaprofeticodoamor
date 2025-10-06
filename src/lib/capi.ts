@@ -5,8 +5,8 @@ import tracking, { TrackingData } from './tracking';
  * Sends server-side events via webhook with deduplication
  */
 
-// Replace with actual webhook URL
-const CAPI_WEBHOOK_URL = "{{CAPI_WEBHOOK}}";
+// Edge function URL for Meta CAPI
+const CAPI_WEBHOOK_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/meta-capi`;
 const MAX_RETRIES = 2;
 const TIMEOUT_MS = 1500;
 
@@ -37,14 +37,6 @@ class CapiManager {
   private isDevelopment = import.meta.env.DEV;
 
   private async sendRequest(payload: CapiEventData, retries = 0): Promise<boolean> {
-    // Skip if no webhook configured (use placeholder check)
-    if (CAPI_WEBHOOK_URL.includes('{{') || CAPI_WEBHOOK_URL.includes('CAPI_WEBHOOK')) {
-      if (this.isDevelopment) {
-        console.log('[CAPI] Webhook not configured, skipping:', payload);
-      }
-      return false;
-    }
-
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
