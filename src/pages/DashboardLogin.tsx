@@ -65,37 +65,70 @@ const DashboardLogin = () => {
     setIsRegistering(true);
     setError("");
 
-    // Sign up user
-    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      // First check if any admin already exists
+      const { data: existingAdmins } = await supabase
+        .from('user_roles')
+        .select('id')
+        .eq('role', 'admin')
+        .limit(1);
 
-    if (signUpError) {
-      setError("Erro ao criar usuário: " + signUpError.message);
-      setIsRegistering(false);
-      return;
-    }
+      if (existingAdmins && existingAdmins.length > 0) {
+        setError("Já existe um admin cadastrado no sistema.");
+        setIsRegistering(false);
+        return;
+      }
 
-    if (signUpData.user) {
+      // Sign up user
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (signUpError) {
+        setError("Erro ao criar usuário: " + signUpError.message);
+        setIsRegistering(false);
+        return;
+      }
+
+      if (!signUpData.user) {
+        setError("Erro ao criar usuário.");
+        setIsRegistering(false);
+        return;
+      }
+
+      // Wait a bit for the user to be fully created
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       // Add admin role
       const { error: roleError } = await supabase
         .from('user_roles')
-        .insert({ user_id: signUpData.user.id, role: 'admin' });
+        .insert({ 
+          user_id: signUpData.user.id, 
+          role: 'admin' 
+        });
 
       if (roleError) {
-        setError("Erro ao adicionar role de admin.");
+        console.error("Erro ao adicionar role:", roleError);
+        setError("Erro ao adicionar permissões de admin: " + roleError.message);
         setIsRegistering(false);
         return;
       }
 
       toast({
         title: "Admin criado com sucesso!",
-        description: "Faça login para acessar o dashboard.",
+        description: "Agora você pode fazer login.",
       });
-    }
 
-    setIsRegistering(false);
+      // Sign out the auto-logged in user
+      await supabase.auth.signOut();
+      
+      setIsRegistering(false);
+    } catch (err) {
+      console.error("Erro:", err);
+      setError("Erro inesperado ao criar admin.");
+      setIsRegistering(false);
+    }
   };
 
   return (
