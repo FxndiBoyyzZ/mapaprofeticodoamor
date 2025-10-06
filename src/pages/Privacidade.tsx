@@ -120,7 +120,7 @@ const Privacidade = () => {
               </p>
               <ul className="text-sm space-y-1 mt-2">
                 <li><strong>E-mail:</strong> contato@profeticoamoroso.com</li>
-                <li><strong>WhatsApp:</strong> (11) 99999-9999</li>
+                <li><strong>WhatsApp:</strong> <a href="https://wa.link/dxs2et" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">wa.link/dxs2et</a></li>
               </ul>
             </section>
           </Card>

@@ -10,7 +10,7 @@ import tracking from "@/lib/tracking";
 
 const Checkout = () => {
   const CHECKOUT_URL = "https://pay.cakto.com.br/7k6p9n7_596897";
-  const WHATSAPP_URL = "https://wa.me/5511999999999";
+  const WHATSAPP_URL = "https://wa.link/dxs2et";
   const PRECO = "47";
   
   const { trackViewContent, trackInitiateCheckout } = useTracking();

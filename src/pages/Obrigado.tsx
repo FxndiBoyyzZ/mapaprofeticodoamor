@@ -124,7 +124,7 @@ const Obrigado = () => {
                   Como funciona o suporte?
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-text-secondary">
-                  Você pode entrar em contato conosco por e-mail (contato@profeticoamoroso.com) ou WhatsApp a
+                  Você pode entrar em contato conosco por e-mail (contato@profeticoamoroso.com) ou <a href="https://wa.link/dxs2et" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp</a> a qualquer momento.
                   qualquer momento. Respondemos em até 24 horas.
                 </AccordionContent>
               </AccordionItem>

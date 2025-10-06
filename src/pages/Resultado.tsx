@@ -301,7 +301,7 @@ const Resultado = () => {
           {/* Secondary options */}
           <div className="text-center space-y-4">
             <p className="text-xs text-text-muted">
-              💡 Dúvidas? Entre em contato pelo WhatsApp (11) 99999-9999
+              💡 Dúvidas? Entre em contato pelo <a href="https://wa.link/dxs2et" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp</a>
             </p>
             <Button asChild variant="ghost" size="sm" className="rounded-full">
               <Link to="/quiz">
