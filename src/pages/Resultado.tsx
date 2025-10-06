@@ -81,10 +81,7 @@ const Resultado = () => {
   const insights = generateInsights();
 
   const handleCheckoutClick = () => {
-    // Track InitiateCheckout
-    trackInitiateCheckout(47);
-    
-    // Track custom checkout_click event
+    // Track custom checkout_click event only (not InitiateCheckout)
     if (typeof window.fbq !== 'undefined') {
       window.fbq('trackCustom', 'checkout_click', { value: 47, currency: 'BRL' });
     }

@@ -18,7 +18,7 @@ const Checkout = () => {
   const [isBenefitsOpen, setIsBenefitsOpen] = useState(false);
 
   useEffect(() => {
-    // Track ViewContent on page load
+    // Track ViewContent on page load only (not InitiateCheckout)
     trackViewContent({
       content_name: "checkout_bridge",
       content_category: "checkout"
