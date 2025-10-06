@@ -7,14 +7,17 @@ import { Label } from "@/components/ui/label";
 import { Lock, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
+import { useToast } from "@/hooks/use-toast";
 
 const DashboardLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@profetico.com");
+  const [password, setPassword] = useState("profetico2024");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
   const { isAdmin, loading } = useAdminAuth();
+  const { toast } = useToast();
 
   // Redirect if already logged in as admin
   useEffect(() => {
@@ -56,6 +59,43 @@ const DashboardLogin = () => {
     }
     
     setIsLoading(false);
+  };
+
+  const handleRegisterAdmin = async () => {
+    setIsRegistering(true);
+    setError("");
+
+    // Sign up user
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (signUpError) {
+      setError("Erro ao criar usuário: " + signUpError.message);
+      setIsRegistering(false);
+      return;
+    }
+
+    if (signUpData.user) {
+      // Add admin role
+      const { error: roleError } = await supabase
+        .from('user_roles')
+        .insert({ user_id: signUpData.user.id, role: 'admin' });
+
+      if (roleError) {
+        setError("Erro ao adicionar role de admin.");
+        setIsRegistering(false);
+        return;
+      }
+
+      toast({
+        title: "Admin criado com sucesso!",
+        description: "Faça login para acessar o dashboard.",
+      });
+    }
+
+    setIsRegistering(false);
   };
 
   return (
@@ -129,9 +169,28 @@ const DashboardLogin = () => {
             )}
           </Button>
 
-          <p className="text-xs text-center text-text-muted">
-            Este painel contém informações sensíveis do negócio.
-          </p>
+          <div className="text-center">
+            <p className="text-xs text-text-muted mb-3">
+              Este painel contém informações sensíveis do negócio.
+            </p>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleRegisterAdmin}
+              disabled={isRegistering}
+              className="text-xs"
+            >
+              {isRegistering ? (
+                <>
+                  <Loader2 className="w-3 h-3 mr-2 animate-spin" />
+                  Criando admin...
+                </>
+              ) : (
+                "Criar primeiro admin (admin@profetico.com)"
+              )}
+            </Button>
+          </div>
         </form>
       </Card>
     </div>
