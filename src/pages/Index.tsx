@@ -100,7 +100,7 @@ const Index = () => {
                 marginBottom: '16px'
               }}
             >
-              📜 Em apenas 2 minutos, <strong>comece gratuitamente</strong> a descobrir seu{' '}
+              Em apenas 2 minutos, <strong>comece gratuitamente</strong> a descobrir seu{' '}
               <strong>Mapa Profético exclusivo</strong>, revelando os próximos passos do plano de Deus para sua vida amorosa.
             </p>
 
