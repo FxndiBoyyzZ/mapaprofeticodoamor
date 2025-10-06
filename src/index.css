@@ -352,4 +352,40 @@ All colors MUST be HSL.
   .animate-slide-up {
     animation: slideUp 180ms ease-out;
   }
+
+  /* Pulse animation for CTA */
+  @keyframes pulse-cta {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.01);
+    }
+  }
+
+  .animate-pulse-cta {
+    animation: pulse-cta 5s ease-in-out infinite;
+  }
+
+  /* Float sparkle animation */
+  @keyframes float-sparkle {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-float-sparkle {
+    animation: float-sparkle 20s linear infinite;
+  }
 }

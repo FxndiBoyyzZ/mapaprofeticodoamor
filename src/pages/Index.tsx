@@ -60,7 +60,7 @@ const Index = () => {
           <div 
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 25%, rgba(240, 147, 251, 0.5) 50%, rgba(79, 172, 254, 0.5) 75%, rgba(0, 242, 254, 0.6) 100%)',
+              background: 'linear-gradient(135deg, rgba(108, 74, 182, 0.7) 0%, rgba(118, 75, 162, 0.65) 25%, rgba(182, 143, 255, 0.6) 50%, rgba(108, 74, 182, 0.65) 75%, rgba(118, 75, 162, 0.7) 100%)',
             }}
           />
           
@@ -72,19 +72,20 @@ const Index = () => {
           />
 
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(15)].map((_, i) => (
+            {[...Array(20)].map((_, i) => (
               <div
                 key={i}
-                className="absolute text-pink-300/30 animate-float"
+                className="absolute animate-float-sparkle"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  fontSize: `${Math.random() * 30 + 20}px`,
+                  fontSize: `${Math.random() * 20 + 10}px`,
                   animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${Math.random() * 10 + 10}s`,
+                  animationDuration: `${Math.random() * 15 + 10}s`,
+                  opacity: Math.random() * 0.3 + 0.1,
                 }}
               >
-                ♥
+                ✨
               </div>
             ))}
           </div>
@@ -107,38 +108,48 @@ const Index = () => {
             </div>
 
             <h1 
-              className="text-[24px] xs:text-[26px] md:text-3xl font-bold text-center mb-2 xs:mb-3 leading-tight"
+              className="text-[24px] xs:text-[26px] md:text-3xl font-bold text-center leading-tight"
               style={{
-                color: '#3F3D56',
-                textShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                color: '#FFFFFF',
+                textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                marginBottom: '16px',
               }}
             >
-              ✨ Deus tem revelações únicas sobre sua vida amorosa...
+              ✨ Deus tem{' '}
+              <span style={{ color: '#FFD76B' }}>revelações únicas</span>{' '}
+              sobre sua vida amorosa...
               <br />
-              Descubra <strong>quando</strong>, <strong>como será essa pessoa</strong> e{' '}
-              <strong>os sinais proféticos</strong> que Ele preparou especialmente para você.
+              Descubra{' '}
+              <span style={{ color: '#C3A6FF' }}>quando</span>,{' '}
+              como será essa pessoa e{' '}
+              <span style={{ color: '#FFD76B' }}>os sinais proféticos</span>{' '}
+              que Ele preparou especialmente para você.
             </h1>
 
             <p 
-              className="text-center text-[14px] xs:text-base mb-4 xs:mb-6 leading-relaxed"
-              style={{ color: '#7A7A8C', marginTop: '8px' }}
+              className="text-center text-[15px] xs:text-base leading-relaxed"
+              style={{ 
+                color: '#D8D8E5', 
+                marginTop: '8px',
+                marginBottom: '16px'
+              }}
             >
-              📜 Em apenas 2 minutos, receba gratuitamente um <strong>Mapa Profético exclusivo</strong>{' '}
-              revelando os próximos passos do plano de Deus para sua vida amorosa.
+              📜 Em apenas 2 minutos, <strong>comece gratuitamente</strong> a descobrir seu{' '}
+              <strong>Mapa Profético exclusivo</strong>, revelando os próximos passos do plano de Deus para sua vida amorosa.
             </p>
 
             <div 
-              className="rounded-xl p-3 xs:p-3 mb-4 xs:mb-5"
+              className="rounded-lg p-3 mb-4"
               style={{
                 backdropFilter: 'blur(8px)',
-                background: 'rgba(186, 162, 255, 0.12)',
-                border: '1px solid rgba(186, 162, 255, 0.3)',
-                borderRadius: '12px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: '8px',
               }}
             >
-              <div className="flex items-center justify-center gap-2 text-[13px] xs:text-sm font-medium text-center" style={{ color: '#3F3D56' }}>
+              <div className="flex items-center justify-center gap-2 text-[14px] font-medium text-center" style={{ color: '#FFFFFF' }}>
+                <span className="text-lg">✨</span>
                 <span>
-                  🌟 <strong>+1.247 pessoas</strong> descobriram seu tempo espiritual esta semana • Dados atualizados hoje
+                  <strong>+1.247 pessoas</strong> descobriram seu tempo espiritual esta semana • Dados atualizados hoje
                 </span>
               </div>
             </div>
@@ -146,20 +157,20 @@ const Index = () => {
             <Button 
               asChild
               size="lg"
-              className="w-full text-[15px] xs:text-base font-bold transition-all duration-200 hover:scale-[1.03]"
+              className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03] animate-pulse-cta"
               style={{
                 height: '60px',
                 borderRadius: '14px',
-                background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
+                background: 'linear-gradient(135deg, #6C4AB6 0%, #B69FFF 100%)',
                 color: '#FFFFFF',
-                boxShadow: '0 8px 20px rgba(108, 74, 182, 0.3)',
+                boxShadow: '0 8px 20px rgba(108, 74, 182, 0.4)',
                 padding: '0 32px',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 12px 28px rgba(108, 74, 182, 0.45)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(108, 74, 182, 0.6)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(108, 74, 182, 0.3)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(108, 74, 182, 0.4)';
               }}
               onClick={() => {
                 if (typeof window.fbq === 'function') {
@@ -172,27 +183,23 @@ const Index = () => {
               </Link>
             </Button>
 
-            <div className="text-center space-y-2">
+            <div className="text-center space-y-1 mt-4">
               <p 
                 className="text-[12px] xs:text-[13px] flex flex-wrap items-center justify-center gap-2"
-                style={{ color: '#7A7A8C' }}
+                style={{ color: '#CFCFE4' }}
               >
-                <span>✅ 100% Gratuito</span>
+                <span>✅ 100% Cristão</span>
                 <span>•</span>
-                <span>Sem cadastro</span>
-                <span>•</span>
-                <span>Resultado imediato</span>
+                <span>⏱️ Apenas 2 minutos</span>
               </p>
               
               <p 
                 className="text-[12px] xs:text-[13px] flex flex-wrap items-center justify-center gap-2"
-                style={{ color: '#7A7A8C' }}
+                style={{ color: '#CFCFE4' }}
               >
+                <span>✍️ Sem cadastro</span>
+                <span>•</span>
                 <span>📖 Alinhado à Bíblia</span>
-                <span>•</span>
-                <span>Conteúdo 100% cristão</span>
-                <span>•</span>
-                <span>Seguro</span>
               </p>
             </div>
           </div>
@@ -218,13 +225,13 @@ const Index = () => {
           <Button 
             asChild
             size="lg"
-            className="w-full text-[15px] font-bold transition-all duration-200 hover:scale-[1.03]"
+            className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03] animate-pulse-cta"
             style={{
               height: '56px',
               borderRadius: '12px',
-              background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
+              background: 'linear-gradient(135deg, #6C4AB6 0%, #B69FFF 100%)',
               color: '#FFFFFF',
-              boxShadow: '0 6px 16px rgba(108, 74, 182, 0.3)',
+              boxShadow: '0 6px 16px rgba(108, 74, 182, 0.4)',
             }}
             onClick={() => {
               if (typeof window.fbq === 'function') {
