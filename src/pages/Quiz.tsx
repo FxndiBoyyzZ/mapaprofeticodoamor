@@ -11,6 +11,7 @@ import { ArrowRight, ArrowLeft, Heart, Sparkles, Book, Calendar, User, Users, He
 import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 import InputMask from "react-input-mask";
+import { supabase } from "@/integrations/supabase/client";
 
 type QuizData = {
   momento?: string;
@@ -57,7 +58,7 @@ const Quiz = () => {
     trackQuizStart(); // Track quiz start
   }, []);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     setErrorMessage("");
     
     // Validations
@@ -98,6 +99,20 @@ const Quiz = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 150);
     } else {
+      // Save contact to Supabase
+      if (quizData.nome && quizData.whatsapp) {
+        try {
+          await supabase
+            .from('contacts')
+            .insert([{
+              name: quizData.nome,
+              whatsapp: quizData.whatsapp
+            }]);
+        } catch (error) {
+          console.error('Erro ao salvar contato:', error);
+        }
+      }
+      
       // Save user data to tracking (whatsapp hashing)
       if (quizData.whatsapp) {
         tracking.setUserData(undefined, quizData.whatsapp);
