@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useDashboardAuth } from "@/hooks/useDashboardAuth";
 import localAnalytics, { QuizEvent } from "@/lib/localAnalytics";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   calculateFunnelSteps, 
   calculateDailyMetrics, 
@@ -21,14 +22,22 @@ import {
 
 const COLORS = ['#3F51B5', '#7E57C2', '#F2C94C', '#4facfe', '#f093fb'];
 
+interface Contact {
+  id: string;
+  name: string;
+  whatsapp: string;
+  created_at: string;
+}
+
 const Dashboard = () => {
   const { isAuthenticated, loading, logout } = useDashboardAuth();
   const navigate = useNavigate();
   const [events, setEvents] = useState<QuizEvent[]>([]);
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [dateFilter, setDateFilter] = useState<'today' | '7days' | '30days'>('7days');
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const loadData = () => {
+  const loadData = async () => {
     setIsRefreshing(true);
     
     const now = new Date();
@@ -44,6 +53,17 @@ const Dashboard = () => {
 
     const filteredEvents = localAnalytics.getEvents({ startDate });
     setEvents(filteredEvents);
+    
+    // Load contacts from database
+    const { data: contactsData, error } = await supabase
+      .from('contacts')
+      .select('*')
+      .gte('created_at', startDate.toISOString())
+      .order('created_at', { ascending: false });
+    
+    if (!error && contactsData) {
+      setContacts(contactsData);
+    }
     
     setTimeout(() => setIsRefreshing(false), 300);
   };
@@ -321,12 +341,54 @@ const Dashboard = () => {
           </Card>
         </div>
 
+        {/* Contacts Table */}
+        <Card className="p-6 mb-8">
+          <h3 className="text-primary-dark mb-4">Contatos Recebidos</h3>
+          <div className="overflow-x-auto">
+            {contacts.length > 0 ? (
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-text-primary">Nome</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-text-primary">WhatsApp</th>
+                    <th className="text-left py-3 px-4 text-sm font-semibold text-text-primary">Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contacts.map((contact) => (
+                    <tr key={contact.id} className="border-b border-border hover:bg-secondary/30">
+                      <td className="py-3 px-4 text-sm text-text-secondary">{contact.name}</td>
+                      <td className="py-3 px-4 text-sm text-text-secondary">
+                        <a 
+                          href={`https://wa.me/${contact.whatsapp.replace(/\D/g, '')}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          {contact.whatsapp}
+                        </a>
+                      </td>
+                      <td className="py-3 px-4 text-sm text-text-muted">
+                        {new Date(contact.created_at).toLocaleString('pt-BR')}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className="text-sm text-text-muted text-center py-8">Nenhum contato ainda</p>
+            )}
+          </div>
+        </Card>
+
         {/* Footer Info */}
         <div className="mt-8 text-center">
           <p className="text-xs text-text-muted">
             Última atualização: {new Date().toLocaleString('pt-BR')}
             {' • '}
             Total de eventos: {events.length}
+            {' • '}
+            Total de contatos: {contacts.length}
           </p>
         </div>
       </div>
