@@ -1,4 +1,4 @@
-import { useLocation, Link, Navigate } from "react-router-dom";
+import { useLocation, Link, Navigate, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,9 +12,10 @@ import tracking from "@/lib/tracking";
 
 const Resultado = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { profile, quizData } = location.state || {};
   const [timeLeft, setTimeLeft] = useState(0);
-  const { trackViewContent, trackInitiateCheckout } = useTracking();
+  const { trackViewContent } = useTracking();
 
   // Generate dynamic insights based on profile
   const generateInsights = () => {
@@ -85,6 +86,9 @@ const Resultado = () => {
     if (typeof window.fbq !== 'undefined') {
       window.fbq('trackCustom', 'checkout_click', { value: 47, currency: 'BRL' });
     }
+    
+    // Navigate to checkout
+    navigate('/checkout');
   };
 
   return (
@@ -230,16 +234,13 @@ const Resultado = () => {
               </div>
 
               <Button 
-                asChild 
                 size="lg" 
                 className="w-full h-auto py-4 rounded-xl font-bold text-base sm:text-lg shadow-2xl hover:scale-[1.03] hover:brightness-110 transition-all duration-300 animate-glow-pulse px-4 sm:px-8"
                 style={{ backgroundColor: '#6C4AB6', color: 'white' }}
                 onClick={handleCheckoutClick}
               >
-                <Link to="/checkout" className="flex items-center justify-center gap-2 text-center">
-                  <Key className="w-5 h-5 flex-shrink-0" />
-                  <span className="leading-tight">✨ Desbloquear meu Mapa Completo por R$47</span>
-                </Link>
+                <Key className="w-5 h-5 flex-shrink-0" />
+                <span className="leading-tight">✨ Desbloquear meu Mapa Completo por R$47</span>
               </Button>
             </div>
           </Card>
