@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Shield, Sparkles, Heart, Clock } from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
-import landingBg from "@/assets/landing-bg-couple.jpg";
+import heroGradientBg from "@/assets/hero-gradient-bg.png";
 
 declare global {
   interface Window {
@@ -27,11 +27,11 @@ const Index = () => {
     <div className="min-h-screen w-full relative overflow-hidden">
       {/* Hero Section */}
       <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-4">
-        {/* Real Photo Background */}
+        {/* Hero Gradient Background */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={landingBg} 
-            alt="Casal romântico ao pôr do sol - Mapa Profético do Amor"
+            src={heroGradientBg} 
+            alt="Gradiente profético - Mapa do Amor"
             className="w-full h-full object-cover"
             loading="eager"
             style={{ filter: 'blur(4px)' }}
