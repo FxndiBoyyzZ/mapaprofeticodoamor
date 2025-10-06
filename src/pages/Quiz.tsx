@@ -59,6 +59,8 @@ const Quiz = () => {
   }, []);
 
   const handleNext = async () => {
+    console.log('🔍 handleNext - Step:', step, 'Total Steps:', totalSteps);
+    console.log('📋 Quiz Data:', quizData);
     setErrorMessage("");
     
     // Validations
@@ -88,6 +90,7 @@ const Quiz = () => {
     }
 
     if (step < totalSteps) {
+      console.log('➡️ Avançando para próximo step');
       // Track quiz step progression with user_doubt data
       trackQuizStep(step + 1, quizData.user_doubt || quizData.momento);
       
@@ -99,10 +102,14 @@ const Quiz = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 150);
     } else {
+      console.log('🎯 STEP FINAL DETECTADO! Salvando contato...');
+      console.log('👤 Nome:', quizData.nome);
+      console.log('📱 WhatsApp:', quizData.whatsapp);
+      
       // Save contact to Supabase
       if (quizData.nome && quizData.whatsapp) {
         try {
-          console.log('Salvando contato:', { nome: quizData.nome, whatsapp: quizData.whatsapp });
+          console.log('💾 Chamando Supabase insert...');
           const { data, error } = await supabase
             .from('contacts')
             .insert([{
@@ -112,13 +119,16 @@ const Quiz = () => {
             .select();
           
           if (error) {
-            console.error('Erro ao salvar contato:', error);
+            console.error('❌ ERRO Supabase:', error);
+            console.error('Detalhes do erro:', JSON.stringify(error, null, 2));
           } else {
-            console.log('Contato salvo com sucesso:', data);
+            console.log('✅ SUCESSO! Contato salvo:', data);
           }
         } catch (error) {
-          console.error('Exceção ao salvar contato:', error);
+          console.error('💥 EXCEÇÃO ao salvar:', error);
         }
+      } else {
+        console.warn('⚠️ Dados faltando - Nome ou WhatsApp vazios');
       }
       
       // Save user data to tracking (whatsapp hashing)
