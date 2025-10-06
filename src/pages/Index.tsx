@@ -113,52 +113,32 @@ const Index = () => {
                 textShadow: '0 1px 2px rgba(0,0,0,0.1)',
               }}
             >
-              Descubra quando você vai conhecer o amor da sua vida,{' '}
-              <span 
-                style={{ 
-                  background: 'linear-gradient(135deg, #F9D65C 0%, #F5A623 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                como será essa pessoa e os sinais que Deus vai te mostrar.
-              </span>
+              ✨ Deus tem revelações únicas sobre sua vida amorosa...
+              <br />
+              Descubra <strong>quando</strong>, <strong>como será essa pessoa</strong> e{' '}
+              <strong>os sinais proféticos</strong> que Ele preparou especialmente para você.
             </h1>
 
             <p 
               className="text-center text-[14px] xs:text-base mb-4 xs:mb-6 leading-relaxed"
               style={{ color: '#7A7A8C', marginTop: '8px' }}
             >
-              Leva menos de 2 minutos. Resultado imediato e personalizado.
+              📜 Em apenas 2 minutos, receba gratuitamente um <strong>Mapa Profético exclusivo</strong>{' '}
+              revelando os próximos passos do plano de Deus para sua vida amorosa.
             </p>
 
             <div 
               className="rounded-xl p-3 xs:p-3 mb-4 xs:mb-5"
               style={{
                 backdropFilter: 'blur(8px)',
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid #E9E6FF',
+                background: 'rgba(186, 162, 255, 0.12)',
+                border: '1px solid rgba(186, 162, 255, 0.3)',
                 borderRadius: '12px',
               }}
             >
-              <div className="flex items-center justify-center gap-2 text-[13px] xs:text-sm font-medium" style={{ color: '#3F3D56' }}>
-                <div className="flex -space-x-2 mr-2">
-                  {['M', 'A', 'J', 'L', 'C', 'R'].map((initial, i) => (
-                    <div
-                      key={i}
-                      className="w-6 h-6 xs:w-7 xs:h-7 rounded-full flex items-center justify-center text-[10px] xs:text-xs font-semibold border-2 border-white"
-                      style={{
-                        background: `hsl(${i * 60}, 70%, 60%)`,
-                        color: 'white',
-                      }}
-                    >
-                      {initial}
-                    </div>
-                  ))}
-                </div>
+              <div className="flex items-center justify-center gap-2 text-[13px] xs:text-sm font-medium text-center" style={{ color: '#3F3D56' }}>
                 <span>
-                  ✦ +1.247 pessoas receberam seu Mapa esta semana • Atualizado hoje
+                  🌟 <strong>+1.247 pessoas</strong> descobriram seu tempo espiritual esta semana • Dados atualizados hoje
                 </span>
               </div>
             </div>
@@ -166,27 +146,20 @@ const Index = () => {
             <Button 
               asChild
               size="lg"
-              className="w-full text-[15px] xs:text-base font-semibold transition-all duration-200"
+              className="w-full text-[15px] xs:text-base font-bold transition-all duration-200 hover:scale-[1.03]"
               style={{
-                height: '56px',
+                height: '60px',
                 borderRadius: '14px',
-                background: '#6C4AB6',
+                background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
                 color: '#FFFFFF',
-                boxShadow: '0 8px 18px rgba(108, 74, 182, 0.25)',
+                boxShadow: '0 8px 20px rgba(108, 74, 182, 0.3)',
+                padding: '0 32px',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#5A3CA1';
-                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 12px 28px rgba(108, 74, 182, 0.45)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#6C4AB6';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.98)';
-              }}
-              onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(108, 74, 182, 0.3)';
               }}
               onClick={() => {
                 if (typeof window.fbq === 'function') {
@@ -195,34 +168,40 @@ const Index = () => {
               }}
             >
               <Link to="/quiz">
-                Começar minha revelação agora ✨
+                🔥 Receber Minha Revelação Agora
               </Link>
             </Button>
 
-            <p 
-              className="text-center text-[12px] xs:text-[13px] mt-2 xs:mt-3 mb-3 xs:mb-4"
-              style={{ color: '#5E5E70' }}
-            >
-              Gratuito • Sem cadastro • 6 perguntas
-            </p>
-
-            <p 
-              className="text-center text-[12px] xs:text-[13px] mb-2 flex flex-wrap items-center justify-center gap-2"
-              style={{ color: '#7A7A8C' }}
-            >
-              <span>Alinhado à Bíblia</span>
-              <span>·</span>
-              <span>Conteúdo 100% cristão</span>
-              <span>·</span>
-              <span>Seguro e privado</span>
-            </p>
+            <div className="text-center space-y-2">
+              <p 
+                className="text-[12px] xs:text-[13px] flex flex-wrap items-center justify-center gap-2"
+                style={{ color: '#7A7A8C' }}
+              >
+                <span>✅ 100% Gratuito</span>
+                <span>•</span>
+                <span>Sem cadastro</span>
+                <span>•</span>
+                <span>Resultado imediato</span>
+              </p>
+              
+              <p 
+                className="text-[12px] xs:text-[13px] flex flex-wrap items-center justify-center gap-2"
+                style={{ color: '#7A7A8C' }}
+              >
+                <span>📖 Alinhado à Bíblia</span>
+                <span>•</span>
+                <span>Conteúdo 100% cristão</span>
+                <span>•</span>
+                <span>Seguro</span>
+              </p>
+            </div>
           </div>
         </div>
 
         <button 
           onClick={() => setShowMore(true)}
-          className="absolute bottom-6 left-0 right-0 z-10 text-center text-[12px] xs:text-[13px] hover:opacity-100 transition-opacity"
-          style={{ color: '#E2E8F0', opacity: 0.8 }}
+          className="absolute bottom-6 left-0 right-0 z-10 text-center text-[11px] xs:text-[12px] hover:opacity-100 transition-opacity"
+          style={{ color: '#E2E8F0', opacity: 0.7 }}
         >
           Ver como funciona ↓
         </button>
@@ -239,13 +218,13 @@ const Index = () => {
           <Button 
             asChild
             size="lg"
-            className="w-full text-[15px] font-semibold transition-all duration-200"
+            className="w-full text-[15px] font-bold transition-all duration-200 hover:scale-[1.03]"
             style={{
-              height: '52px',
+              height: '56px',
               borderRadius: '12px',
-              background: '#6C4AB6',
+              background: 'linear-gradient(135deg, #667EEA 0%, #764BA2 100%)',
               color: '#FFFFFF',
-              boxShadow: '0 4px 12px rgba(108, 74, 182, 0.25)',
+              boxShadow: '0 6px 16px rgba(108, 74, 182, 0.3)',
             }}
             onClick={() => {
               if (typeof window.fbq === 'function') {
@@ -254,7 +233,7 @@ const Index = () => {
             }}
           >
             <Link to="/quiz">
-              Começar minha revelação agora ✨
+              🔥 Receber Minha Revelação Agora
             </Link>
           </Button>
         </div>
