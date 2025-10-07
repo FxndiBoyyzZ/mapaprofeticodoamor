@@ -392,7 +392,7 @@ All colors MUST be HSL.
   }
 
   .animate-pulse-subtle {
-    animation: pulse-subtle 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   @keyframes pulse-subtle {
