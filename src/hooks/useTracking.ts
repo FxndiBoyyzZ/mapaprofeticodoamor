@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import tracking from '@/lib/tracking';
+import capi from '@/lib/capi';
 import localAnalytics from '@/lib/localAnalytics';
 
 /**
@@ -16,7 +17,8 @@ declare global {
 export const useTracking = () => {
   const trackEvent = (
     eventName: string,
-    data?: any
+    data?: any,
+    options?: { skipCapi?: boolean }
   ) => {
     if (!tracking.hasConsent()) {
       return;
@@ -35,6 +37,11 @@ export const useTracking = () => {
       window.fbq('track', eventName, data || {}, {
         eventID: trackingData.event_id,
       });
+    }
+
+    // Fire CAPI event (unless skipped)
+    if (!options?.skipCapi) {
+      capi.sendEvent(eventName, data);
     }
   };
 
