@@ -687,7 +687,7 @@ const Quiz = () => {
                         </div>
 
                         <span
-                          className={`text-xs xs:text-sm italic leading-relaxed ml-9 transition-colors duration-150 ${
+                          className={`text-sm xs:text-base italic leading-relaxed ml-9 transition-colors duration-150 ${
                             isSelected ? "text-[#3F3D56]" : "text-[#555555]"
                           }`}
                         >
