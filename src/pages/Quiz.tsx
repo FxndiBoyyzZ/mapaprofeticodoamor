@@ -7,7 +7,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import QuizProgress from "@/components/quiz/QuizProgress";
-import { ArrowRight, ArrowLeft, Heart, Sparkles, Book, Calendar, User, Users, HelpCircle, HeartCrack } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowLeft,
+  Heart,
+  Sparkles,
+  Book,
+  Calendar,
+  User,
+  Users,
+  HelpCircle,
+  HeartCrack,
+} from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 import InputMask from "react-input-mask";
@@ -15,7 +26,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 type QuizData = {
   momento?: string;
-  user_state?: 'solteiro' | 'relacionamento' | 'confuso' | 'desacreditado';
+  user_state?: "solteiro" | "relacionamento" | "confuso" | "desacreditado";
   user_doubt?: string;
   situacaoAtual?: string[];
   duvida?: string;
@@ -46,7 +57,7 @@ const Quiz = () => {
     if (step === 6) {
       // Validação rigorosa para etapa final
       const nomeValido = quizData.nome && quizData.nome.trim().length >= 2;
-      const whatsappValido = quizData.whatsapp && quizData.whatsapp.replace(/\D/g, '').length >= 10;
+      const whatsappValido = quizData.whatsapp && quizData.whatsapp.replace(/\D/g, "").length >= 10;
       return nomeValido && whatsappValido;
     }
     return true;
@@ -54,15 +65,15 @@ const Quiz = () => {
 
   // Track initial quiz view
   useEffect(() => {
-    trackViewContent({ content_category: 'quiz' });
+    trackViewContent({ content_category: "quiz" });
     trackQuizStart(); // Track quiz start
   }, []);
 
   const handleNext = async () => {
-    console.log('🔍 handleNext - Step:', step, 'Total Steps:', totalSteps);
-    console.log('📋 Quiz Data:', quizData);
+    console.log("🔍 handleNext - Step:", step, "Total Steps:", totalSteps);
+    console.log("📋 Quiz Data:", quizData);
     setErrorMessage("");
-    
+
     // Validations
     if (step === 1 && !quizData.momento) {
       setErrorMessage("Por favor, selecione uma opção");
@@ -90,10 +101,10 @@ const Quiz = () => {
     }
 
     if (step < totalSteps) {
-      console.log('➡️ Avançando para próximo step');
+      console.log("➡️ Avançando para próximo step");
       // Track quiz step progression with user_doubt data
       trackQuizStep(step + 1, quizData.user_doubt || quizData.momento);
-      
+
       // Smooth transition
       setIsTransitioning(true);
       setTimeout(() => {
@@ -102,49 +113,51 @@ const Quiz = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 150);
     } else {
-      console.log('🎯 STEP FINAL DETECTADO! Salvando contato...');
-      console.log('👤 Nome:', quizData.nome);
-      console.log('📱 WhatsApp:', quizData.whatsapp);
-      
+      console.log("🎯 STEP FINAL DETECTADO! Salvando contato...");
+      console.log("👤 Nome:", quizData.nome);
+      console.log("📱 WhatsApp:", quizData.whatsapp);
+
       // Save contact to Supabase
       if (quizData.nome && quizData.whatsapp) {
         try {
-          console.log('💾 Chamando Supabase insert...');
+          console.log("💾 Chamando Supabase insert...");
           const { data, error } = await supabase
-            .from('contacts')
-            .insert([{
-              name: quizData.nome,
-              whatsapp: quizData.whatsapp
-            }])
+            .from("contacts")
+            .insert([
+              {
+                name: quizData.nome,
+                whatsapp: quizData.whatsapp,
+              },
+            ])
             .select();
-          
+
           if (error) {
-            console.error('❌ ERRO Supabase:', error);
-            console.error('Detalhes do erro:', JSON.stringify(error, null, 2));
+            console.error("❌ ERRO Supabase:", error);
+            console.error("Detalhes do erro:", JSON.stringify(error, null, 2));
           } else {
-            console.log('✅ SUCESSO! Contato salvo:', data);
+            console.log("✅ SUCESSO! Contato salvo:", data);
           }
         } catch (error) {
-          console.error('💥 EXCEÇÃO ao salvar:', error);
+          console.error("💥 EXCEÇÃO ao salvar:", error);
         }
       } else {
-        console.warn('⚠️ Dados faltando - Nome ou WhatsApp vazios');
+        console.warn("⚠️ Dados faltando - Nome ou WhatsApp vazios");
       }
-      
+
       // Save user data to tracking (whatsapp hashing)
       if (quizData.whatsapp) {
         tracking.setUserData(undefined, quizData.whatsapp);
       }
-      
+
       // Generate profile first
       const profile = generateProfile(quizData);
-      
+
       // Track quiz completion with profile
       trackQuizComplete(profile);
-      
+
       // Track Lead completion
       trackLead();
-      
+
       // Navigate to loading page
       navigate("/loading", { state: { profile, quizData } });
     }
@@ -168,7 +181,7 @@ const Quiz = () => {
     let perfilAmor = "Aliança Profunda";
 
     // Personalize based on user_state
-    if (data.user_state === 'solteiro') {
+    if (data.user_state === "solteiro") {
       tempoEspiritual = "Tempo de Espera Profética";
       if (data.duvida?.includes("Confiança de que Deus")) {
         perfilAmor = "Fé e Esperança Fortalecidas";
@@ -177,7 +190,7 @@ const Quiz = () => {
       } else {
         perfilAmor = "Renovação da Esperança";
       }
-    } else if (data.user_state === 'relacionamento') {
+    } else if (data.user_state === "relacionamento") {
       if (data.situacaoAtual?.includes("Sinto paz e confirmação")) {
         tempoEspiritual = "Tempo de Confirmação Divina";
         perfilAmor = "Aliança Abençoada";
@@ -188,10 +201,10 @@ const Quiz = () => {
         tempoEspiritual = "Tempo de Clareza";
         perfilAmor = "Sabedoria para Decidir";
       }
-    } else if (data.user_state === 'confuso') {
+    } else if (data.user_state === "confuso") {
       tempoEspiritual = "Tempo de Direção";
       perfilAmor = "Busca por Clareza Espiritual";
-    } else if (data.user_state === 'desacreditado') {
+    } else if (data.user_state === "desacreditado") {
       tempoEspiritual = "Tempo de Restauração";
       perfilAmor = "Cura e Renovação do Coração";
     }
@@ -217,7 +230,7 @@ const Quiz = () => {
   const togglePalavra = (palavra: string) => {
     const current = quizData.palavrasAmor || [];
     if (current.includes(palavra)) {
-      setQuizData({ ...quizData, palavrasAmor: current.filter(p => p !== palavra) });
+      setQuizData({ ...quizData, palavrasAmor: current.filter((p) => p !== palavra) });
     } else if (current.length < 3) {
       setQuizData({ ...quizData, palavrasAmor: [...current, palavra] });
     }
@@ -226,7 +239,7 @@ const Quiz = () => {
   const toggleSituacao = (situacao: string) => {
     const current = quizData.situacaoAtual || [];
     if (current.includes(situacao)) {
-      setQuizData({ ...quizData, situacaoAtual: current.filter(s => s !== situacao) });
+      setQuizData({ ...quizData, situacaoAtual: current.filter((s) => s !== situacao) });
     } else {
       setQuizData({ ...quizData, situacaoAtual: [...current, situacao] });
     }
@@ -245,14 +258,14 @@ const Quiz = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-secondary/20 via-lilac/5 to-secondary/20 pb-24 md:pb-20">
       <QuizProgress currentStep={step} totalSteps={totalSteps} />
-      
+
       <div className="pt-[70px] px-4">
         <div className="container mx-auto max-w-2xl">
-          <Card 
+          <Card
             className={`p-4 xs:p-6 md:p-8 shadow-card transition-all duration-150 ${
-              isTransitioning ? 'opacity-0 translate-x-4' : 'opacity-100 translate-x-0'
+              isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
             }`}
-            style={{ backdropFilter: 'blur(8px)', background: 'rgba(255, 255, 255, 0.95)' }}
+            style={{ backdropFilter: "blur(8px)", background: "rgba(255, 255, 255, 0.95)" }}
           >
             {/* Question 1 */}
             {step === 1 && (
@@ -260,9 +273,12 @@ const Quiz = () => {
                 <div className="text-center mb-4">
                   <Sparkles className="w-8 h-8 text-golden mx-auto mb-2" />
                   <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2 leading-tight">
-                    ✨ Qual é o tempo que Deus está escrevendo na sua vida amorosa hoje?
+                    ✨ Como é que Deus está escrevendo sua vida amorosa hoje?
                   </h3>
-                  <p className="text-sm text-[#7A7A8C] leading-[1.4]" style={{ marginTop: '8px', marginBottom: '16px' }}>
+                  <p
+                    className="text-sm text-[#7A7A8C] leading-[1.4]"
+                    style={{ marginTop: "8px", marginBottom: "16px" }}
+                  >
                     Sua resposta moldará a direção profética do seu Mapa.
                     <br />
                     Seja sincero(a): Deus fala com quem abre o coração.
@@ -271,10 +287,18 @@ const Quiz = () => {
 
                 <div className="space-y-2">
                   {[
-                    { text: "Solteiro(a), à espera do cumprimento da promessa", icon: Heart, state: 'solteiro' as const },
-                    { text: "Em um relacionamento atualmente", icon: Users, state: 'relacionamento' as const },
-                    { text: "Vivendo um tempo confuso / em dúvida", icon: HelpCircle, state: 'confuso' as const },
-                    { text: "Desacreditado(a), precisando de direção", icon: HeartCrack, state: 'desacreditado' as const }
+                    {
+                      text: "Solteiro(a), à espera do cumprimento da promessa",
+                      icon: Heart,
+                      state: "solteiro" as const,
+                    },
+                    { text: "Em um relacionamento atualmente", icon: Users, state: "relacionamento" as const },
+                    { text: "Vivendo um tempo confuso / em dúvida", icon: HelpCircle, state: "confuso" as const },
+                    {
+                      text: "Desacreditado(a), precisando de direção",
+                      icon: HeartCrack,
+                      state: "desacreditado" as const,
+                    },
                   ].map((option) => {
                     const IconComponent = option.icon;
                     const isSelected = quizData.momento === option.text;
@@ -283,23 +307,27 @@ const Quiz = () => {
                         key={option.text}
                         className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-180 border ${
                           isSelected
-                            ? 'bg-[#F4F0FF] border-[#6C4AB6] border-2 shadow-md animate-option-select'
-                            : 'bg-white border-[#B69FFF] border-1 hover:border-[#6C4AB6] hover:bg-[#F4F0FF]/30 hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]'
+                            ? "bg-[#F4F0FF] border-[#6C4AB6] border-2 shadow-md animate-option-select"
+                            : "bg-white border-[#B69FFF] border-1 hover:border-[#6C4AB6] hover:bg-[#F4F0FF]/30 hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
                         }`}
                         onClick={() => setQuizData({ ...quizData, momento: option.text, user_state: option.state })}
                       >
-                        <IconComponent 
+                        <IconComponent
                           className={`w-5 h-5 flex-shrink-0 transition-colors duration-150 ${
-                            isSelected ? 'text-[#6C4AB6]' : 'text-[#3F3D56]'
+                            isSelected ? "text-[#6C4AB6]" : "text-[#3F3D56]"
                           }`}
                         />
-                        <span className={`text-base transition-all duration-150 text-left flex-1 ${
-                          isSelected ? 'text-[#3F3D56] font-bold' : 'text-[#3F3D56] font-normal'
-                        }`}>
+                        <span
+                          className={`text-base transition-all duration-150 text-left flex-1 ${
+                            isSelected ? "text-[#3F3D56] font-bold" : "text-[#3F3D56] font-normal"
+                          }`}
+                        >
                           {option.text}
                         </span>
                         {isSelected && (
-                          <span className="text-[14px]" style={{ opacity: 0.7 }}>✨</span>
+                          <span className="text-[14px]" style={{ opacity: 0.7 }}>
+                            ✨
+                          </span>
                         )}
                       </button>
                     );
@@ -313,7 +341,7 @@ const Quiz = () => {
               <div className="space-y-4">
                 <div className="text-center mb-4">
                   <Sparkles className="w-8 h-8 text-lilac mx-auto mb-2" />
-                  {quizData.user_state === 'solteiro' ? (
+                  {quizData.user_state === "solteiro" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         Como você se sente nesse tempo de espera pelo seu propósito amoroso?
@@ -322,7 +350,7 @@ const Quiz = () => {
                         Identifique o que mais tem ocupado seus pensamentos e emoções neste período.
                       </p>
                     </>
-                  ) : quizData.user_state === 'relacionamento' ? (
+                  ) : quizData.user_state === "relacionamento" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         O que mais pesa no seu coração sobre esse relacionamento?
@@ -331,14 +359,12 @@ const Quiz = () => {
                         Seja sincero(a). Deus pode trazer clareza quando abrimos o coração.
                       </p>
                     </>
-                  ) : quizData.user_state === 'confuso' ? (
+                  ) : quizData.user_state === "confuso" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         O que mais te deixa em dúvida neste momento?
                       </h3>
-                      <p className="text-sm text-[#475569] leading-relaxed">
-                        Identifique o que pesa no seu coração.
-                      </p>
+                      <p className="text-sm text-[#475569] leading-relaxed">Identifique o que pesa no seu coração.</p>
                     </>
                   ) : (
                     <>
@@ -353,13 +379,13 @@ const Quiz = () => {
                 </div>
 
                 <div className="space-y-2">
-                  {quizData.user_state === 'solteiro' ? (
+                  {quizData.user_state === "solteiro" ? (
                     <>
                       {[
                         { text: "Às vezes perco a esperança de que vai acontecer", emoji: "🙏" },
                         { text: "Tenho fé, mas não sei quando vai acontecer", emoji: "✨" },
                         { text: "Sinto que Deus está preparando algo especial", emoji: "💖" },
-                        { text: "Tenho medo de esperar em vão", emoji: "😔" }
+                        { text: "Tenho medo de esperar em vão", emoji: "😔" },
                       ].map((option) => {
                         const isSelected = quizData.user_doubt === option.text;
                         return (
@@ -367,28 +393,30 @@ const Quiz = () => {
                             key={option.text}
                             className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
                               isSelected
-                                ? 'bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]'
-                                : 'bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm'
+                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
+                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                             }`}
                             onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
                           >
                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
-                            <span className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                              isSelected ? 'text-[#1E293B] font-semibold' : 'text-[#1E293B] font-medium'
-                            }`}>
+                            <span
+                              className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
+                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
+                              }`}
+                            >
                               {option.text}
                             </span>
                           </button>
                         );
                       })}
                     </>
-                  ) : quizData.user_state === 'relacionamento' ? (
+                  ) : quizData.user_state === "relacionamento" ? (
                     <>
                       {[
                         { text: "Não sei se é vontade de Deus ou minha", emoji: "🤔" },
                         { text: "Meu coração sente coisas boas e ruins, como se estivesse dividido.", emoji: "😕" },
                         { text: "Tenho medo de estar trilhando um caminho que não é o que Deus quer.", emoji: "🛑" },
-                        { text: "Falta clareza espiritual sobre o próximo passo", emoji: "📖" }
+                        { text: "Falta clareza espiritual sobre o próximo passo", emoji: "📖" },
                       ].map((option) => {
                         const isSelected = quizData.user_doubt === option.text;
                         return (
@@ -396,28 +424,30 @@ const Quiz = () => {
                             key={option.text}
                             className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 text-left shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
                               isSelected
-                                ? 'bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]'
-                                : 'bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm'
+                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
+                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                             }`}
                             onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
                           >
                             <span className="text-[18px] leading-none flex-shrink-0 pl-2">{option.emoji}</span>
-                            <span className={`text-[15px] xs:text-base transition-all duration-150 ${
-                              isSelected ? 'text-[#1E293B] font-semibold' : 'text-[#1E293B] font-medium'
-                            }`}>
+                            <span
+                              className={`text-[15px] xs:text-base transition-all duration-150 ${
+                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
+                              }`}
+                            >
                               {option.text}
                             </span>
                           </button>
                         );
                       })}
                     </>
-                  ) : quizData.user_state === 'confuso' ? (
+                  ) : quizData.user_state === "confuso" ? (
                     <>
                       {[
                         { text: "Não sei se é vontade de Deus ou minha", emoji: "🤔" },
                         { text: "Sinto coisas boas e ruins ao mesmo tempo", emoji: "✨" },
                         { text: "Medo de estar indo no caminho errado", emoji: "🛑" },
-                        { text: "Falta clareza espiritual sobre o próximo passo", emoji: "📖" }
+                        { text: "Falta clareza espiritual sobre o próximo passo", emoji: "📖" },
                       ].map((option) => {
                         const isSelected = quizData.user_doubt === option.text;
                         return (
@@ -425,15 +455,17 @@ const Quiz = () => {
                             key={option.text}
                             className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
                               isSelected
-                                ? 'bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]'
-                                : 'bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm'
+                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
+                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                             }`}
                             onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
                           >
                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
-                            <span className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                              isSelected ? 'text-[#1E293B] font-semibold' : 'text-[#1E293B] font-medium'
-                            }`}>
+                            <span
+                              className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
+                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
+                              }`}
+                            >
                               {option.text}
                             </span>
                           </button>
@@ -446,7 +478,7 @@ const Quiz = () => {
                         { text: "Uma decepção passada me feriu profundamente", emoji: "😔" },
                         { text: "Me sinto esquecido(a) por Deus", emoji: "🙏" },
                         { text: "Não vejo sinais de mudança", emoji: "⏳" },
-                        { text: "Perdi as forças para acreditar", emoji: "💔" }
+                        { text: "Perdi as forças para acreditar", emoji: "💔" },
                       ].map((option) => {
                         const isSelected = quizData.user_doubt === option.text;
                         return (
@@ -454,15 +486,17 @@ const Quiz = () => {
                             key={option.text}
                             className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
                               isSelected
-                                ? 'bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]'
-                                : 'bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm'
+                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
+                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                             }`}
                             onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
                           >
                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
-                            <span className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                              isSelected ? 'text-[#1E293B] font-semibold' : 'text-[#1E293B] font-medium'
-                            }`}>
+                            <span
+                              className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
+                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
+                              }`}
+                            >
                               {option.text}
                             </span>
                           </button>
@@ -479,46 +513,61 @@ const Quiz = () => {
               <div className="space-y-6">
                 <div className="text-center mb-5">
                   <Heart className="w-8 h-8 text-golden mx-auto mb-2" />
-                  {quizData.user_state === 'solteiro' ? (
+                  {quizData.user_state === "solteiro" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         Se Deus fosse escrever uma nova história de amor para você, que qualidades não poderiam faltar?
                       </h3>
-                      <p className="text-sm text-[#475569]">Escolha até 3 características que refletem os desejos mais profundos do seu coração.</p>
+                      <p className="text-sm text-[#475569]">
+                        Escolha até 3 características que refletem os desejos mais profundos do seu coração.
+                      </p>
                     </>
-                  ) : quizData.user_state === 'relacionamento' ? (
+                  ) : quizData.user_state === "relacionamento" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         Quais qualidades você mais deseja ver florescendo no relacionamento de vocês?
                       </h3>
-                      <p className="text-sm text-[#475569]">Escolha até 3 características que representam o que você acredita que Deus pode fortalecer.</p>
+                      <p className="text-sm text-[#475569]">
+                        Escolha até 3 características que representam o que você acredita que Deus pode fortalecer.
+                      </p>
                     </>
-                  ) : quizData.user_state === 'confuso' ? (
+                  ) : quizData.user_state === "confuso" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         Se pudesse alinhar seu relacionamento ao propósito de Deus, quais qualidades seriam essenciais?
                       </h3>
-                      <p className="text-sm text-[#475569]">Escolha até 3 características que você gostaria de ver restauradas.</p>
+                      <p className="text-sm text-[#475569]">
+                        Escolha até 3 características que você gostaria de ver restauradas.
+                      </p>
                     </>
                   ) : (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
                         Se o amor fosse restaurado por Deus, que características fariam você acreditar novamente?
                       </h3>
-                      <p className="text-sm text-[#475569]">Escolha até 3 qualidades que reacenderiam sua fé no amor.</p>
+                      <p className="text-sm text-[#475569]">
+                        Escolha até 3 qualidades que reacenderiam sua fé no amor.
+                      </p>
                     </>
                   )}
                 </div>
 
                 <div className="flex flex-wrap gap-2.5 justify-center px-2">
                   {[
-                    "Fiel", "Cúmplice", "Líder espiritual", "Acolhedor(a)", 
-                    "Ousado(a)", "Coração manso e ensinável", "Que traga alegria leve", "Amor constante e inabalável", 
-                    "Com propósito missionário", "Com alma de lar e parceria"
+                    "Fiel",
+                    "Cúmplice",
+                    "Líder espiritual",
+                    "Acolhedor(a)",
+                    "Ousado(a)",
+                    "Coração manso e ensinável",
+                    "Que traga alegria leve",
+                    "Amor constante e inabalável",
+                    "Com propósito missionário",
+                    "Com alma de lar e parceria",
                   ].map((palavra) => {
                     const isSelected = quizData.palavrasAmor?.includes(palavra);
                     const isDisabled = !isSelected && (quizData.palavrasAmor?.length || 0) >= 3;
-                    
+
                     return (
                       <button
                         key={palavra}
@@ -531,17 +580,15 @@ const Quiz = () => {
                             isSelected
                               ? "bg-[#F4F0FF] border-2 border-[#6C4AB6] text-[#3F3D56] font-semibold shadow-[0_4px_12px_rgba(108,74,182,0.15)] scale-[1.02] animate-[scale-in_180ms_ease-out]"
                               : isDisabled
-                              ? "bg-white/50 border border-[#B69FFF]/30 text-[#1E293B]/40 cursor-not-allowed opacity-40"
-                              : "bg-white border border-[#B69FFF] text-[#3F3D56] hover:bg-[#F4F0FF]/30 hover:border-[#6C4AB6]/50 hover:scale-105 cursor-pointer shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_8px_rgba(182,159,255,0.2)]"
+                                ? "bg-white/50 border border-[#B69FFF]/30 text-[#1E293B]/40 cursor-not-allowed opacity-40"
+                                : "bg-white border border-[#B69FFF] text-[#3F3D56] hover:bg-[#F4F0FF]/30 hover:border-[#6C4AB6]/50 hover:scale-105 cursor-pointer shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_8px_rgba(182,159,255,0.2)]"
                           }
                         `}
                         onClick={() => !isDisabled && togglePalavra(palavra)}
                       >
                         <span className="flex items-center gap-1.5">
                           {palavra}
-                          {isSelected && (
-                            <span className="text-base opacity-80 animate-fade-in">✨</span>
-                          )}
+                          {isSelected && <span className="text-base opacity-80 animate-fade-in">✨</span>}
                         </span>
                       </button>
                     );
@@ -549,16 +596,18 @@ const Quiz = () => {
                 </div>
 
                 <div className="text-center pt-2">
-                  <p className={`text-sm font-medium transition-all duration-200 ${
-                    (quizData.palavrasAmor?.length || 0) === 0 
-                      ? 'text-[#94A3B8]' 
-                      : (quizData.palavrasAmor?.length || 0) === 3 
-                      ? 'text-[#6C4AB6] font-bold animate-pulse' 
-                      : 'text-[#475569] font-semibold'
-                  }`}>
-                    {quizData.palavrasAmor && quizData.palavrasAmor.length > 0 
-                      ? `${quizData.palavrasAmor.length}/3 selecionadas` 
-                      : '0/3 selecionadas'}
+                  <p
+                    className={`text-sm font-medium transition-all duration-200 ${
+                      (quizData.palavrasAmor?.length || 0) === 0
+                        ? "text-[#94A3B8]"
+                        : (quizData.palavrasAmor?.length || 0) === 3
+                          ? "text-[#6C4AB6] font-bold animate-pulse"
+                          : "text-[#475569] font-semibold"
+                    }`}
+                  >
+                    {quizData.palavrasAmor && quizData.palavrasAmor.length > 0
+                      ? `${quizData.palavrasAmor.length}/3 selecionadas`
+                      : "0/3 selecionadas"}
                   </p>
                 </div>
               </div>
@@ -573,36 +622,37 @@ const Quiz = () => {
                     Qual promessa pode restaurar seu coração?
                   </h3>
                   <p className="text-sm text-[#475569]">
-                    Escolha a promessa que mais fala ao seu coração neste momento. Ela será a base das direções proféticas do seu Mapa.
+                    Escolha a promessa que mais fala ao seu coração neste momento. Ela será a base das direções
+                    proféticas do seu Mapa.
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   {[
-                    { 
-                      ref: "Jeremias 29:11", 
+                    {
+                      ref: "Jeremias 29:11",
                       tema: "Esperança",
                       texto: "Porque eu sei os planos que tenho para vocês...",
-                      emoji: "🌟"
+                      emoji: "🌟",
                     },
-                    { 
-                      ref: "Provérbios 3:5-6", 
+                    {
+                      ref: "Provérbios 3:5-6",
                       tema: "Direção",
                       texto: "Confie no Senhor de todo o seu coração...",
-                      emoji: "🧭"
+                      emoji: "🧭",
                     },
-                    { 
-                      ref: "Salmo 37:4-5", 
+                    {
+                      ref: "Salmo 37:4-5",
                       tema: "Deleite",
                       texto: "Deleite-se no Senhor...",
-                      emoji: "💫"
+                      emoji: "💫",
                     },
-                    { 
-                      ref: "1 Coríntios 13:4-7", 
+                    {
+                      ref: "1 Coríntios 13:4-7",
                       tema: "Amor",
                       texto: "O amor é paciente, o amor é bondoso...",
-                      emoji: "💝"
-                    }
+                      emoji: "💝",
+                    },
                   ].map((v) => {
                     const isSelected = quizData.versiculo === v.ref;
                     return (
@@ -610,8 +660,8 @@ const Quiz = () => {
                         key={v.ref}
                         className={`w-full p-4 rounded-xl flex flex-col gap-1.5 text-left relative transition-all duration-150 ${
                           isSelected
-                            ? 'bg-[#F4F0FF] border-2 border-[#6C4AB6] shadow-md animate-[verse-select_180ms_ease-out]'
-                            : 'bg-white border border-[#B69FFF] hover:border-[#6C4AB6]/50 hover:bg-[#F4F0FF]/30 hover:shadow-sm'
+                            ? "bg-[#F4F0FF] border-2 border-[#6C4AB6] shadow-md animate-[verse-select_180ms_ease-out]"
+                            : "bg-white border border-[#B69FFF] hover:border-[#6C4AB6]/50 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                         }`}
                         onClick={() => setQuizData({ ...quizData, versiculo: v.ref })}
                       >
@@ -619,13 +669,15 @@ const Quiz = () => {
                         {isSelected && (
                           <span className="absolute top-2 right-2 text-[14px] opacity-70 animate-fade-in">✨</span>
                         )}
-                        
+
                         <div className="flex items-start justify-between w-full gap-2">
                           <div className="flex items-center gap-2.5">
                             <span className="text-lg flex-shrink-0">{v.emoji}</span>
-                            <span className={`font-serif text-sm xs:text-base transition-all duration-150 ${
-                              isSelected ? 'font-bold text-[#3F3D56]' : 'font-medium text-[#1E293B]'
-                            }`}>
+                            <span
+                              className={`font-serif text-sm xs:text-base transition-all duration-150 ${
+                                isSelected ? "font-bold text-[#3F3D56]" : "font-medium text-[#1E293B]"
+                              }`}
+                            >
                               {v.ref}
                             </span>
                           </div>
@@ -633,10 +685,12 @@ const Quiz = () => {
                             {v.tema}
                           </span>
                         </div>
-                        
-                        <span className={`text-xs xs:text-sm italic leading-relaxed ml-9 transition-colors duration-150 ${
-                          isSelected ? 'text-[#3F3D56]' : 'text-[#555555]'
-                        }`}>
+
+                        <span
+                          className={`text-xs xs:text-sm italic leading-relaxed ml-9 transition-colors duration-150 ${
+                            isSelected ? "text-[#3F3D56]" : "text-[#555555]"
+                          }`}
+                        >
                           "{v.texto}"
                         </span>
                       </button>
@@ -657,33 +711,41 @@ const Quiz = () => {
               <div className="space-y-4">
                 <div className="text-center mb-6">
                   <Calendar className="w-8 h-8 text-lilac mx-auto mb-3" />
-                  {quizData.user_state === 'solteiro' ? (
+                  {quizData.user_state === "solteiro" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
                         Quanto tempo por dia você está disposto(a) a separar para Deus preparar seu coração?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">Esse tempo será a base do plano profético personalizado que você receberá.</p>
+                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                        Esse tempo será a base do plano profético personalizado que você receberá.
+                      </p>
                     </>
-                  ) : quizData.user_state === 'relacionamento' ? (
+                  ) : quizData.user_state === "relacionamento" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
                         Quanto tempo por dia você está disposto(a) a separar para Deus trazer clareza?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">Esse tempo será a base do plano profético personalizado que você receberá.</p>
+                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                        Esse tempo será a base do plano profético personalizado que você receberá.
+                      </p>
                     </>
-                  ) : quizData.user_state === 'confuso' ? (
+                  ) : quizData.user_state === "confuso" ? (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
                         Quanto tempo por dia você está disposto(a) a separar para Deus te guiar?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">Esse tempo será a base do plano profético personalizado que você receberá.</p>
+                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                        Esse tempo será a base do plano profético personalizado que você receberá.
+                      </p>
                     </>
                   ) : (
                     <>
                       <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
                         Quanto tempo por dia você está disposto(a) a separar para Deus restaurar seu coração?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">Esse tempo será a base do plano profético personalizado que você receberá.</p>
+                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                        Esse tempo será a base do plano profético personalizado que você receberá.
+                      </p>
                     </>
                   )}
                 </div>
@@ -692,7 +754,7 @@ const Quiz = () => {
                   {[
                     { text: "5 min", emoji: "⚡" },
                     { text: "10 min", emoji: "🕐" },
-                    { text: "15 min", emoji: "⏰" }
+                    { text: "15 min", emoji: "⏰" },
                   ].map((option) => {
                     const isSelected = quizData.tempo === option.text;
                     return (
@@ -700,25 +762,31 @@ const Quiz = () => {
                         key={option.text}
                         className={`w-full p-4 rounded-xl flex items-center justify-between gap-3 relative transition-all duration-200 group ${
                           isSelected
-                            ? 'bg-[#F4F0FF] border-2 border-[#6C4AB6] shadow-[0_4px_16px_rgba(108,74,182,0.15)] scale-[1.01]'
-                            : 'bg-white border-2 border-[#E2E8F0] hover:border-[#6C4AB6]/40 hover:bg-[#F4F0FF]/20 hover:shadow-[0_2px_12px_rgba(108,74,182,0.08)] hover:scale-[1.005]'
+                            ? "bg-[#F4F0FF] border-2 border-[#6C4AB6] shadow-[0_4px_16px_rgba(108,74,182,0.15)] scale-[1.01]"
+                            : "bg-white border-2 border-[#E2E8F0] hover:border-[#6C4AB6]/40 hover:bg-[#F4F0FF]/20 hover:shadow-[0_2px_12px_rgba(108,74,182,0.08)] hover:scale-[1.005]"
                         }`}
                         onClick={() => setQuizData({ ...quizData, tempo: option.text })}
                       >
                         <div className="flex items-center gap-3.5">
-                          <span className={`text-2xl w-6 h-6 flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
-                            isSelected ? 'scale-110' : 'group-hover:scale-105'
-                          }`}>
+                          <span
+                            className={`text-2xl w-6 h-6 flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
+                              isSelected ? "scale-110" : "group-hover:scale-105"
+                            }`}
+                          >
                             {option.emoji}
                           </span>
-                          <span className={`text-base transition-all duration-200 ${
-                            isSelected ? 'text-[#3F3D56] font-bold' : 'text-[#1E293B] font-semibold'
-                          }`}>
+                          <span
+                            className={`text-base transition-all duration-200 ${
+                              isSelected ? "text-[#3F3D56] font-bold" : "text-[#1E293B] font-semibold"
+                            }`}
+                          >
                             {option.text} por dia
                           </span>
                         </div>
                         {isSelected && (
-                          <span className="text-[14px] opacity-70 animate-fade-in flex-shrink-0 drop-shadow-sm">✨</span>
+                          <span className="text-[14px] opacity-70 animate-fade-in flex-shrink-0 drop-shadow-sm">
+                            ✨
+                          </span>
                         )}
                         {/* Subtle glow effect on selection */}
                         {isSelected && (
@@ -749,7 +817,8 @@ const Quiz = () => {
                     ✨ Última etapa para receber seu Mapa Profético personalizado 💌
                   </h2>
                   <p className="text-sm xs:text-base text-[#7A7A8C] leading-relaxed mx-auto max-w-[90%]">
-                    Preencha abaixo para receber seu Mapa Profético e o Plano Espiritual de 7 dias diretamente no seu WhatsApp.
+                    Preencha abaixo para receber seu Mapa Profético e o Plano Espiritual de 7 dias diretamente no seu
+                    WhatsApp.
                   </p>
                 </div>
 
@@ -775,7 +844,9 @@ const Quiz = () => {
                     <InputMask
                       mask="(99) 99999-9999"
                       value={quizData.whatsapp || ""}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuizData({ ...quizData, whatsapp: e.target.value })}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setQuizData({ ...quizData, whatsapp: e.target.value })
+                      }
                     >
                       {/* @ts-ignore */}
                       {(inputProps: any) => (
@@ -799,7 +870,8 @@ const Quiz = () => {
                   <p className="text-[13px] xs:text-sm text-[#5E5E70] leading-relaxed flex items-start gap-2">
                     <span className="text-base flex-shrink-0 mt-0.5">🔒</span>
                     <span>
-                      <strong className="font-bold">Seus dados estão protegidos</strong> — usamos apenas para entregar seu Mapa espiritual com segurança.
+                      <strong className="font-bold">Seus dados estão protegidos</strong> — usamos apenas para entregar
+                      seu Mapa espiritual com segurança.
                     </span>
                   </p>
                 </div>
@@ -808,7 +880,11 @@ const Quiz = () => {
 
             {/* Error Message */}
             {errorMessage && (
-              <div className="mt-4 p-3 bg-destructive/10 border border-destructive/30 rounded-xl" role="alert" aria-live="polite">
+              <div
+                className="mt-4 p-3 bg-destructive/10 border border-destructive/30 rounded-xl"
+                role="alert"
+                aria-live="polite"
+              >
                 <p className="text-sm text-destructive font-medium">{errorMessage}</p>
               </div>
             )}
@@ -816,27 +892,22 @@ const Quiz = () => {
             {/* Desktop Navigation - Visible only on desktop */}
             <div className="hidden md:flex gap-3 mt-6 pt-4 border-t border-border">
               {step > 1 && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={handleBack}
-                  className="flex-1 rounded-full font-semibold"
-                >
+                <Button variant="outline" size="lg" onClick={handleBack} className="flex-1 rounded-full font-semibold">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Voltar
                 </Button>
               )}
-              
+
               <Button
                 size="lg"
                 onClick={handleNext}
                 disabled={!isStepValid()}
                 className={`flex-1 rounded-xl font-bold text-base transition-all duration-300 ${
-                  isStepValid() 
-                    ? 'bg-[#6C4AB6] text-white hover:bg-[#5A3D9A] hover:shadow-[0_0_24px_rgba(108,74,182,0.5)] hover:scale-[1.02] animate-[scale-in_300ms_ease-out]' 
-                    : 'bg-[#6C4AB6]/40 text-white/60 cursor-not-allowed opacity-60'
+                  isStepValid()
+                    ? "bg-[#6C4AB6] text-white hover:bg-[#5A3D9A] hover:shadow-[0_0_24px_rgba(108,74,182,0.5)] hover:scale-[1.02] animate-[scale-in_300ms_ease-out]"
+                    : "bg-[#6C4AB6]/40 text-white/60 cursor-not-allowed opacity-60"
                 }`}
-                style={{ height: '52px' }}
+                style={{ height: "52px" }}
               >
                 {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo"}
                 {step === totalSteps ? null : <ArrowRight className="w-4 h-4 ml-2" />}
@@ -850,28 +921,21 @@ const Quiz = () => {
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border shadow-lg p-4 pb-6">
         <div className="container mx-auto max-w-2xl flex gap-2">
           {step > 1 && (
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleBack}
-              className="rounded-full font-semibold w-16"
-            >
+            <Button variant="outline" size="lg" onClick={handleBack} className="rounded-full font-semibold w-16">
               <ArrowLeft className="w-5 h-5" />
             </Button>
           )}
-          
+
           <Button
             size="lg"
             onClick={handleNext}
             disabled={!isStepValid()}
-            className={`rounded-xl font-bold text-base transition-all duration-300 ${
-              step > 1 ? 'flex-1' : 'w-full'
-            } ${
-              isStepValid() 
-                ? 'bg-[#6C4AB6] text-white hover:bg-[#5A3D9A] hover:shadow-[0_0_28px_rgba(108,74,182,0.6)] hover:scale-[1.02] animate-[scale-in_300ms_ease-out]' 
-                : 'bg-[#6C4AB6]/40 text-white/60 cursor-not-allowed opacity-60'
+            className={`rounded-xl font-bold text-base transition-all duration-300 ${step > 1 ? "flex-1" : "w-full"} ${
+              isStepValid()
+                ? "bg-[#6C4AB6] text-white hover:bg-[#5A3D9A] hover:shadow-[0_0_28px_rgba(108,74,182,0.6)] hover:scale-[1.02] animate-[scale-in_300ms_ease-out]"
+                : "bg-[#6C4AB6]/40 text-white/60 cursor-not-allowed opacity-60"
             }`}
-            style={{ height: '56px' }}
+            style={{ height: "56px" }}
           >
             {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo"}
             {step === totalSteps ? null : <ArrowRight className="w-5 h-5 ml-2" />}
