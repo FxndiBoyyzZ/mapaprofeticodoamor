@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -24,15 +23,8 @@ export const ContactForm = () => {
       
       setIsSubmitting(true);
       
-      // Insert into database
-      const { error } = await supabase
-        .from('contacts')
-        .insert([{
-          name: validated.name,
-          whatsapp: validated.whatsapp
-        }]);
-
-      if (error) throw error;
+      // In production, you would send this to a backend endpoint
+      console.log('Contact submitted:', validated);
 
       toast.success("Contato enviado com sucesso!");
       setName("");

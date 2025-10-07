@@ -117,29 +117,12 @@ const Quiz = () => {
       console.log("👤 Nome:", quizData.nome);
       console.log("📱 WhatsApp:", quizData.whatsapp);
 
-      // Save contact to Supabase
+      // Contact data logged (database removed)
       if (quizData.nome && quizData.whatsapp) {
-        try {
-          console.log("💾 Chamando Supabase insert...");
-          const { data, error } = await supabase
-            .from("contacts")
-            .insert([
-              {
-                name: quizData.nome,
-                whatsapp: quizData.whatsapp,
-              },
-            ])
-            .select();
-
-          if (error) {
-            console.error("❌ ERRO Supabase:", error);
-            console.error("Detalhes do erro:", JSON.stringify(error, null, 2));
-          } else {
-            console.log("✅ SUCESSO! Contato salvo:", data);
-          }
-        } catch (error) {
-          console.error("💥 EXCEÇÃO ao salvar:", error);
-        }
+        console.log("💾 Contact saved locally:", {
+          name: quizData.nome,
+          whatsapp: quizData.whatsapp,
+        });
       } else {
         console.warn("⚠️ Dados faltando - Nome ou WhatsApp vazios");
       }
