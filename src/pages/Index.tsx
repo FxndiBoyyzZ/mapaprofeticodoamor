@@ -126,7 +126,7 @@ const Index = () => {
             <Button 
               asChild
               size="lg"
-              className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03] animate-pulse-subtle"
+              className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03]"
               style={{
                 height: '60px',
                 borderRadius: '30px',
