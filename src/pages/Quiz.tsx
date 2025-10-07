@@ -259,17 +259,19 @@ const Quiz = () => {
               <div className="space-y-4">
                 <div className="text-center mb-4">
                   <Sparkles className="w-8 h-8 text-golden mx-auto mb-2" />
-                  <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
-                    ✨ Em que tempo do seu caminhar amoroso você está hoje?
+                  <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2 leading-tight">
+                    ✨ Qual é o tempo que Deus está escrevendo na sua vida amorosa hoje?
                   </h3>
-                  <p className="text-sm text-[#475569] leading-relaxed">
-                    Sua resposta vai moldar a direção profética do seu Mapa. Seja sincero(a), pois Deus fala com quem abre o coração.
+                  <p className="text-sm text-[#7A7A8C] leading-[1.4]" style={{ marginTop: '8px', marginBottom: '16px' }}>
+                    Sua resposta moldará a direção profética do seu Mapa.
+                    <br />
+                    Seja sincero(a): Deus fala com quem abre o coração.
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   {[
-                    { text: "Solteiro(a), à espera do propósito de Deus", icon: Heart, state: 'solteiro' as const },
+                    { text: "Solteiro(a), à espera do cumprimento da promessa", icon: Heart, state: 'solteiro' as const },
                     { text: "Em um relacionamento atualmente", icon: Users, state: 'relacionamento' as const },
                     { text: "Vivendo um tempo confuso / em dúvida", icon: HelpCircle, state: 'confuso' as const },
                     { text: "Desacreditado(a), precisando de direção", icon: HeartCrack, state: 'desacreditado' as const }
@@ -279,23 +281,26 @@ const Quiz = () => {
                     return (
                       <button
                         key={option.text}
-                        className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 ${
+                        className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-180 border ${
                           isSelected
-                            ? 'bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]'
-                            : 'bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]'
+                            ? 'bg-[#F4F0FF] border-[#6C4AB6] border-2 shadow-md animate-option-select'
+                            : 'bg-white border-[#B69FFF] border-1 hover:border-[#6C4AB6] hover:bg-[#F4F0FF]/30 hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]'
                         }`}
                         onClick={() => setQuizData({ ...quizData, momento: option.text, user_state: option.state })}
                       >
                         <IconComponent 
                           className={`w-5 h-5 flex-shrink-0 transition-colors duration-150 ${
-                            isSelected ? 'text-[#3F51B5]' : 'text-[#475569]'
+                            isSelected ? 'text-[#6C4AB6]' : 'text-[#3F3D56]'
                           }`}
                         />
-                        <span className={`text-base transition-all duration-150 text-left ${
-                          isSelected ? 'text-[#1E293B] font-semibold' : 'text-[#1E293B] font-medium'
+                        <span className={`text-base transition-all duration-150 text-left flex-1 ${
+                          isSelected ? 'text-[#3F3D56] font-bold' : 'text-[#3F3D56] font-normal'
                         }`}>
                           {option.text}
                         </span>
+                        {isSelected && (
+                          <span className="text-[14px]" style={{ opacity: 0.7 }}>✨</span>
+                        )}
                       </button>
                     );
                   })}
