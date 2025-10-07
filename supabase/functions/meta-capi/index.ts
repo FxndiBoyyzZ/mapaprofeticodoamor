@@ -15,19 +15,22 @@ serve(async (req) => {
   }
 
   try {
+    const payload = await req.json();
+    console.log('Received CAPI event:', payload);
+
+    // If META_ACCESS_TOKEN is not configured, log the event but don't send to Meta
     if (!META_ACCESS_TOKEN) {
-      console.error('META_ACCESS_TOKEN not configured');
+      console.warn('META_ACCESS_TOKEN not configured - event logged but not sent to Meta');
       return new Response(
-        JSON.stringify({ error: 'META_ACCESS_TOKEN not configured' }), 
+        JSON.stringify({ 
+          success: true, 
+          message: 'Event received but not sent to Meta (token not configured)' 
+        }), 
         { 
-          status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
         }
       );
     }
-
-    const payload = await req.json();
-    console.log('Received CAPI event:', payload);
 
     // Send to Meta Conversions API
     const response = await fetch(
