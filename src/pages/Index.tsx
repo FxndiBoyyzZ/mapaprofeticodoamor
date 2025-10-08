@@ -50,7 +50,7 @@ const Index = () => {
 
         {/* Main Content */}
         <div className="relative z-10 w-full max-w-md animate-fade-in px-6">
-          {/* Logo - Lazy loaded */}
+          {/* Logo - Optimized */}
           <div className="flex justify-center mb-4">
             <img 
               src={logo} 
@@ -58,6 +58,7 @@ const Index = () => {
               className="h-20 w-auto"
               loading="eager"
               decoding="async"
+              fetchPriority="high"
               width="80"
               height="80"
               style={{ 

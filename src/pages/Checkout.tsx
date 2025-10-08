@@ -146,6 +146,8 @@ const Checkout = () => {
                       src={bonusGuia} 
                       alt="Guia Profético" 
                       className="w-full aspect-[3/4] object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="p-2">
                       <p className="text-xs font-semibold text-white text-center">
@@ -166,6 +168,8 @@ const Checkout = () => {
                       src={bonusDevocional} 
                       alt="Devocional 7 Dias" 
                       className="w-full aspect-[3/4] object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="p-2">
                       <p className="text-xs font-semibold text-white text-center">
@@ -186,6 +190,8 @@ const Checkout = () => {
                       src={bonusDiario} 
                       alt="Diário de Oração" 
                       className="w-full aspect-[3/4] object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="p-2">
                       <p className="text-xs font-semibold text-white text-center">
