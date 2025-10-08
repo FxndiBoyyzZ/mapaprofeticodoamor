@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Shield, Sparkles, Heart, Clock } from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
 import heroGradientBg from "@/assets/hero-gradient-bg.png";
+import logo from "@/assets/logo.png";
 
 declare global {
   interface Window {
@@ -68,9 +69,12 @@ const Index = () => {
         {/* Main Content */}
         <div className="relative z-10 w-full max-w-md animate-fade-in px-6">
           <div className="flex justify-center mb-4 xs:mb-6">
-            <div className="w-14 h-14 xs:w-16 xs:h-16 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center shadow-lg">
-              <span className="text-2xl xs:text-3xl">✨</span>
-            </div>
+            <img 
+              src={logo} 
+              alt="Mapa Profético do Amor" 
+              className="h-16 xs:h-20 w-auto"
+              style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+            />
           </div>
 
             <h1 
