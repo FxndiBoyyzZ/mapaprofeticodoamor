@@ -23,6 +23,7 @@ import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 import InputMask from "react-input-mask";
 import { supabase } from "@/integrations/supabase/client";
+import quizBg from "@/assets/quiz-bg.png";
 
 type QuizData = {
   momento?: string;
@@ -239,7 +240,12 @@ const Quiz = () => {
   };
 
   return (
-    <div className="min-h-screen w-full pb-24 md:pb-20">
+    <div 
+      className="min-h-screen w-full pb-24 md:pb-20 bg-cover bg-center bg-fixed"
+      style={{
+        backgroundImage: `url(${quizBg})`,
+      }}
+    >
       <QuizProgress currentStep={step} totalSteps={totalSteps} />
 
       <div className="pt-[70px] px-4">
