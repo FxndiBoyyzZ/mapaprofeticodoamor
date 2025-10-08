@@ -61,12 +61,14 @@ const Resultado = () => {
       content_category: `${profile.tempoEspiritual} | ${profile.perfilAmor}`,
     });
 
-    // Start timer using tracking manager
-    tracking.startTimer();
+    // Reset and start fresh timer for this session
+    const startTime = Date.now();
+    const TIMER_DURATION = 10 * 60; // 10 minutes in seconds
     
     // Update timer display
     const updateTimer = () => {
-      const remaining = tracking.getTimerRemaining(10); // 10 minutos
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const remaining = Math.max(0, TIMER_DURATION - elapsed);
       setTimeLeft(remaining);
     };
     
