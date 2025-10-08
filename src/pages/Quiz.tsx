@@ -310,7 +310,17 @@ const Quiz = () => {
                             ? "rgba(230, 126, 34, 0.15)" 
                             : "rgba(40, 30, 25, 0.6)",
                         }}
-                        onClick={() => setQuizData({ ...quizData, momento: option.text, user_state: option.state })}
+                        onClick={() => {
+                          setQuizData({ ...quizData, momento: option.text, user_state: option.state });
+                          setTimeout(() => {
+                            setIsTransitioning(true);
+                            setTimeout(() => {
+                              setStep(2);
+                              setIsTransitioning(false);
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 150);
+                          }, 100);
+                        }}
                       >
                         <IconComponent
                           className="w-6 h-6 flex-shrink-0"
@@ -399,7 +409,18 @@ const Quiz = () => {
                                 ? "rgba(244, 240, 255, 0.5)" 
                                 : "rgba(255, 255, 255, 0.3)",
                             }}
-                            onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
+                            onClick={() => {
+                              setQuizData({ ...quizData, user_doubt: option.text });
+                              setTimeout(() => {
+                                trackQuizStep(3, option.text);
+                                setIsTransitioning(true);
+                                setTimeout(() => {
+                                  setStep(3);
+                                  setIsTransitioning(false);
+                                  window.scrollTo({ top: 0, behavior: "smooth" });
+                                }, 150);
+                              }, 100);
+                            }}
                           >
                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
                             <span
@@ -437,7 +458,18 @@ const Quiz = () => {
                                 ? "rgba(244, 240, 255, 0.5)" 
                                 : "rgba(255, 255, 255, 0.3)",
                             }}
-                            onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
+                             onClick={() => {
+                              setQuizData({ ...quizData, user_doubt: option.text });
+                              setTimeout(() => {
+                                trackQuizStep(3, option.text);
+                                setIsTransitioning(true);
+                                setTimeout(() => {
+                                  setStep(3);
+                                  setIsTransitioning(false);
+                                  window.scrollTo({ top: 0, behavior: "smooth" });
+                                }, 150);
+                              }, 100);
+                            }}
                           >
                             <span className="text-[18px] leading-none flex-shrink-0 pl-2">{option.emoji}</span>
                             <span
@@ -468,17 +500,28 @@ const Quiz = () => {
                                 ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
                                 : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                             }`}
-                            onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
-                          >
-                            <span className="text-xl flex-shrink-0">{option.emoji}</span>
-                            <span
-                              className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
-                              }`}
-                            >
-                              {option.text}
-                            </span>
-                          </button>
+                             onClick={() => {
+                              setQuizData({ ...quizData, user_doubt: option.text });
+                              setTimeout(() => {
+                                trackQuizStep(3, option.text);
+                                setIsTransitioning(true);
+                                setTimeout(() => {
+                                  setStep(3);
+                                  setIsTransitioning(false);
+                                  window.scrollTo({ top: 0, behavior: "smooth" });
+                                }, 150);
+                              }, 100);
+                            }}
+                           >
+                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
+                             <span
+                               className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
+                                 isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
+                               }`}
+                             >
+                               {option.text}
+                             </span>
+                           </button>
                         );
                       })}
                     </>
@@ -499,26 +542,37 @@ const Quiz = () => {
                                 ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
                                 : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
                             }`}
-                            onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
-                          >
-                            <span className="text-xl flex-shrink-0">{option.emoji}</span>
-                            <span
-                              className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
-                              }`}
-                            >
-                              {option.text}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
+                             onClick={() => {
+                              setQuizData({ ...quizData, user_doubt: option.text });
+                              setTimeout(() => {
+                                trackQuizStep(3, option.text);
+                                setIsTransitioning(true);
+                                setTimeout(() => {
+                                  setStep(3);
+                                  setIsTransitioning(false);
+                                  window.scrollTo({ top: 0, behavior: "smooth" });
+                                }, 150);
+                              }, 100);
+                            }}
+                           >
+                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
+                             <span
+                               className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
+                                 isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
+                               }`}
+                             >
+                               {option.text}
+                             </span>
+                           </button>
+                         );
+                       })}
+                     </>
+                   )}
+                 </div>
+               </div>
+             )}
 
-            {/* Question 3 - Personalized */}
+             {/* Question 3 - Personalized */}
             {step === 3 && (
               <div className="space-y-6">
                 <div className="text-center mb-5">
@@ -690,7 +744,18 @@ const Quiz = () => {
                             ? "rgba(244, 240, 255, 0.5)" 
                             : "rgba(255, 255, 255, 0.3)",
                         }}
-                        onClick={() => setQuizData({ ...quizData, versiculo: v.ref })}
+                         onClick={() => {
+                          setQuizData({ ...quizData, versiculo: v.ref });
+                          setTimeout(() => {
+                            trackQuizStep(5, quizData.user_doubt || quizData.momento);
+                            setIsTransitioning(true);
+                            setTimeout(() => {
+                              setStep(5);
+                              setIsTransitioning(false);
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 150);
+                          }, 100);
+                        }}
                       >
                         {/* Ícone de seleção no canto superior direito */}
                         {isSelected && (
@@ -799,7 +864,18 @@ const Quiz = () => {
                             ? "rgba(244, 240, 255, 0.5)" 
                             : "rgba(255, 255, 255, 0.3)",
                         }}
-                        onClick={() => setQuizData({ ...quizData, tempo: option.text })}
+                         onClick={() => {
+                          setQuizData({ ...quizData, tempo: option.text });
+                          setTimeout(() => {
+                            trackQuizStep(6, quizData.user_doubt || quizData.momento);
+                            setIsTransitioning(true);
+                            setTimeout(() => {
+                              setStep(6);
+                              setIsTransitioning(false);
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }, 150);
+                          }, 100);
+                        }}
                       >
                         <div className="flex items-center gap-3.5">
                           <span
@@ -932,60 +1008,64 @@ const Quiz = () => {
                 </Button>
               )}
 
-              <Button
-                size="lg"
-                onClick={handleNext}
-                disabled={!isStepValid()}
-                className="flex-1 rounded-2xl font-bold text-base transition-all duration-300 border-0"
-                style={{
-                  height: "56px",
-                  background: isStepValid()
-                    ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
-                    : 'rgba(230, 126, 34, 0.4)',
-                  backgroundSize: '200% 100%',
-                  color: '#FFFFFF',
-                  boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                  cursor: isStepValid() ? 'pointer' : 'not-allowed',
-                }}
-              >
-                {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo →"}
-              </Button>
+              {step === 6 && (
+                <Button
+                  size="lg"
+                  onClick={handleNext}
+                  disabled={!isStepValid()}
+                  className="flex-1 rounded-2xl font-bold text-base transition-all duration-300 border-0"
+                  style={{
+                    height: "56px",
+                    background: isStepValid()
+                      ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
+                      : 'rgba(230, 126, 34, 0.4)',
+                    backgroundSize: '200% 100%',
+                    color: '#FFFFFF',
+                    boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                    cursor: isStepValid() ? 'pointer' : 'not-allowed',
+                  }}
+                >
+                  ✨ Receber meu Mapa Profético Agora
+                </Button>
+              )}
             </div>
           </Card>
         </div>
       </div>
 
       {/* Fixed Mobile Footer - Visible only on mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border shadow-lg p-4 pb-6">
-        <div className="container mx-auto max-w-2xl flex gap-2">
-          {step > 1 && (
-            <Button variant="outline" size="lg" onClick={handleBack} className="rounded-full font-semibold w-16">
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
-          )}
+      {step === 6 && (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border shadow-lg p-4 pb-6">
+          <div className="container mx-auto max-w-2xl flex gap-2">
+            {step > 1 && (
+              <Button variant="outline" size="lg" onClick={handleBack} className="rounded-full font-semibold w-16">
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+            )}
 
-          <Button
-            size="lg"
-            onClick={handleNext}
-            disabled={!isStepValid()}
-            className={`rounded-2xl font-bold text-base transition-all duration-300 border-0 ${step > 1 ? "flex-1" : "w-full"}`}
-            style={{
-              height: "56px",
-              background: isStepValid()
-                ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
-                : 'rgba(230, 126, 34, 0.4)',
-              backgroundSize: '200% 100%',
-              color: '#FFFFFF',
-              boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
-              textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-              cursor: isStepValid() ? 'pointer' : 'not-allowed',
-            }}
-          >
-            {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo →"}
-          </Button>
+            <Button
+              size="lg"
+              onClick={handleNext}
+              disabled={!isStepValid()}
+              className={`rounded-2xl font-bold text-base transition-all duration-300 border-0 ${step > 1 ? "flex-1" : "w-full"}`}
+              style={{
+                height: "56px",
+                background: isStepValid()
+                  ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
+                  : 'rgba(230, 126, 34, 0.4)',
+                backgroundSize: '200% 100%',
+                color: '#FFFFFF',
+                boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                cursor: isStepValid() ? 'pointer' : 'not-allowed',
+              }}
+            >
+              ✨ Receber meu Mapa Profético Agora
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
