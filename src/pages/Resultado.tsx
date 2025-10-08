@@ -2,7 +2,6 @@ import { useLocation, Link, Navigate, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import StickyCTABar from "@/components/ui/sticky-cta-bar";
 import { Lock, ArrowRight, Shield, CheckCircle2, Clock, Calendar, Heart, Sparkles, Eye, Key } from "lucide-react";
@@ -97,9 +96,8 @@ const Resultado = () => {
       className="min-h-screen w-full bg-cover bg-center bg-fixed"
       style={{ backgroundImage: `url(${quizBg})` }}
     >
-      <Header />
 
-      <div className="pt-[80px] pb-20 px-4">
+      <div className="pb-20 px-4">
         <div className="container mx-auto max-w-3xl">
           {/* Header with urgency */}
           <div className="text-center mb-8 animate-fade-in-up">
