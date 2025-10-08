@@ -127,13 +127,13 @@ const Resultado = () => {
           >
             <div className="space-y-6">
               <div className="text-center pb-6 border-b border-white/10">
-                <h3 className="mb-4" style={{ color: '#E8DDD0' }}>Seu Momento Espiritual:</h3>
+                <h3 className="mb-4 text-white font-semibold">Seu Momento Espiritual:</h3>
                 <div className="inline-block">
                   <Badge className="bg-gradient-to-r from-golden to-primary text-white font-bold text-lg px-8 py-3 shadow-lg">
                     ✨ {profile.tempoEspiritual}
                   </Badge>
                 </div>
-                <p className="text-base mt-3 max-w-md mx-auto" style={{ color: '#E8DDD0' }}>
+                <p className="text-base mt-3 max-w-md mx-auto text-white/90">
                   Este é o tempo que Deus preparou para você. Cada momento tem um propósito divino.
                 </p>
               </div>
@@ -141,13 +141,13 @@ const Resultado = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="text-center p-4 rounded-xl border border-white/10" style={{ background: "rgba(230, 126, 34, 0.1)" }}>
                   <Heart className="w-8 h-8 mx-auto mb-2" style={{ color: '#E67E22' }} />
-                  <h4 className="text-sm font-semibold mb-1" style={{ color: '#E8DDD0' }}>Seu Perfil de Amor</h4>
+                  <h4 className="text-sm font-semibold mb-1 text-white">Seu Perfil de Amor</h4>
                   <p className="text-base font-bold" style={{ color: '#E67E22' }}>{profile.perfilAmor}</p>
                 </div>
 
                 <div className="text-center p-4 rounded-xl border border-white/10" style={{ background: "rgba(230, 126, 34, 0.1)" }}>
                   <Sparkles className="w-8 h-8 mx-auto mb-2" style={{ color: '#F39C12' }} />
-                  <h4 className="text-sm font-semibold mb-1" style={{ color: '#E8DDD0' }}>Versículo-Chave</h4>
+                  <h4 className="text-sm font-semibold mb-1 text-white">Versículo-Chave</h4>
                   <p className="text-sm font-bold" style={{ color: '#F39C12' }}>{profile.versiculo}</p>
                 </div>
               </div>
@@ -156,7 +156,7 @@ const Resultado = () => {
 
           {/* Locked Insights - Create Curiosity */}
           <div className="mb-6 space-y-4 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
-            <h3 className="text-center mb-6" style={{ color: '#E8DDD0' }}>
+            <h3 className="text-center mb-6 text-white font-semibold">
               O que mais você vai descobrir no Mapa completo:
             </h3>
             
@@ -178,14 +178,14 @@ const Resultado = () => {
                       <insight.icon className="w-5 h-5" style={{ color: '#E67E22' }} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold mb-1" style={{ color: '#E8DDD0' }}>{insight.title}</h4>
-                      <p className="text-sm" style={{ color: '#E8DDD0', opacity: 0.8 }}>{insight.preview}</p>
+                      <h4 className="font-semibold mb-1 text-white">{insight.title}</h4>
+                      <p className="text-sm text-white/80">{insight.preview}</p>
                     </div>
                   </div>
                   
                   <div className="relative mt-4">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#281E19]/80 to-[#281E19] z-10" />
-                    <p className="text-sm blur-sm select-none" style={{ color: '#E8DDD0', opacity: 0.5 }}>
+                    <p className="text-sm blur-sm select-none text-white/50">
                       {insight.locked}
                     </p>
                   </div>
@@ -216,8 +216,8 @@ const Resultado = () => {
               <div className="flex items-center gap-3">
                 <Clock className="w-6 h-6" style={{ color: '#F39C12' }} />
                 <div>
-                  <p className="text-sm font-bold" style={{ color: '#E8DDD0' }}>⚡ Oferta Especial Expira em:</p>
-                  <p className="text-xs" style={{ color: '#E8DDD0', opacity: 0.7 }}>Preço promocional por tempo limitado</p>
+                  <p className="text-sm font-bold text-white">⚡ Oferta Especial Expira em:</p>
+                  <p className="text-xs text-white/70">Preço promocional por tempo limitado</p>
                 </div>
               </div>
               <div className="text-right">
@@ -241,17 +241,17 @@ const Resultado = () => {
             }}
           >
             <div className="text-center space-y-6">
-              <h3 className="mb-2" style={{ color: '#E8DDD0' }}>
+              <h3 className="mb-2 text-white font-semibold">
                 💌 Receba agora o Mapa Profético Completo revelado para a sua vida amorosa
               </h3>
               
               <div>
-                <p className="text-sm line-through mb-1" style={{ color: '#E8DDD0', opacity: 0.6 }}>De R$ 97</p>
+                <p className="text-sm line-through mb-1 text-white/60">De R$ 97</p>
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <h2 className="text-5xl font-bold" style={{ color: '#E67E22' }}>R$ 27</h2>
                   <Badge className="bg-destructive text-white font-bold">-72% OFF</Badge>
                 </div>
-                <p className="text-sm" style={{ color: '#E8DDD0', opacity: 0.8 }}>Pagamento único • Acesso vitalício • Sem mensalidade</p>
+                <p className="text-sm text-white/80">Pagamento único • Acesso vitalício • Sem mensalidade</p>
               </div>
 
               <div className="space-y-2">
@@ -262,7 +262,7 @@ const Resultado = () => {
                   "✅ Sinais de confirmação práticos",
                   "✅ Plano de oração para 7 dias",
                 ].map((item, idx) => (
-                  <p key={idx} className="text-sm text-left" style={{ color: '#E8DDD0', opacity: 0.9 }}>
+                  <p key={idx} className="text-sm text-left text-white/90">
                     {item}
                   </p>
                 ))}
@@ -270,7 +270,7 @@ const Resultado = () => {
 
               {/* Garantia */}
               <div className="rounded-lg p-4" style={{ background: "rgba(230, 126, 34, 0.15)", border: "1px solid rgba(230, 126, 34, 0.3)" }}>
-                <div className="flex items-center justify-center gap-2 text-sm" style={{ color: '#E8DDD0' }}>
+                <div className="flex items-center justify-center gap-2 text-sm text-white">
                   <Shield className="w-5 h-5" style={{ color: '#F39C12' }} />
                   <span className="font-medium">🛡️ Garantia de 7 dias: se não for impactado(a) pelo Mapa Profético, devolvemos 100% do seu dinheiro, sem perguntas.</span>
                 </div>
@@ -307,7 +307,7 @@ const Resultado = () => {
                 <span className="text-3xl">🌿</span>
                 <div>
                   <p className="text-xl font-bold" style={{ color: '#E67E22' }}>+1.200</p>
-                  <p className="text-sm" style={{ color: '#E8DDD0', opacity: 0.7 }}>Mapas gerados esta semana</p>
+                  <p className="text-sm text-white/70">Mapas gerados esta semana</p>
                 </div>
               </div>
             </div>
@@ -324,7 +324,7 @@ const Resultado = () => {
                 <span className="text-3xl">✨</span>
                 <div>
                   <p className="text-xl font-bold" style={{ color: '#E67E22' }}>97%</p>
-                  <p className="text-sm" style={{ color: '#E8DDD0', opacity: 0.7 }}>relatam mais clareza espiritual após receberem</p>
+                  <p className="text-sm text-white/70">relatam estar mais preparados espiritualmente após receberem</p>
                 </div>
               </div>
             </div>
@@ -341,7 +341,7 @@ const Resultado = () => {
                 <span className="text-3xl">⭐</span>
                 <div>
                   <p className="text-xl font-bold" style={{ color: '#F39C12' }}>4.8</p>
-                  <p className="text-sm" style={{ color: '#E8DDD0', opacity: 0.7 }}>de avaliação média</p>
+                  <p className="text-sm text-white/70">de avaliação média</p>
                 </div>
               </div>
             </div>
@@ -358,7 +358,7 @@ const Resultado = () => {
               boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)"
             }}
           >
-            <h3 className="mb-4 text-center" style={{ color: '#E8DDD0' }}>Tudo que você recebe:</h3>
+            <h3 className="mb-4 text-center text-white font-semibold">Tudo que você recebe:</h3>
             <div className="grid md:grid-cols-2 gap-3">
               {[
                 "Análise completa do seu tempo espiritual",
@@ -372,7 +372,7 @@ const Resultado = () => {
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#E67E22' }} />
-                  <span className="text-sm" style={{ color: '#E8DDD0', opacity: 0.9 }}>{item}</span>
+                  <span className="text-sm text-white/90">{item}</span>
                 </div>
               ))}
             </div>
@@ -380,10 +380,10 @@ const Resultado = () => {
 
           {/* Secondary options */}
           <div className="text-center space-y-4">
-            <p className="text-xs" style={{ color: '#E8DDD0', opacity: 0.7 }}>
+            <p className="text-xs text-white/70">
               💡 Dúvidas? Entre em contato pelo <a href="https://wa.me/+5511966138651?text=Ol%C3%A1%2C%20estou%20com%20d%C3%BAvida%20em%20rela%C3%A7%C3%A3o%20ao%20meu%20Mapa..." target="_blank" rel="noopener noreferrer" className="hover:underline" style={{ color: '#E67E22' }}>WhatsApp</a>
             </p>
-            <Button asChild variant="ghost" size="sm" className="rounded-full hover:bg-white/10" style={{ color: '#E8DDD0' }}>
+            <Button asChild variant="ghost" size="sm" className="rounded-full hover:bg-white/10 text-white/80 hover:text-white">
               <Link to="/quiz">
                 ← Refazer o teste
               </Link>
