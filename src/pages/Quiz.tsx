@@ -249,18 +249,11 @@ const Quiz = () => {
       <QuizProgress currentStep={step} totalSteps={totalSteps} />
 
       <div className="pt-[70px] px-4">
-        <div className="container mx-auto max-w-2xl">
-          <Card
-            className={`p-6 xs:p-8 md:p-10 shadow-2xl transition-all duration-150 border border-white/10 ${
-              isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
-            }`}
-            style={{ 
-              backdropFilter: "blur(20px)", 
-              WebkitBackdropFilter: "blur(20px)",
-              background: "rgba(40, 30, 25, 0.85)",
-              boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.4)"
-            }}
-          >
+        <div 
+          className={`container mx-auto max-w-2xl transition-all duration-150 ${
+            isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
+          }`}
+        >
             {/* Question 1 */}
             {step === 1 && (
               <div className="space-y-6">
@@ -1367,7 +1360,6 @@ const Quiz = () => {
                 </Button>
               )}
             </div>
-          </Card>
         </div>
       </div>
 
