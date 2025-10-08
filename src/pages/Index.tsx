@@ -111,7 +111,7 @@ const Index = () => {
           <Button 
             asChild
             size="lg"
-            className="w-full text-[18px] font-bold transition-all duration-300 hover:scale-[1.02] border-0"
+            className="w-full text-[15px] xs:text-[16px] md:text-[18px] font-bold transition-all duration-300 hover:scale-[1.02] border-0"
             style={{
               height: '64px',
               borderRadius: '16px',
