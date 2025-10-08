@@ -85,13 +85,17 @@ const Resultado = () => {
   const insights = generateInsights();
 
   const handleCheckoutClick = () => {
-    // Track custom checkout_click event only (not InitiateCheckout)
+    // Track InitiateCheckout event for Meta
     if (typeof window.fbq !== 'undefined') {
-      window.fbq('trackCustom', 'checkout_click', { value: 27, currency: 'BRL' });
+      window.fbq('track', 'InitiateCheckout', { 
+        value: 27, 
+        currency: 'BRL',
+        content_name: 'Mapa Profético Completo'
+      });
     }
     
-    // Navigate to checkout
-    navigate('/checkout');
+    // Redirect to external checkout (replace with your actual checkout URL)
+    window.location.href = 'https://pay.kiwify.com.br/SEU_LINK_AQUI';
   };
 
   return (
