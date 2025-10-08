@@ -374,7 +374,7 @@ const Index = () => {
               className="rounded-full"
             >
               <a 
-                href="https://wa.me/5511999999999?text=Olá!%20Tenho%20dúvidas%20sobre%20o%20Mapa%20Profético%20do%20Amor" 
+                href="https://wa.me/5511966138651?text=Ol%C3%A1,%20estou%20com%20d%C3%BAvida%20em%20rela%C3%A7%C3%A3o%20ao%20meu%20Mapa%20Prof%C3%A9tico" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
