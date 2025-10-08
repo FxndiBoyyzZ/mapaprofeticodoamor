@@ -7,9 +7,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CheckCircle2, Headphones, BookOpen, Heart, ArrowRight, ExternalLink } from "lucide-react";
 import devotionalImage from "@/assets/devotional-desk.jpg";
-import bonusGuia from "@/assets/bonus-guia-relacionamentos.png";
-import bonusDevocional from "@/assets/bonus-devocional-7dias.png";
-import bonusDiario from "@/assets/bonus-diario-oracao.png";
 import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 
@@ -144,87 +141,6 @@ const Upsell = () => {
               ))}
             </div>
           </Card>
-
-          {/* Bonus Section */}
-          <div className="mb-8 animate-fade-in-up" style={{ animationDelay: "650ms" }}>
-            <div className="text-center mb-6">
-              <Badge className="bg-golden text-golden-foreground mb-3 px-4 py-1.5 font-semibold">
-                🎁 Bônus Exclusivos Inclusos
-              </Badge>
-              <h3 className="text-primary-dark mb-2">+ R$ 120 em Bônus de Graça</h3>
-              <p className="text-sm text-text-secondary">
-                Você recebe estes 3 materiais extras sem custo adicional
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              <Card className="p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.02]">
-                <img 
-                  src={bonusGuia} 
-                  alt="Guia Profético de Relacionamentos" 
-                  className="w-full rounded-lg mb-3 aspect-[4/3] object-cover"
-                />
-                <div className="space-y-2">
-                  <Badge variant="outline" className="text-xs border-golden text-golden">
-                    Valor: R$ 40
-                  </Badge>
-                  <h4 className="font-semibold text-sm text-primary-dark">
-                    Guia Profético de Relacionamentos
-                  </h4>
-                  <p className="text-xs text-text-secondary">
-                    Oriente seu relacionamento com os princípios da palavra de Deus
-                  </p>
-                </div>
-              </Card>
-
-              <Card className="p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.02]">
-                <img 
-                  src={bonusDevocional} 
-                  alt="Devocional Profético de 7 Dias" 
-                  className="w-full rounded-lg mb-3 aspect-[4/3] object-cover"
-                />
-                <div className="space-y-2">
-                  <Badge variant="outline" className="text-xs border-golden text-golden">
-                    Valor: R$ 40
-                  </Badge>
-                  <h4 className="font-semibold text-sm text-primary-dark">
-                    Devocional Profético de 7 Dias
-                  </h4>
-                  <p className="text-xs text-text-secondary">
-                    Viva a palavra de Deus com um plano de estudos inspirado
-                  </p>
-                </div>
-              </Card>
-
-              <Card className="p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.02]">
-                <img 
-                  src={bonusDiario} 
-                  alt="Diário de Oração e Reflexão" 
-                  className="w-full rounded-lg mb-3 aspect-[4/3] object-cover"
-                />
-                <div className="space-y-2">
-                  <Badge variant="outline" className="text-xs border-golden text-golden">
-                    Valor: R$ 40
-                  </Badge>
-                  <h4 className="font-semibold text-sm text-primary-dark">
-                    Diário de Oração e Reflexão
-                  </h4>
-                  <p className="text-xs text-text-secondary">
-                    Fortaleça sua fé com práticas devocionais diárias
-                  </p>
-                </div>
-              </Card>
-            </div>
-
-            <div className="mt-6 p-4 bg-golden/10 border border-golden/30 rounded-lg text-center">
-              <p className="text-sm font-semibold text-primary-dark">
-                Total em Bônus: <span className="text-golden text-lg">R$ 120</span>
-              </p>
-              <p className="text-xs text-text-secondary mt-1">
-                Tudo isso incluído gratuitamente na sua compra hoje
-              </p>
-            </div>
-          </div>
 
           {/* Pricing */}
           <Card className="p-8 shadow-xl border-2 border-golden/30 mb-8 animate-fade-in-up" style={{ animationDelay: "750ms" }}>

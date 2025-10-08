@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 import quizBg from "@/assets/quiz-bg.png";
+import bonusGuia from "@/assets/bonus-guia-relacionamentos.png";
+import bonusDevocional from "@/assets/bonus-devocional-7dias.png";
+import bonusDiario from "@/assets/bonus-diario-oracao.png";
 
 const Resultado = () => {
   const location = useLocation();
@@ -225,6 +228,116 @@ const Resultado = () => {
             ))}
           </div>
 
+          {/* Bonus Section */}
+          <div className="mb-8 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
+            <div className="text-center mb-6">
+              <Badge className="mb-3 px-4 py-1.5 font-semibold" style={{ background: '#E67E22', color: 'white' }}>
+                🎁 Bônus Exclusivos Inclusos
+              </Badge>
+              <h3 className="text-white mb-2 font-semibold">+ R$ 120 em Bônus de Graça</h3>
+              <p className="text-sm text-white/80">
+                Você recebe estes 3 materiais extras sem custo adicional
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              <div 
+                className="p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] rounded-xl"
+                style={{
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  background: "rgba(40, 30, 25, 0.85)",
+                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)"
+                }}
+              >
+                <img 
+                  src={bonusGuia} 
+                  alt="Guia Profético de Relacionamentos" 
+                  className="w-full rounded-lg mb-3 aspect-[4/3] object-cover"
+                />
+                <div className="space-y-2">
+                  <Badge variant="outline" className="text-xs" style={{ borderColor: '#E67E22', color: '#E67E22' }}>
+                    Valor: R$ 40
+                  </Badge>
+                  <h4 className="font-semibold text-sm text-white">
+                    Guia Profético de Relacionamentos
+                  </h4>
+                  <p className="text-xs text-white/70">
+                    Oriente seu relacionamento com os princípios da palavra de Deus
+                  </p>
+                </div>
+              </div>
+
+              <div 
+                className="p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] rounded-xl"
+                style={{
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  background: "rgba(40, 30, 25, 0.85)",
+                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)"
+                }}
+              >
+                <img 
+                  src={bonusDevocional} 
+                  alt="Devocional Profético de 7 Dias" 
+                  className="w-full rounded-lg mb-3 aspect-[4/3] object-cover"
+                />
+                <div className="space-y-2">
+                  <Badge variant="outline" className="text-xs" style={{ borderColor: '#F39C12', color: '#F39C12' }}>
+                    Valor: R$ 40
+                  </Badge>
+                  <h4 className="font-semibold text-sm text-white">
+                    Devocional Profético de 7 Dias
+                  </h4>
+                  <p className="text-xs text-white/70">
+                    Viva a palavra de Deus com um plano de estudos inspirado
+                  </p>
+                </div>
+              </div>
+
+              <div 
+                className="p-4 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] rounded-xl"
+                style={{
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  background: "rgba(40, 30, 25, 0.85)",
+                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)"
+                }}
+              >
+                <img 
+                  src={bonusDiario} 
+                  alt="Diário de Oração e Reflexão" 
+                  className="w-full rounded-lg mb-3 aspect-[4/3] object-cover"
+                />
+                <div className="space-y-2">
+                  <Badge variant="outline" className="text-xs" style={{ borderColor: '#E67E22', color: '#E67E22' }}>
+                    Valor: R$ 40
+                  </Badge>
+                  <h4 className="font-semibold text-sm text-white">
+                    Diário de Oração e Reflexão
+                  </h4>
+                  <p className="text-xs text-white/70">
+                    Fortaleça sua fé com práticas devocionais diárias
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="mt-6 p-4 rounded-lg text-center"
+              style={{
+                background: "rgba(230, 126, 34, 0.15)",
+                border: "1px solid rgba(230, 126, 34, 0.3)"
+              }}
+            >
+              <p className="text-sm font-semibold text-white">
+                Total em Bônus: <span className="text-lg" style={{ color: '#E67E22' }}>R$ 120</span>
+              </p>
+              <p className="text-xs text-white/70 mt-1">
+                Tudo isso incluído gratuitamente na sua compra hoje
+              </p>
+            </div>
+          </div>
 
           {/* Main CTA with Pricing */}
           <div 
