@@ -1,22 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { CheckCircle2, Loader2, Circle } from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
 
 const steps = [
   { text: "Analisando suas respostas...", duration: 2000 },
-  { text: "Identificando seu tempo espiritual...", duration: 2300 },
-  { text: "🌿 Buscando versículos únicos para o seu coração...", duration: 2100 },
-  { text: "🔮 Revelando sinais proféticos exclusivos...", duration: 2200 },
-  { text: "✨ Gerando seu perfil de amor profético...", duration: 2000 },
-  { text: "💌 Finalizando o seu Mapa Profético...", duration: 1900 },
-];
-
-const proofMessages = [
-  "✨ Mais de 1.200 pessoas descobriram seu tempo espiritual no amor esta semana usando o Mapa Profético!",
-  "⏳ 98% das pessoas completam essa etapa em menos de 15 segundos",
-  "💌 Seu mapa está sendo preparado com base em princípios espirituais reais",
+  { text: "Consultando revelações...", duration: 2300 },
+  { text: "Preparando seu Mapa Profético...", duration: 2500 },
 ];
 
 const Loading = () => {
@@ -24,7 +13,6 @@ const Loading = () => {
   const navigate = useNavigate();
   const { profile, quizData } = location.state || {};
   const [currentStep, setCurrentStep] = useState(0);
-  const [currentProofMessage, setCurrentProofMessage] = useState(0);
   const { trackEvent } = useTracking();
 
   // Immediate redirect if no profile - prevents 404 flash
@@ -35,13 +23,6 @@ const Loading = () => {
   useEffect(() => {
     // Track loading started
     trackEvent('quiz_loading_started');
-
-    // Rotate proof messages every 4 seconds
-    const proofTimer = setInterval(() => {
-      setCurrentProofMessage((prev) => (prev + 1) % proofMessages.length);
-    }, 4000);
-
-    return () => clearInterval(proofTimer);
   }, [trackEvent]);
 
   useEffect(() => {
@@ -63,113 +44,95 @@ const Loading = () => {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-4">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 z-0">
+      {/* Dark purple background with stars */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: 'linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #1a0f2e 100%)',
+        }}
+      >
+        {/* Subtle stars effect */}
         <div 
-          className="absolute inset-0 animate-gradient"
+          className="absolute inset-0 opacity-30"
           style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%)',
-            backgroundSize: '400% 400%',
-          }}
-        />
-        
-        {/* Overlay */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%)',
+            backgroundImage: `radial-gradient(2px 2px at 20% 30%, white, transparent),
+                             radial-gradient(2px 2px at 60% 70%, white, transparent),
+                             radial-gradient(1px 1px at 50% 50%, white, transparent),
+                             radial-gradient(1px 1px at 80% 10%, white, transparent),
+                             radial-gradient(2px 2px at 90% 60%, white, transparent),
+                             radial-gradient(1px 1px at 33% 85%, white, transparent),
+                             radial-gradient(1px 1px at 15% 70%, white, transparent)`,
+            backgroundSize: '200% 200%',
+            backgroundPosition: '0% 0%',
           }}
         />
       </div>
 
-      {/* Loading Card */}
-      <Card className="relative z-10 w-full max-w-md p-8 bg-white/95 backdrop-blur-xl shadow-2xl animate-fade-in">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-lilac mb-4">
-            <span 
-              className="text-3xl"
-              style={{
-                display: 'inline-block',
-                animation: 'spiritual-glow 2s linear infinite'
-              }}
-            >
-              ✨
-            </span>
-          </div>
-          <h2 className="text-primary-dark mb-3 font-bold flex items-center justify-center gap-2">
-            <span className="animate-pulse">✨</span>
-            Gerando seu Mapa Profético...
-          </h2>
-          <p className="text-sm text-text-muted max-w-[90%] mx-auto">
-            Aguarde alguns instantes enquanto preparamos suas revelações espirituais personalizadas com base nas suas respostas.
-          </p>
-        </div>
-
-        {/* Steps List */}
-        <div className="space-y-4">
+      {/* Loading Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-2xl w-full">
+        {/* Text Steps */}
+        <div className="space-y-8 mb-16">
           {steps.map((step, index) => (
             <div
               key={index}
-              className={`flex items-start gap-3 transition-all duration-200 ${
-                index <= currentStep ? 'opacity-100' : 'opacity-30'
+              className={`transition-all duration-700 ${
+                index === currentStep 
+                  ? 'opacity-100 scale-100' 
+                  : index < currentStep 
+                  ? 'opacity-40 scale-95' 
+                  : 'opacity-0 scale-95'
               }`}
-              style={
-                index === currentStep
-                  ? { animation: 'fade-in-step 0.2s ease-out' }
-                  : {}
-              }
             >
-              {index < currentStep ? (
-                <CheckCircle2 
-                  className="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
-                  style={{ animation: 'check-pop 0.18s ease-out' }}
-                />
-              ) : index === currentStep ? (
-                <Loader2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5 animate-spin" />
-              ) : (
-                <Circle className="w-5 h-5 text-border flex-shrink-0 mt-0.5" />
-              )}
-              <span
-                className={`text-sm ${
-                  index === currentStep
-                    ? 'text-primary font-bold'
-                    : index < currentStep
-                    ? 'text-primary-dark'
-                    : 'text-text-muted'
-                }`}
+              <h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight"
+                style={{ 
+                  color: '#F39C12',
+                  fontFamily: 'Georgia, serif',
+                  textShadow: '0 2px 20px rgba(243, 156, 18, 0.3)'
+                }}
               >
                 {step.text}
-              </span>
+              </h1>
             </div>
           ))}
         </div>
 
-        {/* Progress Bar */}
-        <div className="mt-8">
-          <div className="h-1.5 bg-secondary/30 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-lilac transition-all duration-1000 ease-out"
-              style={{
-                width: `${((currentStep + 1) / steps.length) * 100}%`,
-              }}
+        {/* Spinner */}
+        <div className="mb-8">
+          <svg 
+            className="animate-spin" 
+            width="80" 
+            height="80" 
+            viewBox="0 0 80 80"
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(243, 156, 18, 0.5))'
+            }}
+          >
+            <circle
+              cx="40"
+              cy="40"
+              r="32"
+              stroke="#F39C12"
+              strokeWidth="6"
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray="150 50"
             />
-          </div>
-          <p className="text-xs text-center text-text-muted mt-2 font-medium">
-            {Math.round(((currentStep + 1) / steps.length) * 100)}% concluído
-          </p>
+          </svg>
         </div>
 
-        {/* Social Proof - Rotating Messages */}
-        <div className="mt-6 p-3 bg-[#F4F0FF] rounded-xl">
-          <p 
-            className="text-sm text-primary-dark leading-relaxed transition-opacity duration-500"
-            key={currentProofMessage}
-            style={{ animation: 'fade-in 0.5s ease-in-out' }}
-          >
-            {proofMessages[currentProofMessage]}
-          </p>
+        {/* Dots indicator */}
+        <div className="flex gap-3">
+          {steps.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                index === currentStep ? 'bg-[#F39C12] w-8' : 'bg-[#F39C12]/30'
+              }`}
+            />
+          ))}
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
