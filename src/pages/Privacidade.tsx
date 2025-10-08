@@ -1,14 +1,28 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Privacidade = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen w-full bg-secondary/20">
       <Header />
 
       <div className="pt-[100px] pb-20 px-4">
         <div className="container mx-auto max-w-3xl">
+          <Button
+            variant="ghost"
+            onClick={() => navigate("/resultado")}
+            className="mb-6 animate-fade-in"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Voltar ao Resultado
+          </Button>
+          
           <div className="text-center mb-8 animate-fade-in-up">
             <h1 className="text-primary mb-3">Política de Privacidade</h1>
             <p className="text-sm text-text-muted">
