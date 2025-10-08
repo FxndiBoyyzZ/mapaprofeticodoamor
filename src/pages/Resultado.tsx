@@ -66,7 +66,7 @@ const Resultado = () => {
     
     // Update timer display
     const updateTimer = () => {
-      const remaining = tracking.getTimerRemaining(15);
+      const remaining = tracking.getTimerRemaining(10); // 10 minutos
       setTimeLeft(remaining);
     };
     
