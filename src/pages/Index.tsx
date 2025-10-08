@@ -3,6 +3,12 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Shield, Sparkles, Heart, Clock } from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import logo from "@/assets/logo.png";
 
 declare global {
@@ -259,6 +265,125 @@ const Index = () => {
           </div>
         </div>
       )}
+
+      {/* FAQ Section */}
+      <div id="faq" className="relative z-10 py-16 px-4 bg-secondary/10">
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-primary mb-4">Perguntas Frequentes</h2>
+            <p className="text-text-secondary">
+              Tire suas dúvidas sobre o Mapa Profético do Amor
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  O que é o Mapa Profético do Amor?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                É uma análise personalizada baseada em princípios bíblicos que oferece direção e clareza 
+                sobre sua vida amorosa. Através de um questionário de 2 minutos, você recebe insights 
+                sobre o tempo de Deus para o amor na sua vida.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  Como funciona o processo?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                Você responde um questionário rápido de 2 minutos, recebe seu resultado personalizado 
+                e depois pode adquirir o Mapa completo em PDF com análises detalhadas, versículos 
+                personalizados e um plano de oração de 7 dias.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  Qual a base bíblica do Mapa?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                Todo o conteúdo é fundamentado em princípios bíblicos sobre relacionamentos, tempo de Deus, 
+                propósito e amor. Cada resultado inclui versículos específicos e orientações alinhadas à Palavra.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  Quanto custa o Mapa completo?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                O investimento é de apenas R$ 97,00 com acesso imediato ao PDF completo. 
+                Você também ganha 3 bônus exclusivos de presente.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  Tem garantia?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                Sim! Você tem 7 dias de garantia incondicional. Se não gostar do material, 
+                devolvemos 100% do seu dinheiro, sem perguntas.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  Como recebo o Mapa após a compra?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                O acesso é 100% online e imediato. Assim que o pagamento for confirmado, 
+                você receberá o link para download do PDF completo no seu email.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-7" className="bg-white rounded-lg px-6 border-none">
+              <AccordionTrigger className="text-left hover:no-underline">
+                <span className="font-semibold text-primary-dark">
+                  Isso substitui a orientação pastoral?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="text-text-secondary">
+                Não. O Mapa é uma ferramenta de reflexão e direção espiritual complementar. 
+                Sempre recomendamos o acompanhamento de líderes espirituais e comunidade cristã 
+                para decisões importantes.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+
+          <div className="text-center mt-12">
+            <p className="text-sm text-text-secondary mb-4">Ainda tem dúvidas?</p>
+            <Button 
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full"
+            >
+              <a 
+                href="https://wa.me/5511999999999?text=Olá!%20Tenho%20dúvidas%20sobre%20o%20Mapa%20Profético%20do%20Amor" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Fale Conosco no WhatsApp
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

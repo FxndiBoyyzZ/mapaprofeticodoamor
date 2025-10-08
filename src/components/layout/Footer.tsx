@@ -26,7 +26,9 @@ const Footer = () => {
             Comprar
           </Link>
           <a
-            href="mailto:contato@profeticoamoroso.com"
+            href="https://wa.me/5511999999999?text=Olá!%20Tenho%20dúvidas%20sobre%20o%20Mapa%20Profético%20do%20Amor"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm text-text-muted hover:text-primary transition-colors"
           >
             Contato
