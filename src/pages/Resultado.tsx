@@ -87,17 +87,8 @@ const Resultado = () => {
   const insights = generateInsights();
 
   const handleCheckoutClick = () => {
-    // Track InitiateCheckout event for Meta
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('track', 'InitiateCheckout', { 
-        value: 27, 
-        currency: 'BRL',
-        content_name: 'Mapa Profético Completo'
-      });
-    }
-    
-    // Redirect to external checkout
-    window.location.href = 'https://pay.cakto.com.br/7k6p9n7_596897';
+    // Navigate to checkout page
+    navigate('/checkout');
   };
 
   return (
