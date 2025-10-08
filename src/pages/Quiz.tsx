@@ -344,47 +344,100 @@ const Quiz = () => {
 
             {/* Question 2 - Fully personalized based on user_state */}
             {step === 2 && (
-              <div className="space-y-4">
-                <div className="text-center mb-4">
-                  <Sparkles className="w-8 h-8 text-lilac mx-auto mb-2" />
+              <div className="space-y-6">
+                <div className="text-center mb-8">
+                  <Sparkles 
+                    className="w-12 h-12 mx-auto mb-6" 
+                    style={{ color: '#E67E22' }}
+                  />
                   {quizData.user_state === "solteiro" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Como você se sente nesse tempo de espera pelo seu propósito amoroso?
                       </h3>
-                      <p className="text-sm text-[#475569] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Identifique o que mais tem ocupado seus pensamentos e emoções neste período.
                       </p>
                     </>
                   ) : quizData.user_state === "relacionamento" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         O que mais pesa no seu coração sobre esse relacionamento?
                       </h3>
-                      <p className="text-sm text-[#475569] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Seja sincero(a). Deus pode trazer clareza quando abrimos o coração.
                       </p>
                     </>
                   ) : quizData.user_state === "confuso" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         O que mais te deixa em dúvida neste momento?
                       </h3>
-                      <p className="text-sm text-[#475569] leading-relaxed">Identifique o que pesa no seu coração.</p>
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
+                        Identifique o que pesa no seu coração.
+                      </p>
                     </>
                   ) : (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         O que mais te fez perder a fé no amor ou nas promessas de Deus?
                       </h3>
-                      <p className="text-sm text-[#475569] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Escolha o que mais reflete o seu coração hoje.
                       </p>
                     </>
                   )}
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {quizData.user_state === "solteiro" ? (
                     <>
                       {[
@@ -397,17 +450,17 @@ const Quiz = () => {
                         return (
                           <button
                             key={option.text}
-                            className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
+                            className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-200 border ${
                               isSelected
-                                ? "border-[#3F51B5] shadow-md scale-[1.01]"
-                                : "border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:shadow-sm"
+                                ? "border-[#E67E22] border-2 shadow-lg"
+                                : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                             }`}
                             style={{
-                              backdropFilter: "blur(12px)",
-                              WebkitBackdropFilter: "blur(12px)",
+                              backdropFilter: "blur(16px)",
+                              WebkitBackdropFilter: "blur(16px)",
                               background: isSelected 
-                                ? "rgba(244, 240, 255, 0.5)" 
-                                : "rgba(255, 255, 255, 0.3)",
+                                ? "rgba(230, 126, 34, 0.15)" 
+                                : "rgba(40, 30, 25, 0.6)",
                             }}
                             onClick={() => {
                               setQuizData({ ...quizData, user_doubt: option.text });
@@ -424,9 +477,11 @@ const Quiz = () => {
                           >
                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
                             <span
-                              className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
-                              }`}
+                              className="text-[15px] xs:text-[16px] text-left flex-1"
+                              style={{
+                                color: '#F5F0E8',
+                                fontWeight: isSelected ? '600' : '400',
+                              }}
                             >
                               {option.text}
                             </span>
@@ -446,17 +501,17 @@ const Quiz = () => {
                         return (
                           <button
                             key={option.text}
-                            className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 text-left shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
+                            className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-200 border ${
                               isSelected
-                                ? "border-[#3F51B5] shadow-md scale-[1.01]"
-                                : "border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:shadow-sm"
+                                ? "border-[#E67E22] border-2 shadow-lg"
+                                : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                             }`}
                             style={{
-                              backdropFilter: "blur(12px)",
-                              WebkitBackdropFilter: "blur(12px)",
+                              backdropFilter: "blur(16px)",
+                              WebkitBackdropFilter: "blur(16px)",
                               background: isSelected 
-                                ? "rgba(244, 240, 255, 0.5)" 
-                                : "rgba(255, 255, 255, 0.3)",
+                                ? "rgba(230, 126, 34, 0.15)" 
+                                : "rgba(40, 30, 25, 0.6)",
                             }}
                              onClick={() => {
                               setQuizData({ ...quizData, user_doubt: option.text });
@@ -471,11 +526,13 @@ const Quiz = () => {
                               }, 100);
                             }}
                           >
-                            <span className="text-[18px] leading-none flex-shrink-0 pl-2">{option.emoji}</span>
+                            <span className="text-xl flex-shrink-0">{option.emoji}</span>
                             <span
-                              className={`text-[15px] xs:text-base transition-all duration-150 ${
-                                isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
-                              }`}
+                              className="text-[15px] xs:text-[16px] text-left flex-1"
+                              style={{
+                                color: '#F5F0E8',
+                                fontWeight: isSelected ? '600' : '400',
+                              }}
                             >
                               {option.text}
                             </span>
@@ -495,11 +552,18 @@ const Quiz = () => {
                         return (
                           <button
                             key={option.text}
-                            className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
+                            className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-200 border ${
                               isSelected
-                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
-                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
+                                ? "border-[#E67E22] border-2 shadow-lg"
+                                : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                             }`}
+                            style={{
+                              backdropFilter: "blur(16px)",
+                              WebkitBackdropFilter: "blur(16px)",
+                              background: isSelected 
+                                ? "rgba(230, 126, 34, 0.15)" 
+                                : "rgba(40, 30, 25, 0.6)",
+                            }}
                              onClick={() => {
                               setQuizData({ ...quizData, user_doubt: option.text });
                               setTimeout(() => {
@@ -515,9 +579,11 @@ const Quiz = () => {
                            >
                              <span className="text-xl flex-shrink-0">{option.emoji}</span>
                              <span
-                               className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                                 isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
-                               }`}
+                               className="text-[15px] xs:text-[16px] text-left flex-1"
+                               style={{
+                                 color: '#F5F0E8',
+                                 fontWeight: isSelected ? '600' : '400',
+                               }}
                              >
                                {option.text}
                              </span>
@@ -537,11 +603,18 @@ const Quiz = () => {
                         return (
                           <button
                             key={option.text}
-                            className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
+                            className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-200 border ${
                               isSelected
-                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
-                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
+                                ? "border-[#E67E22] border-2 shadow-lg"
+                                : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                             }`}
+                            style={{
+                              backdropFilter: "blur(16px)",
+                              WebkitBackdropFilter: "blur(16px)",
+                              background: isSelected 
+                                ? "rgba(230, 126, 34, 0.15)" 
+                                : "rgba(40, 30, 25, 0.6)",
+                            }}
                              onClick={() => {
                               setQuizData({ ...quizData, user_doubt: option.text });
                               setTimeout(() => {
@@ -557,9 +630,11 @@ const Quiz = () => {
                            >
                              <span className="text-xl flex-shrink-0">{option.emoji}</span>
                              <span
-                               className={`text-[15px] xs:text-base text-left transition-all duration-150 ${
-                                 isSelected ? "text-[#1E293B] font-semibold" : "text-[#1E293B] font-medium"
-                               }`}
+                               className="text-[15px] xs:text-[16px] text-left flex-1"
+                               style={{
+                                 color: '#F5F0E8',
+                                 fontWeight: isSelected ? '600' : '400',
+                               }}
                              >
                                {option.text}
                              </span>
@@ -575,41 +650,92 @@ const Quiz = () => {
              {/* Question 3 - Personalized */}
             {step === 3 && (
               <div className="space-y-6">
-                <div className="text-center mb-5">
-                  <Heart className="w-8 h-8 text-golden mx-auto mb-2" />
+                <div className="text-center mb-8">
+                  <Heart 
+                    className="w-12 h-12 mx-auto mb-6" 
+                    style={{ color: '#E67E22' }}
+                  />
                   {quizData.user_state === "solteiro" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Se Deus fosse escrever uma nova história de amor para você, que qualidades não poderiam faltar?
                       </h3>
-                      <p className="text-sm text-[#475569]">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Escolha até 3 características que refletem os desejos mais profundos do seu coração.
                       </p>
                     </>
                   ) : quizData.user_state === "relacionamento" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Quais qualidades você mais deseja ver florescendo no relacionamento de vocês?
                       </h3>
-                      <p className="text-sm text-[#475569]">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Escolha até 3 características que representam o que você acredita que Deus pode fortalecer.
                       </p>
                     </>
                   ) : quizData.user_state === "confuso" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Se pudesse alinhar seu relacionamento ao propósito de Deus, quais qualidades seriam essenciais?
                       </h3>
-                      <p className="text-sm text-[#475569]">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Escolha até 3 características que você gostaria de ver restauradas.
                       </p>
                     </>
                   ) : (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Se o amor fosse restaurado por Deus, que características fariam você acreditar novamente?
                       </h3>
-                      <p className="text-sm text-[#475569]">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Escolha até 3 qualidades que reacenderiam sua fé no amor.
                       </p>
                     </>
@@ -643,20 +769,22 @@ const Quiz = () => {
                           border
                           ${
                             isSelected
-                              ? "border-2 border-[#6C4AB6] text-[#3F3D56] font-semibold shadow-[0_4px_12px_rgba(108,74,182,0.15)] scale-[1.02] animate-[scale-in_180ms_ease-out]"
+                              ? "border-2 border-[#E67E22] shadow-lg scale-[1.02] animate-[scale-in_180ms_ease-out]"
                               : isDisabled
-                                ? "border border-[#B69FFF]/30 text-[#1E293B]/40 cursor-not-allowed opacity-40"
-                                : "border border-[#B69FFF] text-[#3F3D56] hover:border-[#6C4AB6]/50 hover:scale-105 cursor-pointer shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_8px_rgba(182,159,255,0.2)]"
+                                ? "border border-[#E67E22]/20 cursor-not-allowed opacity-40"
+                                : "border border-[#E67E22]/40 hover:border-[#E67E22]/70 hover:scale-105 cursor-pointer hover:shadow-md"
                           }
                         `}
                         style={{
                           backdropFilter: "blur(12px)",
                           WebkitBackdropFilter: "blur(12px)",
                           background: isSelected 
-                            ? "rgba(244, 240, 255, 0.5)" 
+                            ? "rgba(230, 126, 34, 0.2)" 
                             : isDisabled 
-                              ? "rgba(255, 255, 255, 0.2)"
-                              : "rgba(255, 255, 255, 0.3)",
+                              ? "rgba(40, 30, 25, 0.3)"
+                              : "rgba(40, 30, 25, 0.5)",
+                          color: isSelected ? '#F5F0E8' : '#E8DDD0',
+                          fontWeight: isSelected ? '600' : '400',
                         }}
                         onClick={() => !isDisabled && togglePalavra(palavra)}
                       >
@@ -671,13 +799,15 @@ const Quiz = () => {
 
                 <div className="text-center pt-2">
                   <p
-                    className={`text-sm font-medium transition-all duration-200 ${
-                      (quizData.palavrasAmor?.length || 0) === 0
-                        ? "text-[#94A3B8]"
+                    className="text-sm font-medium transition-all duration-200"
+                    style={{
+                      color: (quizData.palavrasAmor?.length || 0) === 0
+                        ? '#94A3B8'
                         : (quizData.palavrasAmor?.length || 0) === 3
-                          ? "text-[#6C4AB6] font-bold animate-pulse"
-                          : "text-[#475569] font-semibold"
-                    }`}
+                          ? '#E67E22'
+                          : '#E8DDD0',
+                      fontWeight: (quizData.palavrasAmor?.length || 0) === 3 ? '700' : '500',
+                    }}
                   >
                     {quizData.palavrasAmor && quizData.palavrasAmor.length > 0
                       ? `${quizData.palavrasAmor.length}/3 selecionadas`
@@ -687,21 +817,36 @@ const Quiz = () => {
               </div>
             )}
 
-            {/* Question 4 - Personalized */}
+             {/* Question 4 - Personalized */}
             {step === 4 && (
-              <div className="space-y-4">
-                <div className="text-center mb-6">
-                  <Book className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <h3 className="text-lg xs:text-xl font-bold text-[#1E293B] mb-2.5 leading-tight">
+              <div className="space-y-6">
+                <div className="text-center mb-8">
+                  <Book 
+                    className="w-12 h-12 mx-auto mb-6" 
+                    style={{ color: '#E67E22' }}
+                  />
+                  <h3 
+                    className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                    style={{
+                      color: '#F5F0E8',
+                      fontFamily: 'Georgia, serif',
+                    }}
+                  >
                     Qual promessa pode restaurar seu coração?
                   </h3>
-                  <p className="text-sm text-[#475569]">
+                  <p
+                    className="text-[15px] xs:text-[16px] leading-relaxed"
+                    style={{ 
+                      color: '#E8DDD0',
+                      opacity: 0.9
+                    }}
+                  >
                     Escolha a promessa que mais fala ao seu coração neste momento. Ela será a base das direções
                     proféticas do seu Mapa.
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {[
                     {
                       ref: "Jeremias 29:11",
@@ -732,17 +877,17 @@ const Quiz = () => {
                     return (
                       <button
                         key={v.ref}
-                        className={`w-full p-4 rounded-xl flex flex-col gap-1.5 text-left relative transition-all duration-150 border ${
+                        className={`w-full p-4 rounded-2xl flex flex-col gap-1.5 text-left relative transition-all duration-200 border ${
                           isSelected
-                            ? "border-2 border-[#6C4AB6] shadow-md animate-[verse-select_180ms_ease-out]"
-                            : "border border-[#B69FFF] hover:border-[#6C4AB6]/50 hover:shadow-sm"
+                            ? "border-[#E67E22] border-2 shadow-lg"
+                            : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                         }`}
                         style={{
-                          backdropFilter: "blur(12px)",
-                          WebkitBackdropFilter: "blur(12px)",
+                          backdropFilter: "blur(16px)",
+                          WebkitBackdropFilter: "blur(16px)",
                           background: isSelected 
-                            ? "rgba(244, 240, 255, 0.5)" 
-                            : "rgba(255, 255, 255, 0.3)",
+                            ? "rgba(230, 126, 34, 0.15)" 
+                            : "rgba(40, 30, 25, 0.6)",
                         }}
                          onClick={() => {
                           setQuizData({ ...quizData, versiculo: v.ref });
@@ -766,22 +911,31 @@ const Quiz = () => {
                           <div className="flex items-center gap-2.5">
                             <span className="text-lg flex-shrink-0">{v.emoji}</span>
                             <span
-                              className={`font-serif text-sm xs:text-base transition-all duration-150 ${
-                                isSelected ? "font-bold text-[#3F3D56]" : "font-medium text-[#1E293B]"
-                              }`}
+                              className="font-serif text-sm xs:text-base transition-all duration-150"
+                              style={{
+                                color: '#F5F0E8',
+                                fontWeight: isSelected ? '700' : '500',
+                              }}
                             >
                               {v.ref}
                             </span>
                           </div>
-                          <span className="text-xs bg-[#6C4AB6]/10 text-[#6C4AB6] px-2.5 py-1 rounded-full font-medium flex-shrink-0">
+                          <span 
+                            className="text-xs px-2.5 py-1 rounded-full font-medium flex-shrink-0"
+                            style={{
+                              background: 'rgba(230, 126, 34, 0.15)',
+                              color: '#E67E22',
+                            }}
+                          >
                             {v.tema}
                           </span>
                         </div>
 
                         <span
-                          className={`text-sm xs:text-base italic leading-relaxed ml-9 transition-colors duration-150 ${
-                            isSelected ? "text-[#3F3D56]" : "text-[#555555]"
-                          }`}
+                          className="text-sm xs:text-base italic leading-relaxed ml-9 transition-colors duration-150"
+                          style={{
+                            color: isSelected ? '#F5F0E8' : '#E8DDD0',
+                          }}
                         >
                           "{v.texto}"
                         </span>
@@ -790,59 +944,119 @@ const Quiz = () => {
                   })}
                 </div>
 
-                <div className="bg-[#6C4AB6]/5 rounded-xl p-3 border-l-4 border-[#6C4AB6] mt-4 mb-4">
-                  <p className="text-xs text-[#3F3D56]">
+                <div 
+                  className="rounded-xl p-3 border-l-4 mt-4 mb-4"
+                  style={{
+                    background: 'rgba(230, 126, 34, 0.1)',
+                    borderColor: '#E67E22',
+                  }}
+                >
+                  <p 
+                    className="text-xs"
+                    style={{ color: '#F5F0E8' }}
+                  >
                     💡 <strong>Este versículo será a base</strong> das direções proféticas do seu Mapa
                   </p>
                 </div>
               </div>
             )}
 
-            {/* Question 5 - Personalized */}
+             {/* Question 5 - Personalized */}
             {step === 5 && (
-              <div className="space-y-4">
-                <div className="text-center mb-6">
-                  <Calendar className="w-8 h-8 text-lilac mx-auto mb-3" />
+              <div className="space-y-6">
+                <div className="text-center mb-8">
+                  <Calendar 
+                    className="w-12 h-12 mx-auto mb-6" 
+                    style={{ color: '#E67E22' }}
+                  />
                   {quizData.user_state === "solteiro" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Quanto tempo por dia você está disposto(a) a separar para Deus preparar seu coração?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Esse tempo será a base do plano profético personalizado que você receberá.
                       </p>
                     </>
                   ) : quizData.user_state === "relacionamento" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Quanto tempo por dia você está disposto(a) a separar para Deus trazer clareza?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Esse tempo será a base do plano profético personalizado que você receberá.
                       </p>
                     </>
                   ) : quizData.user_state === "confuso" ? (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Quanto tempo por dia você está disposto(a) a separar para Deus te guiar?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Esse tempo será a base do plano profético personalizado que você receberá.
                       </p>
                     </>
                   ) : (
                     <>
-                      <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2.5 leading-tight">
+                      <h3 
+                        className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                        style={{
+                          color: '#F5F0E8',
+                          fontFamily: 'Georgia, serif',
+                        }}
+                      >
                         Quanto tempo por dia você está disposto(a) a separar para Deus restaurar seu coração?
                       </h3>
-                      <p className="text-sm text-[#7A7A8C] leading-relaxed">
+                      <p
+                        className="text-[15px] xs:text-[16px] leading-relaxed"
+                        style={{ 
+                          color: '#E8DDD0',
+                          opacity: 0.9
+                        }}
+                      >
                         Esse tempo será a base do plano profético personalizado que você receberá.
                       </p>
                     </>
                   )}
                 </div>
 
-                <div className="space-y-3.5">
+                <div className="space-y-3">
                   {[
                     { text: "5 min", emoji: "⚡" },
                     { text: "10 min", emoji: "🕐" },
@@ -852,17 +1066,17 @@ const Quiz = () => {
                     return (
                       <button
                         key={option.text}
-                        className={`w-full p-4 rounded-xl flex items-center justify-between gap-3 relative transition-all duration-200 group border ${
+                        className={`w-full p-4 rounded-2xl flex items-center justify-between gap-3 relative transition-all duration-200 group border ${
                           isSelected
-                            ? "border-2 border-[#6C4AB6] shadow-[0_4px_16px_rgba(108,74,182,0.15)] scale-[1.01]"
-                            : "border-2 border-[#E2E8F0] hover:border-[#6C4AB6]/40 hover:shadow-[0_2px_12px_rgba(108,74,182,0.08)] hover:scale-[1.005]"
+                            ? "border-[#E67E22] border-2 shadow-lg"
+                            : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                         }`}
                         style={{
-                          backdropFilter: "blur(12px)",
-                          WebkitBackdropFilter: "blur(12px)",
+                          backdropFilter: "blur(16px)",
+                          WebkitBackdropFilter: "blur(16px)",
                           background: isSelected 
-                            ? "rgba(244, 240, 255, 0.5)" 
-                            : "rgba(255, 255, 255, 0.3)",
+                            ? "rgba(230, 126, 34, 0.15)" 
+                            : "rgba(40, 30, 25, 0.6)",
                         }}
                          onClick={() => {
                           setQuizData({ ...quizData, tempo: option.text });
@@ -886,9 +1100,11 @@ const Quiz = () => {
                             {option.emoji}
                           </span>
                           <span
-                            className={`text-base transition-all duration-200 ${
-                              isSelected ? "text-[#3F3D56] font-bold" : "text-[#1E293B] font-semibold"
-                            }`}
+                            className="text-base transition-all duration-200"
+                            style={{
+                              color: '#F5F0E8',
+                              fontWeight: isSelected ? '700' : '600',
+                            }}
                           >
                             {option.text} por dia
                           </span>
@@ -898,19 +1114,24 @@ const Quiz = () => {
                             ✨
                           </span>
                         )}
-                        {/* Subtle glow effect on selection */}
-                        {isSelected && (
-                          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6C4AB6]/5 to-transparent opacity-50 pointer-events-none" />
-                        )}
                       </button>
                     );
                   })}
                 </div>
 
-                <div className="bg-gradient-to-r from-[#6C4AB6]/8 to-[#6C4AB6]/4 rounded-xl p-4 border-l-4 border-[#6C4AB6] mt-5 shadow-sm backdrop-blur-sm">
+                <div 
+                  className="rounded-xl p-4 border-l-4 mt-5 shadow-sm backdrop-blur-sm"
+                  style={{
+                    background: 'linear-gradient(to right, rgba(230, 126, 34, 0.15), rgba(230, 126, 34, 0.08))',
+                    borderColor: '#E67E22',
+                  }}
+                >
                   <div className="flex items-start gap-3">
                     <span className="text-base flex-shrink-0 mt-0.5">💡</span>
-                    <p className="text-[13px] text-[#3F3D56] leading-relaxed">
+                    <p 
+                      className="text-[13px] leading-relaxed"
+                      style={{ color: '#F5F0E8' }}
+                    >
                       <strong className="font-bold">Seu compromisso espiritual</strong> moldará cada etapa do seu plano
                     </p>
                   </div>
@@ -921,12 +1142,27 @@ const Quiz = () => {
             {/* Question 6 */}
             {step === 6 && (
               <div className="space-y-6 px-1">
-                <div className="text-center mb-6">
-                  <Sparkles className="w-10 h-10 text-golden mx-auto mb-4 animate-pulse" />
-                  <h2 className="text-xl xs:text-2xl font-bold text-[#3F3D56] mb-3 leading-tight px-2">
+                <div className="text-center mb-8">
+                  <Sparkles 
+                    className="w-12 h-12 mx-auto mb-6 animate-pulse" 
+                    style={{ color: '#E67E22' }}
+                  />
+                  <h2 
+                    className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4 px-2"
+                    style={{
+                      color: '#F5F0E8',
+                      fontFamily: 'Georgia, serif',
+                    }}
+                  >
                     ✨ Última etapa para receber seu Mapa Profético personalizado 💌
                   </h2>
-                  <p className="text-sm xs:text-base text-[#7A7A8C] leading-relaxed mx-auto max-w-[90%]">
+                  <p
+                    className="text-[15px] xs:text-[16px] leading-relaxed mx-auto max-w-[90%]"
+                    style={{ 
+                      color: '#E8DDD0',
+                      opacity: 0.9
+                    }}
+                  >
                     Preencha abaixo para receber seu Mapa Profético e o Plano Espiritual de 7 dias diretamente no seu
                     WhatsApp.
                   </p>
@@ -934,21 +1170,34 @@ const Quiz = () => {
 
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="nome" className="text-base font-semibold text-[#3F3D56] mb-2.5 block">
+                    <Label 
+                      htmlFor="nome" 
+                      className="text-base font-semibold mb-2.5 block"
+                      style={{ color: '#F5F0E8' }}
+                    >
                       Seu primeiro nome
                     </Label>
                     <Input
                       id="nome"
                       type="text"
                       placeholder="Ex: Maria"
-                      className="h-12 rounded-xl text-base border-2 border-[#D8D8E3] focus:border-[#6C4AB6] focus:ring-2 focus:ring-[#6C4AB6]/20 transition-all duration-200"
+                      className="h-12 rounded-xl text-base border-2 transition-all duration-200"
+                      style={{
+                        borderColor: 'rgba(230, 126, 34, 0.3)',
+                        background: 'rgba(40, 30, 25, 0.6)',
+                        color: '#F5F0E8',
+                      }}
                       value={quizData.nome || ""}
                       onChange={(e) => setQuizData({ ...quizData, nome: e.target.value })}
                     />
                   </div>
 
                   <div>
-                    <Label htmlFor="whatsapp" className="text-base font-semibold text-[#3F3D56] mb-2.5 block">
+                    <Label 
+                      htmlFor="whatsapp" 
+                      className="text-base font-semibold mb-2.5 block"
+                      style={{ color: '#F5F0E8' }}
+                    >
                       Seu WhatsApp
                     </Label>
                     <InputMask
@@ -965,19 +1214,36 @@ const Quiz = () => {
                           id="whatsapp"
                           type="tel"
                           placeholder="(11) 99999-9999"
-                          className="h-12 rounded-xl text-base border-2 border-[#D8D8E3] focus:border-[#6C4AB6] focus:ring-2 focus:ring-[#6C4AB6]/20 transition-all duration-200"
+                          className="h-12 rounded-xl text-base border-2 transition-all duration-200"
+                          style={{
+                            borderColor: 'rgba(230, 126, 34, 0.3)',
+                            background: 'rgba(40, 30, 25, 0.6)',
+                            color: '#F5F0E8',
+                          }}
                         />
                       )}
                     </InputMask>
-                    <p className="text-[13px] text-[#7A7A8C] mt-2.5 flex items-center gap-1.5">
+                    <p 
+                      className="text-[13px] mt-2.5 flex items-center gap-1.5"
+                      style={{ color: '#E8DDD0' }}
+                    >
                       <span>📩</span>
                       <span>Enviaremos seu Mapa Profético diretamente no WhatsApp.</span>
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-[#F4F0FF] rounded-xl p-3.5 border border-[#E5DEFF] shadow-sm">
-                  <p className="text-[13px] xs:text-sm text-[#5E5E70] leading-relaxed flex items-start gap-2">
+                <div 
+                  className="rounded-xl p-3.5 border shadow-sm"
+                  style={{
+                    background: 'rgba(230, 126, 34, 0.1)',
+                    borderColor: 'rgba(230, 126, 34, 0.3)',
+                  }}
+                >
+                  <p 
+                    className="text-[13px] xs:text-sm leading-relaxed flex items-start gap-2"
+                    style={{ color: '#F5F0E8' }}
+                  >
                     <span className="text-base flex-shrink-0 mt-0.5">🔒</span>
                     <span>
                       <strong className="font-bold">Seus dados estão protegidos</strong> — usamos apenas para entregar
