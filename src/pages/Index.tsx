@@ -50,12 +50,16 @@ const Index = () => {
 
         {/* Main Content */}
         <div className="relative z-10 w-full max-w-md animate-fade-in px-6">
-          {/* Logo */}
+          {/* Logo - Lazy loaded */}
           <div className="flex justify-center mb-4">
             <img 
               src={logo} 
               alt="Mapa Profético do Amor" 
               className="h-20 w-auto"
+              loading="eager"
+              decoding="async"
+              width="80"
+              height="80"
               style={{ 
                 filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))',
               }}

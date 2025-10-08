@@ -7,43 +7,61 @@
     <meta name="description" content="Descubra seu tempo espiritual no amor com direção bíblica personalizada. Receba seu Mapa Profético com passos práticos para 7 dias." />
     <meta name="author" content="Profético Amoroso" />
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','{{GTM_ID}}');</script>
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
+    
+    <!-- Google Tag Manager - Async -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.defer=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','{{GTM_ID}}');
+    </script>
     <!-- End Google Tag Manager -->
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code - Deferred -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1014393800794226');
+      window.fbAsyncInit = function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;t.defer=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1014393800794226');
+      };
+      // Load after page load
+      if (document.readyState === 'complete') {
+        window.fbAsyncInit();
+      } else {
+        window.addEventListener('load', window.fbAsyncInit);
+      }
     </script>
     <!-- End Meta Pixel Code -->
     
-    <!-- UTMify Pixel -->
+    <!-- UTMify Pixel - Deferred -->
     <script>
-      window.pixelId = "68e33a80abe1494777cd2237";
-      var a = document.createElement("script");
-      a.setAttribute("async", "");
-      a.setAttribute("defer", "");
-      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-      document.head.appendChild(a);
+      window.addEventListener('load', function() {
+        window.pixelId = "68e33a80abe1494777cd2237";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+      });
     </script>
     <!-- End UTMify Pixel -->
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Optimized with display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&family=Merriweather:wght@400;700&display=swap" rel="stylesheet"></noscript>
 
     <meta property="og:title" content="Mapa Profético do Seu Futuro Amoroso" />
     <meta property="og:description" content="Clareza, direção e fé para sua vida amorosa. Descubra seu tempo espiritual com direção bíblica." />
