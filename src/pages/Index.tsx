@@ -27,9 +27,9 @@ const Index = () => {
     <div className="min-h-screen w-full relative overflow-hidden">
       {/* Hero Section */}
       <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-4">
-        {/* Gradient overlay with stars - Reduced quantity for performance */}
+        {/* Gradient overlay with stars */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
               className="absolute animate-float-sparkle"
@@ -41,7 +41,6 @@ const Index = () => {
                 animationDuration: `${Math.random() * 20 + 15}s`,
                 opacity: Math.random() * 0.4 + 0.3,
                 color: '#FFB84D',
-                willChange: 'transform',
               }}
             >
               ✨
