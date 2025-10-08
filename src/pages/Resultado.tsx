@@ -129,7 +129,7 @@ const Resultado = () => {
               <div className="text-center pb-6 border-b border-white/10">
                 <h3 className="mb-4 text-white font-semibold">Seu Momento Espiritual:</h3>
                 <div className="inline-block">
-                  <Badge className="bg-gradient-to-r from-golden to-primary text-white font-bold text-lg px-8 py-3 shadow-lg">
+                  <Badge className="font-bold text-lg px-8 py-3 shadow-lg" style={{ background: '#E67E22', color: 'white' }}>
                     ✨ {profile.tempoEspiritual}
                   </Badge>
                 </div>
