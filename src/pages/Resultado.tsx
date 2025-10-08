@@ -106,10 +106,10 @@ const Resultado = () => {
             <Badge className="bg-golden text-golden-foreground mb-4 px-4 py-1.5 animate-pulse">
               🎉 Resultado Pronto{quizData?.nome ? `, ${quizData.nome}` : ""}!
             </Badge>
-            <h2 className="text-[#3F3D56] mb-4 font-bold">
+            <h2 className="text-white mb-4 font-bold">
               ✨ Seu Mapa Profético foi revelado com sucesso 💌
             </h2>
-            <p className="text-base text-text-secondary">
+            <p className="text-base text-white/80">
               Veja uma prévia incrível do que Deus revelou sobre seu futuro amoroso
             </p>
           </div>
