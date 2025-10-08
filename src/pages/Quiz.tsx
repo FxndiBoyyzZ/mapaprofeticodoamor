@@ -245,10 +245,15 @@ const Quiz = () => {
       <div className="pt-[70px] px-4">
         <div className="container mx-auto max-w-2xl">
           <Card
-            className={`p-4 xs:p-6 md:p-8 shadow-card transition-all duration-150 ${
+            className={`p-4 xs:p-6 md:p-8 shadow-card transition-all duration-150 border border-white/20 ${
               isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
             }`}
-            style={{ backdropFilter: "blur(8px)", background: "rgba(255, 255, 255, 0.95)" }}
+            style={{ 
+              backdropFilter: "blur(16px)", 
+              WebkitBackdropFilter: "blur(16px)",
+              background: "rgba(255, 255, 255, 0.15)",
+              boxShadow: "0 8px 32px 0 rgba(108, 74, 182, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.3)"
+            }}
           >
             {/* Question 1 */}
             {step === 1 && (
@@ -290,9 +295,16 @@ const Quiz = () => {
                         key={option.text}
                         className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-180 border ${
                           isSelected
-                            ? "bg-[#F4F0FF] border-[#6C4AB6] border-2 shadow-md animate-option-select"
-                            : "bg-white border-[#B69FFF] border-1 hover:border-[#6C4AB6] hover:bg-[#F4F0FF]/30 hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
+                            ? "border-[#6C4AB6] border-2 shadow-md animate-option-select"
+                            : "border-[#B69FFF] border-1 hover:border-[#6C4AB6] hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
                         }`}
+                        style={{
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          background: isSelected 
+                            ? "rgba(244, 240, 255, 0.5)" 
+                            : "rgba(255, 255, 255, 0.3)",
+                        }}
                         onClick={() => setQuizData({ ...quizData, momento: option.text, user_state: option.state })}
                       >
                         <IconComponent
@@ -376,9 +388,16 @@ const Quiz = () => {
                             key={option.text}
                             className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
                               isSelected
-                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
-                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
+                                ? "border-[#3F51B5] shadow-md scale-[1.01]"
+                                : "border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:shadow-sm"
                             }`}
+                            style={{
+                              backdropFilter: "blur(12px)",
+                              WebkitBackdropFilter: "blur(12px)",
+                              background: isSelected 
+                                ? "rgba(244, 240, 255, 0.5)" 
+                                : "rgba(255, 255, 255, 0.3)",
+                            }}
                             onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
                           >
                             <span className="text-xl flex-shrink-0">{option.emoji}</span>
@@ -407,9 +426,16 @@ const Quiz = () => {
                             key={option.text}
                             className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-150 border-2 text-left shadow-[0_2px_8px_rgba(0,0,0,0.05)] ${
                               isSelected
-                                ? "bg-[#F4F0FF] border-[#3F51B5] shadow-md scale-[1.01]"
-                                : "bg-white border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
+                                ? "border-[#3F51B5] shadow-md scale-[1.01]"
+                                : "border-[#E2E8F0] hover:border-[#3F51B5]/30 hover:shadow-sm"
                             }`}
+                            style={{
+                              backdropFilter: "blur(12px)",
+                              WebkitBackdropFilter: "blur(12px)",
+                              background: isSelected 
+                                ? "rgba(244, 240, 255, 0.5)" 
+                                : "rgba(255, 255, 255, 0.3)",
+                            }}
                             onClick={() => setQuizData({ ...quizData, user_doubt: option.text })}
                           >
                             <span className="text-[18px] leading-none flex-shrink-0 pl-2">{option.emoji}</span>
@@ -559,14 +585,24 @@ const Quiz = () => {
                           px-4 py-2.5 rounded-full text-sm font-medium 
                           transition-all duration-200 
                           active:scale-95
+                          border
                           ${
                             isSelected
-                              ? "bg-[#F4F0FF] border-2 border-[#6C4AB6] text-[#3F3D56] font-semibold shadow-[0_4px_12px_rgba(108,74,182,0.15)] scale-[1.02] animate-[scale-in_180ms_ease-out]"
+                              ? "border-2 border-[#6C4AB6] text-[#3F3D56] font-semibold shadow-[0_4px_12px_rgba(108,74,182,0.15)] scale-[1.02] animate-[scale-in_180ms_ease-out]"
                               : isDisabled
-                                ? "bg-white/50 border border-[#B69FFF]/30 text-[#1E293B]/40 cursor-not-allowed opacity-40"
-                                : "bg-white border border-[#B69FFF] text-[#3F3D56] hover:bg-[#F4F0FF]/30 hover:border-[#6C4AB6]/50 hover:scale-105 cursor-pointer shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_8px_rgba(182,159,255,0.2)]"
+                                ? "border border-[#B69FFF]/30 text-[#1E293B]/40 cursor-not-allowed opacity-40"
+                                : "border border-[#B69FFF] text-[#3F3D56] hover:border-[#6C4AB6]/50 hover:scale-105 cursor-pointer shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_8px_rgba(182,159,255,0.2)]"
                           }
                         `}
+                        style={{
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          background: isSelected 
+                            ? "rgba(244, 240, 255, 0.5)" 
+                            : isDisabled 
+                              ? "rgba(255, 255, 255, 0.2)"
+                              : "rgba(255, 255, 255, 0.3)",
+                        }}
                         onClick={() => !isDisabled && togglePalavra(palavra)}
                       >
                         <span className="flex items-center gap-1.5">
@@ -641,11 +677,18 @@ const Quiz = () => {
                     return (
                       <button
                         key={v.ref}
-                        className={`w-full p-4 rounded-xl flex flex-col gap-1.5 text-left relative transition-all duration-150 ${
+                        className={`w-full p-4 rounded-xl flex flex-col gap-1.5 text-left relative transition-all duration-150 border ${
                           isSelected
-                            ? "bg-[#F4F0FF] border-2 border-[#6C4AB6] shadow-md animate-[verse-select_180ms_ease-out]"
-                            : "bg-white border border-[#B69FFF] hover:border-[#6C4AB6]/50 hover:bg-[#F4F0FF]/30 hover:shadow-sm"
+                            ? "border-2 border-[#6C4AB6] shadow-md animate-[verse-select_180ms_ease-out]"
+                            : "border border-[#B69FFF] hover:border-[#6C4AB6]/50 hover:shadow-sm"
                         }`}
+                        style={{
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          background: isSelected 
+                            ? "rgba(244, 240, 255, 0.5)" 
+                            : "rgba(255, 255, 255, 0.3)",
+                        }}
                         onClick={() => setQuizData({ ...quizData, versiculo: v.ref })}
                       >
                         {/* Ícone de seleção no canto superior direito */}
@@ -743,11 +786,18 @@ const Quiz = () => {
                     return (
                       <button
                         key={option.text}
-                        className={`w-full p-4 rounded-xl flex items-center justify-between gap-3 relative transition-all duration-200 group ${
+                        className={`w-full p-4 rounded-xl flex items-center justify-between gap-3 relative transition-all duration-200 group border ${
                           isSelected
-                            ? "bg-[#F4F0FF] border-2 border-[#6C4AB6] shadow-[0_4px_16px_rgba(108,74,182,0.15)] scale-[1.01]"
-                            : "bg-white border-2 border-[#E2E8F0] hover:border-[#6C4AB6]/40 hover:bg-[#F4F0FF]/20 hover:shadow-[0_2px_12px_rgba(108,74,182,0.08)] hover:scale-[1.005]"
+                            ? "border-2 border-[#6C4AB6] shadow-[0_4px_16px_rgba(108,74,182,0.15)] scale-[1.01]"
+                            : "border-2 border-[#E2E8F0] hover:border-[#6C4AB6]/40 hover:shadow-[0_2px_12px_rgba(108,74,182,0.08)] hover:scale-[1.005]"
                         }`}
+                        style={{
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          background: isSelected 
+                            ? "rgba(244, 240, 255, 0.5)" 
+                            : "rgba(255, 255, 255, 0.3)",
+                        }}
                         onClick={() => setQuizData({ ...quizData, tempo: option.text })}
                       >
                         <div className="flex items-center gap-3.5">

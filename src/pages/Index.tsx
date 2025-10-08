@@ -28,42 +28,24 @@ const Index = () => {
     <div className="min-h-screen w-full relative overflow-hidden">
       {/* Hero Section */}
       <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-4">
-        {/* Hero Gradient Background */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={heroGradientBg}
-            alt="Gradiente profético - Mapa do Amor"
-            className="w-full h-full object-cover"
-            loading="eager"
-            style={{ filter: 'blur(4px)' }}
-          />
-          
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(135deg, rgba(108, 74, 182, 0.85) 0%, rgba(118, 75, 162, 0.8) 25%, rgba(182, 143, 255, 0.75) 50%, rgba(108, 74, 182, 0.8) 75%, rgba(118, 75, 162, 0.85) 100%)',
-              backdropFilter: 'blur(12px)',
-            }}
-          />
-
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute animate-float-sparkle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  fontSize: `${Math.random() * 20 + 10}px`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${Math.random() * 15 + 10}s`,
-                  opacity: Math.random() * 0.3 + 0.1,
-                }}
-              >
-                ✨
-              </div>
-            ))}
-          </div>
+        {/* Sparkles overlay */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float-sparkle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: `${Math.random() * 20 + 10}px`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${Math.random() * 15 + 10}s`,
+                opacity: Math.random() * 0.3 + 0.1,
+              }}
+            >
+              ✨
+            </div>
+          ))}
         </div>
 
         {/* Main Content */}
