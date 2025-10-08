@@ -513,7 +513,7 @@ const Resultado = () => {
       <StickyCTABar 
         text="Pronto para desbloquear seu Mapa?"
         buttonText="✨ Desbloquear Mapa por R$27"
-        href="/checkout"
+        onClick={handleCheckoutClick}
       />
     </div>
   );

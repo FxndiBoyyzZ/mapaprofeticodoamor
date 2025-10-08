@@ -6,13 +6,15 @@ import { useNavigate } from "react-router-dom";
 interface StickyCTABarProps {
   text?: string;
   buttonText?: string;
-  href: string;
+  href?: string;
+  onClick?: () => void;
 }
 
 const StickyCTABar = ({
   text = "Pronto para desbloquear seu Mapa?",
   buttonText = "Quero meu Mapa",
   href,
+  onClick,
 }: StickyCTABarProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
@@ -30,10 +32,15 @@ const StickyCTABar = ({
   const handleClick = () => {
     // Track custom checkout_click event
     if (typeof window.fbq !== 'undefined') {
-      window.fbq('trackCustom', 'checkout_click', { value: 47, currency: 'BRL', source: 'sticky_bar' });
+      window.fbq('track', 'InitiateCheckout', { value: 27, currency: 'BRL', source: 'sticky_bar' });
     }
-    // Navigate to checkout
-    navigate(href);
+    
+    // Use custom onClick if provided, otherwise navigate to href
+    if (onClick) {
+      onClick();
+    } else if (href) {
+      navigate(href);
+    }
   };
 
   return (
