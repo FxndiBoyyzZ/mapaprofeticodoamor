@@ -814,6 +814,30 @@ const Quiz = () => {
                       : "0/3 selecionadas"}
                   </p>
                 </div>
+
+                {/* Botão Próximo apenas na pergunta 3 */}
+                <div className="mt-6 pt-4">
+                  <Button
+                    size="lg"
+                    onClick={handleNext}
+                    disabled={!isStepValid()}
+                    className="w-full rounded-2xl font-bold text-base transition-all duration-300 border-0"
+                    style={{
+                      height: "56px",
+                      background: isStepValid()
+                        ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
+                        : 'rgba(230, 126, 34, 0.4)',
+                      backgroundSize: '200% 100%',
+                      color: '#FFFFFF',
+                      boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                      cursor: isStepValid() ? 'pointer' : 'not-allowed',
+                    }}
+                  >
+                    Próximo
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </div>
               </div>
             )}
 
