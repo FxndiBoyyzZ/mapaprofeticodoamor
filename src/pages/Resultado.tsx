@@ -94,8 +94,8 @@ const Resultado = () => {
       });
     }
     
-    // Redirect to external checkout (replace with your actual checkout URL)
-    window.location.href = 'https://pay.kiwify.com.br/SEU_LINK_AQUI';
+    // Redirect to external checkout
+    window.location.href = 'https://pay.cakto.com.br/7k6p9n7_596897';
   };
 
   return (
