@@ -1165,7 +1165,7 @@ const Quiz = () => {
 
             {/* Question 6 */}
             {step === 6 && (
-              <div className="space-y-8 px-1 pb-4">
+              <div className="space-y-8 pb-8 md:pb-4">
                 {/* Cabeçalho melhorado com glassmorphism */}
                 <div 
                   className="text-center p-6 rounded-3xl border backdrop-blur-md"
@@ -1205,7 +1205,7 @@ const Quiz = () => {
                 </div>
 
                 {/* Formulário com design melhorado */}
-                <div className="space-y-5">
+                <div className="space-y-5 px-2">
                   <div>
                     <Label 
                       htmlFor="nome" 
@@ -1267,7 +1267,7 @@ const Quiz = () => {
                       )}
                     </InputMask>
                     <p 
-                      className="text-sm mt-3 flex items-center gap-2 px-2"
+                      className="text-sm mt-3 flex items-center gap-2"
                       style={{ color: '#E8DDD0' }}
                     >
                       <span>💬</span>
@@ -1278,7 +1278,7 @@ const Quiz = () => {
 
                 {/* Box de segurança aprimorado */}
                 <div 
-                  className="rounded-2xl p-4 border-2 backdrop-blur-md shadow-lg"
+                  className="rounded-2xl p-4 border-2 backdrop-blur-md shadow-lg mx-2"
                   style={{
                     background: 'linear-gradient(to right, rgba(230, 126, 34, 0.12), rgba(243, 156, 18, 0.08))',
                     borderColor: 'rgba(230, 126, 34, 0.4)',
@@ -1320,7 +1320,7 @@ const Quiz = () => {
             )}
 
             {/* Desktop Navigation - Visible only on desktop */}
-            <div className="hidden md:flex gap-3 mt-8 pt-6 border-t" style={{ borderColor: 'rgba(230, 126, 34, 0.2)' }}>
+            <div className="hidden md:flex gap-3 mt-8 pt-6 border-t px-2" style={{ borderColor: 'rgba(230, 126, 34, 0.2)' }}>
               {step > 1 && (
                 <Button 
                   variant="outline" 
@@ -1345,14 +1345,14 @@ const Quiz = () => {
                   disabled={!isStepValid()}
                   className="flex-1 rounded-2xl font-bold text-lg transition-all duration-300 border-0 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
-                    height: "60px",
+                    height: "64px",
                     background: isStepValid()
                       ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
                       : 'rgba(230, 126, 34, 0.4)',
                     backgroundSize: '200% 100%',
                     color: '#FFFFFF',
-                    boxShadow: isStepValid() ? '0 12px 32px rgba(230, 126, 34, 0.6), 0 0 60px rgba(230, 126, 34, 0.3)' : 'none',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                    boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                     cursor: isStepValid() ? 'pointer' : 'not-allowed',
                   }}
                 >
@@ -1365,55 +1365,39 @@ const Quiz = () => {
         </div>
       </div>
 
-      {/* Fixed Mobile Footer - Visible only on mobile */}
+      {/* Fixed Mobile Footer - Visible only on mobile - Com espaçamento seguro */}
       {step === 6 && (
         <div 
           className="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t shadow-2xl backdrop-blur-xl"
           style={{
             background: 'linear-gradient(to top, rgba(20, 15, 12, 0.98), rgba(20, 15, 12, 0.95))',
             borderColor: 'rgba(230, 126, 34, 0.3)',
-            paddingBottom: 'max(1rem, env(safe-area-inset-bottom))',
+            paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))',
             paddingTop: '1rem',
             paddingLeft: 'max(1rem, env(safe-area-inset-left))',
             paddingRight: 'max(1rem, env(safe-area-inset-right))',
           }}
         >
-          <div className="container mx-auto max-w-2xl flex gap-3 px-2">
-            {step > 1 && (
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={handleBack} 
-                className="rounded-2xl font-semibold w-14 h-14 p-0 border-2"
-                style={{
-                  borderColor: 'rgba(230, 126, 34, 0.4)',
-                  background: 'rgba(40, 30, 25, 0.8)',
-                  color: '#F5F0E8',
-                }}
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-            )}
-
+          <div className="container mx-auto max-w-2xl px-3">
             <Button
               size="lg"
               onClick={handleNext}
               disabled={!isStepValid()}
-              className={`rounded-2xl font-bold text-base transition-all duration-300 border-0 active:scale-[0.97] ${step > 1 ? "flex-1" : "w-full"}`}
+              className="w-full rounded-2xl font-bold text-base transition-all duration-300 border-0 active:scale-[0.97]"
               style={{
-                height: "56px",
+                height: "60px",
                 background: isStepValid()
                   ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
                   : 'rgba(230, 126, 34, 0.4)',
                 backgroundSize: '200% 100%',
                 color: '#FFFFFF',
-                boxShadow: isStepValid() ? '0 8px 32px rgba(230, 126, 34, 0.6), 0 0 60px rgba(230, 126, 34, 0.25)' : 'none',
-                textShadow: '0 2px 4px rgba(0,0,0,0.4)',
+                boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                 cursor: isStepValid() ? 'pointer' : 'not-allowed',
               }}
             >
-              <Sparkles className="w-4 h-4 mr-1.5 flex-shrink-0" />
-              <span className="truncate">Receber meu Mapa Profético</span>
+              <Sparkles className="w-5 h-5 mr-2 flex-shrink-0" />
+              <span>Receber meu Mapa Profético Agora</span>
             </Button>
           </div>
         </div>
