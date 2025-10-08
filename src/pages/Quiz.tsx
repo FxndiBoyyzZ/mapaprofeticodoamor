@@ -1165,51 +1165,67 @@ const Quiz = () => {
 
             {/* Question 6 */}
             {step === 6 && (
-              <div className="space-y-6 px-1">
-                <div className="text-center mb-8">
-                  <Sparkles 
-                    className="w-12 h-12 mx-auto mb-6 animate-pulse" 
-                    style={{ color: '#E67E22' }}
-                  />
+              <div className="space-y-8 px-1 pb-4">
+                {/* Cabeçalho melhorado com glassmorphism */}
+                <div 
+                  className="text-center p-6 rounded-3xl border backdrop-blur-md"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(230, 126, 34, 0.15), rgba(243, 156, 18, 0.1))',
+                    borderColor: 'rgba(230, 126, 34, 0.3)',
+                  }}
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 animate-pulse"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(230, 126, 34, 0.2), rgba(243, 156, 18, 0.15))',
+                    }}
+                  >
+                    <Sparkles 
+                      className="w-8 h-8" 
+                      style={{ color: '#E67E22' }}
+                    />
+                  </div>
                   <h2 
-                    className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4 px-2"
+                    className="text-[26px] xs:text-[30px] md:text-[34px] font-bold leading-[1.25] mb-3"
                     style={{
                       color: '#F5F0E8',
                       fontFamily: 'Georgia, serif',
                     }}
                   >
-                    ✨ Última etapa para receber seu Mapa Profético personalizado 💌
+                    Seu Mapa Profético está pronto! ✨
                   </h2>
                   <p
-                    className="text-[15px] xs:text-[16px] leading-relaxed mx-auto max-w-[90%]"
+                    className="text-[14px] xs:text-[15px] leading-relaxed mx-auto max-w-md"
                     style={{ 
                       color: '#E8DDD0',
-                      opacity: 0.9
+                      opacity: 0.95
                     }}
                   >
-                    Preencha abaixo para receber seu Mapa Profético e o Plano Espiritual de 7 dias diretamente no seu
-                    WhatsApp.
+                    Falta apenas um passo para receber seu <strong style={{ color: '#E67E22' }}>Mapa Profético personalizado</strong> e o <strong style={{ color: '#E67E22' }}>Plano Espiritual de 7 dias</strong> diretamente no WhatsApp 💌
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                {/* Formulário com design melhorado */}
+                <div className="space-y-5">
                   <div>
                     <Label 
                       htmlFor="nome" 
-                      className="text-base font-semibold mb-2.5 block"
+                      className="text-base font-bold mb-3 flex items-center gap-2"
                       style={{ color: '#F5F0E8' }}
                     >
+                      <span className="text-lg">👤</span>
                       Seu primeiro nome
                     </Label>
                     <Input
                       id="nome"
                       type="text"
                       placeholder="Ex: Maria"
-                      className="h-12 rounded-xl text-base border-2 transition-all duration-200"
+                      className="h-14 rounded-2xl text-base border-2 transition-all duration-200 focus:scale-[1.01]"
                       style={{
-                        borderColor: 'rgba(230, 126, 34, 0.3)',
-                        background: 'rgba(40, 30, 25, 0.6)',
+                        borderColor: 'rgba(230, 126, 34, 0.4)',
+                        background: 'rgba(40, 30, 25, 0.7)',
                         color: '#F5F0E8',
+                        backdropFilter: 'blur(12px)',
+                        WebkitBackdropFilter: 'blur(12px)',
                       }}
                       value={quizData.nome || ""}
                       onChange={(e) => setQuizData({ ...quizData, nome: e.target.value })}
@@ -1219,9 +1235,10 @@ const Quiz = () => {
                   <div>
                     <Label 
                       htmlFor="whatsapp" 
-                      className="text-base font-semibold mb-2.5 block"
+                      className="text-base font-bold mb-3 flex items-center gap-2"
                       style={{ color: '#F5F0E8' }}
                     >
+                      <span className="text-lg">📱</span>
                       Seu WhatsApp
                     </Label>
                     <InputMask
@@ -1238,42 +1255,55 @@ const Quiz = () => {
                           id="whatsapp"
                           type="tel"
                           placeholder="(11) 99999-9999"
-                          className="h-12 rounded-xl text-base border-2 transition-all duration-200"
+                          className="h-14 rounded-2xl text-base border-2 transition-all duration-200 focus:scale-[1.01]"
                           style={{
-                            borderColor: 'rgba(230, 126, 34, 0.3)',
-                            background: 'rgba(40, 30, 25, 0.6)',
+                            borderColor: 'rgba(230, 126, 34, 0.4)',
+                            background: 'rgba(40, 30, 25, 0.7)',
                             color: '#F5F0E8',
+                            backdropFilter: 'blur(12px)',
+                            WebkitBackdropFilter: 'blur(12px)',
                           }}
                         />
                       )}
                     </InputMask>
                     <p 
-                      className="text-[13px] mt-2.5 flex items-center gap-1.5"
+                      className="text-sm mt-3 flex items-center gap-2 px-2"
                       style={{ color: '#E8DDD0' }}
                     >
-                      <span>📩</span>
-                      <span>Enviaremos seu Mapa Profético diretamente no WhatsApp.</span>
+                      <span>💬</span>
+                      <span>Enviaremos seu Mapa Profético diretamente no WhatsApp</span>
                     </p>
                   </div>
                 </div>
 
+                {/* Box de segurança aprimorado */}
                 <div 
-                  className="rounded-xl p-3.5 border shadow-sm"
+                  className="rounded-2xl p-4 border-2 backdrop-blur-md shadow-lg"
                   style={{
-                    background: 'rgba(230, 126, 34, 0.1)',
-                    borderColor: 'rgba(230, 126, 34, 0.3)',
+                    background: 'linear-gradient(to right, rgba(230, 126, 34, 0.12), rgba(243, 156, 18, 0.08))',
+                    borderColor: 'rgba(230, 126, 34, 0.4)',
                   }}
                 >
-                  <p 
-                    className="text-[13px] xs:text-sm leading-relaxed flex items-start gap-2"
-                    style={{ color: '#F5F0E8' }}
-                  >
-                    <span className="text-base flex-shrink-0 mt-0.5">🔒</span>
-                    <span>
-                      <strong className="font-bold">Seus dados estão protegidos</strong> — usamos apenas para entregar
-                      seu Mapa espiritual com segurança.
-                    </span>
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+                      style={{
+                        background: 'rgba(230, 126, 34, 0.15)',
+                      }}
+                    >
+                      <span className="text-xl">🔒</span>
+                    </div>
+                    <div>
+                      <p 
+                        className="text-sm leading-relaxed"
+                        style={{ color: '#F5F0E8' }}
+                      >
+                        <strong className="font-bold block mb-1">Seus dados estão 100% protegidos</strong>
+                        <span style={{ color: '#E8DDD0', opacity: 0.95 }}>
+                          Usamos apenas para entregar seu Mapa Profético com total segurança e privacidade.
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -1290,9 +1320,19 @@ const Quiz = () => {
             )}
 
             {/* Desktop Navigation - Visible only on desktop */}
-            <div className="hidden md:flex gap-3 mt-6 pt-4 border-t border-border">
+            <div className="hidden md:flex gap-3 mt-8 pt-6 border-t" style={{ borderColor: 'rgba(230, 126, 34, 0.2)' }}>
               {step > 1 && (
-                <Button variant="outline" size="lg" onClick={handleBack} className="flex-1 rounded-full font-semibold">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  onClick={handleBack} 
+                  className="flex-1 rounded-2xl font-semibold border-2 transition-all hover:scale-[1.02]"
+                  style={{
+                    borderColor: 'rgba(230, 126, 34, 0.3)',
+                    color: '#F5F0E8',
+                    background: 'rgba(40, 30, 25, 0.6)',
+                  }}
+                >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Voltar
                 </Button>
@@ -1303,20 +1343,21 @@ const Quiz = () => {
                   size="lg"
                   onClick={handleNext}
                   disabled={!isStepValid()}
-                  className="flex-1 rounded-2xl font-bold text-base transition-all duration-300 border-0"
+                  className="flex-1 rounded-2xl font-bold text-lg transition-all duration-300 border-0 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
-                    height: "56px",
+                    height: "60px",
                     background: isStepValid()
                       ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
                       : 'rgba(230, 126, 34, 0.4)',
                     backgroundSize: '200% 100%',
                     color: '#FFFFFF',
-                    boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                    boxShadow: isStepValid() ? '0 12px 32px rgba(230, 126, 34, 0.6), 0 0 60px rgba(230, 126, 34, 0.3)' : 'none',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.4)',
                     cursor: isStepValid() ? 'pointer' : 'not-allowed',
                   }}
                 >
-                  ✨ Receber meu Mapa Profético Agora
+                  <Sparkles className="w-5 h-5 mr-2" />
+                  Receber meu Mapa Profético Agora
                 </Button>
               )}
             </div>
@@ -1326,10 +1367,30 @@ const Quiz = () => {
 
       {/* Fixed Mobile Footer - Visible only on mobile */}
       {step === 6 && (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-border shadow-lg p-4 pb-6">
-          <div className="container mx-auto max-w-2xl flex gap-2">
+        <div 
+          className="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t shadow-2xl backdrop-blur-xl"
+          style={{
+            background: 'linear-gradient(to top, rgba(20, 15, 12, 0.98), rgba(20, 15, 12, 0.95))',
+            borderColor: 'rgba(230, 126, 34, 0.3)',
+            paddingBottom: 'max(1rem, env(safe-area-inset-bottom))',
+            paddingTop: '1rem',
+            paddingLeft: 'max(1rem, env(safe-area-inset-left))',
+            paddingRight: 'max(1rem, env(safe-area-inset-right))',
+          }}
+        >
+          <div className="container mx-auto max-w-2xl flex gap-3 px-2">
             {step > 1 && (
-              <Button variant="outline" size="lg" onClick={handleBack} className="rounded-full font-semibold w-16">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                onClick={handleBack} 
+                className="rounded-2xl font-semibold w-14 h-14 p-0 border-2"
+                style={{
+                  borderColor: 'rgba(230, 126, 34, 0.4)',
+                  background: 'rgba(40, 30, 25, 0.8)',
+                  color: '#F5F0E8',
+                }}
+              >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
             )}
@@ -1338,7 +1399,7 @@ const Quiz = () => {
               size="lg"
               onClick={handleNext}
               disabled={!isStepValid()}
-              className={`rounded-2xl font-bold text-base transition-all duration-300 border-0 ${step > 1 ? "flex-1" : "w-full"}`}
+              className={`rounded-2xl font-bold text-base transition-all duration-300 border-0 active:scale-[0.97] ${step > 1 ? "flex-1" : "w-full"}`}
               style={{
                 height: "56px",
                 background: isStepValid()
@@ -1346,12 +1407,13 @@ const Quiz = () => {
                   : 'rgba(230, 126, 34, 0.4)',
                 backgroundSize: '200% 100%',
                 color: '#FFFFFF',
-                boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
-                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                boxShadow: isStepValid() ? '0 8px 32px rgba(230, 126, 34, 0.6), 0 0 60px rgba(230, 126, 34, 0.25)' : 'none',
+                textShadow: '0 2px 4px rgba(0,0,0,0.4)',
                 cursor: isStepValid() ? 'pointer' : 'not-allowed',
               }}
             >
-              ✨ Receber meu Mapa Profético Agora
+              <Sparkles className="w-4 h-4 mr-1.5 flex-shrink-0" />
+              <span className="truncate">Receber meu Mapa Profético</span>
             </Button>
           </div>
         </div>
