@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Shield, Sparkles, Heart, Clock } from "lucide-react";
 import { useTracking } from "@/hooks/useTracking";
-import heroGradientBg from "@/assets/hero-gradient-bg.png";
 import logo from "@/assets/logo.png";
 
 declare global {
@@ -28,19 +27,20 @@ const Index = () => {
     <div className="min-h-screen w-full relative overflow-hidden">
       {/* Hero Section */}
       <div className="min-h-screen w-full relative overflow-hidden flex items-center justify-center p-4">
-        {/* Sparkles overlay */}
+        {/* Gradient overlay with stars */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
               className="absolute animate-float-sparkle"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                fontSize: `${Math.random() * 20 + 10}px`,
+                fontSize: `${Math.random() * 8 + 4}px`,
                 animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${Math.random() * 15 + 10}s`,
-                opacity: Math.random() * 0.3 + 0.1,
+                animationDuration: `${Math.random() * 20 + 15}s`,
+                opacity: Math.random() * 0.4 + 0.3,
+                color: '#FFB84D',
               }}
             >
               ✨
@@ -50,134 +50,127 @@ const Index = () => {
 
         {/* Main Content */}
         <div className="relative z-10 w-full max-w-md animate-fade-in px-6">
-          <div className="flex justify-center mb-4 xs:mb-6">
+          {/* Logo */}
+          <div className="flex justify-center mb-8">
             <img 
               src={logo} 
               alt="Mapa Profético do Amor" 
-              className="h-16 xs:h-20 w-auto"
-              style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}
+              className="h-14 w-auto"
+              style={{ 
+                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))',
+              }}
             />
           </div>
 
-            <h1 
-              className="text-[24px] xs:text-[26px] md:text-3xl font-bold text-center leading-tight"
-              style={{
-                color: '#FFFFFF',
-                textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-                marginBottom: '16px',
-              }}
-            >
-              ✨ Deus tem revelações únicas sobre sua vida amorosa...
-              <br />
-              <br />
-              Descubra <strong>quando</strong> você vai conhecer,{' '}
-              <br />
-              <strong>como será essa pessoa</strong>{' '}
-              <br />
-              e <strong style={{ color: '#FFD76B' }}>os sinais proféticos</strong> que Ele preparou especialmente para você.
-            </h1>
+          {/* Main Headline */}
+          <h1 
+            className="text-[32px] xs:text-[36px] md:text-[40px] font-bold text-center leading-[1.15] mb-6"
+            style={{
+              color: '#F5F0E8',
+              textShadow: '0 3px 10px rgba(0,0,0,0.5)',
+              fontFamily: 'Georgia, serif',
+            }}
+          >
+            Deus tem uma revelação única sobre sua vida amorosa...
+          </h1>
 
-            <p 
-              className="text-center text-[15px] xs:text-base leading-relaxed"
-              style={{ 
-                color: '#CFCDE4', 
-                marginTop: '8px',
-                marginBottom: '16px'
-              }}
-            >
-              📝 Em apenas 2 minutos, receba uma <strong>prévia gratuita</strong> do seu <strong>Mapa Profético Exclusivo</strong> — revelando os primeiros sinais do plano de Deus para sua vida amorosa.
-            </p>
+          {/* Subtitle */}
+          <p 
+            className="text-center text-[16px] xs:text-[17px] leading-relaxed mb-6"
+            style={{ 
+              color: '#E8DDD0',
+            }}
+          >
+            Em apenas 2 minutos, descubra os sinais proféticos e o tempo divino que Deus preparou para sua vida amorosa.
+          </p>
 
-            <div className="mb-4">
-              <p className="text-center text-[12px] mb-2" style={{ color: '#B69FFF' }}>
-                ⏳ Atualizado hoje
-              </p>
-              <div 
-                className="rounded-lg p-3"
-                style={{
-                  backdropFilter: 'blur(8px)',
-                  background: 'rgba(244, 240, 255, 0.25)',
-                  borderRadius: '12px',
-                }}
-              >
-                <div className="flex items-center justify-center gap-2 text-[14px] font-medium text-center" style={{ color: '#FFFFFF' }}>
-                  <span className="text-lg">✨</span>
-                  <span>
-                    <strong>+1.247 pessoas</strong> descobriram seu tempo espiritual esta semana
-                  </span>
-                </div>
+          {/* Social Proof Card - Glassmorphic */}
+          <div 
+            className="rounded-2xl p-4 mb-6"
+            style={{
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              background: 'rgba(60, 40, 30, 0.4)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            }}
+          >
+            <div className="flex items-start gap-3 mb-2">
+              <span className="text-xl flex-shrink-0 mt-0.5">👥</span>
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold" style={{ color: '#F5F0E8' }}>
+                  +1.247 pessoas receberam esta revelação esta semana
+                </p>
               </div>
             </div>
-
-            <Button 
-              asChild
-              size="lg"
-              className="w-full text-base font-bold transition-all duration-200 hover:scale-[1.03]"
-              style={{
-                height: '60px',
-                borderRadius: '30px',
-                background: 'linear-gradient(135deg, #6C4AB6 0%, #B69FFF 50%, #FFD98A 100%)',
-                color: '#FFFFFF',
-                boxShadow: '0 8px 20px rgba(108, 74, 182, 0.4), 0 0 40px rgba(255, 217, 138, 0.2)',
-                padding: '0 32px',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(108, 74, 182, 0.6), 0 0 50px rgba(255, 217, 138, 0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 8px 20px rgba(108, 74, 182, 0.4), 0 0 40px rgba(255, 217, 138, 0.2)';
-              }}
-              onClick={() => {
-                if (typeof window.fbq === 'function') {
-                  window.fbq('trackCustom', 'StartQuiz');
-                }
-              }}
-            >
-              <Link to="/quiz">
-                🔥 Revelar Meu Mapa Agora
-              </Link>
-            </Button>
-
-            <div className="text-center space-y-1 mt-4">
-              <p 
-                className="text-[12px] xs:text-[13px] flex flex-wrap items-center justify-center gap-2"
-                style={{ color: '#EAE6F5' }}
-              >
-                <span>✅ 100% Cristão</span>
-                <span>•</span>
-                <span>⏱️ Apenas 2 minutos</span>
-              </p>
-              
-              <p 
-                className="text-[12px] xs:text-[13px] flex flex-wrap items-center justify-center gap-2"
-                style={{ color: '#EAE6F5' }}
-              >
-                <span>✍️ Sem cadastro</span>
-                <span>•</span>
-                <span>📖 Alinhado à Bíblia</span>
-              </p>
-              
-              <p 
-                className="text-[12px] xs:text-[13px] mt-3"
-                style={{ color: '#FFD98A' }}
-              >
-                ⚠️ Vagas limitadas — Mapa atualizado em tempo real.
-              </p>
-            </div>
+            <p className="text-[13px] pl-8" style={{ color: '#D4BFA8', opacity: 0.8 }}>
+              • Dados atualizados hoje
+            </p>
           </div>
 
-        <button 
-          onClick={() => setShowMore(true)}
-          className="absolute bottom-6 left-0 right-0 z-10 text-center text-[11px] xs:text-[12px] hover:opacity-100 transition-opacity"
-          style={{ color: '#E2E8F0', opacity: 0.7 }}
-        >
-          Ver como funciona ↓
-        </button>
+          {/* CTA Button - Golden Gradient */}
+          <Button 
+            asChild
+            size="lg"
+            className="w-full text-[18px] font-bold transition-all duration-300 hover:scale-[1.02] border-0"
+            style={{
+              height: '64px',
+              borderRadius: '16px',
+              background: 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)',
+              backgroundSize: '200% 100%',
+              color: '#FFFFFF',
+              boxShadow: '0 8px 24px rgba(230, 126, 34, 0.5)',
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundPosition = '100% 0';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundPosition = '0% 0';
+            }}
+            onClick={() => {
+              if (typeof window.fbq === 'function') {
+                window.fbq('trackCustom', 'StartQuiz');
+              }
+            }}
+          >
+            <Link to="/quiz" className="flex items-center justify-center gap-2">
+              <span>✨</span>
+              <span>Receber Minha Revelação Agora</span>
+            </Link>
+          </Button>
+
+          {/* Features/Trust Badges */}
+          <div className="mt-6 space-y-3">
+            <div className="flex items-center justify-center gap-4 text-[14px]" style={{ color: '#E8DDD0' }}>
+              <span className="flex items-center gap-1.5">
+                <span>⏱️</span>
+                <span>2 minutos</span>
+              </span>
+              <span style={{ opacity: 0.5 }}>•</span>
+              <span className="flex items-center gap-1.5">
+                <span>📖</span>
+                <span>Alinhado à Bíblia</span>
+              </span>
+            </div>
+            
+            <div className="flex items-center justify-center gap-4 text-[14px]" style={{ color: '#E8DDD0' }}>
+              <span className="flex items-center gap-1.5">
+                <span>🔒</span>
+                <span>Privado</span>
+              </span>
+              <span style={{ opacity: 0.5 }}>•</span>
+              <span className="flex items-center gap-1.5">
+                <span>✝️</span>
+                <span>100% Cristão</span>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* More Details Section */}
       {showMore && (
-        <div className="relative z-10 bg-white py-16 px-4">
+        <div className="relative z-10 py-16 px-4" style={{ background: 'rgba(255, 255, 255, 0.95)' }}>
           <div className="container mx-auto max-w-4xl">
             {/* What You'll Discover */}
             <div className="text-center mb-12">
