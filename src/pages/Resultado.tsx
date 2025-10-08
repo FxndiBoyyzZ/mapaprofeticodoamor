@@ -107,9 +107,36 @@ const Resultado = () => {
             <h2 className="text-white mb-4 font-bold">
               ✨ Seu Mapa Profético foi revelado com sucesso 💌
             </h2>
-            <p className="text-base text-white/80">
+            <p className="text-base text-white/80 mb-6">
               Veja uma prévia incrível do que Deus revelou sobre seu futuro amoroso
             </p>
+            
+            {/* Urgency Timer */}
+            <div 
+              className="p-6 rounded-lg mb-4 inline-block animate-fade-in-up" 
+              style={{ 
+                animationDelay: "150ms",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                background: "rgba(230, 126, 34, 0.2)",
+                borderColor: "rgba(230, 126, 34, 0.3)",
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.4)"
+              }}
+            >
+              <div className="flex items-center justify-center gap-4">
+                <div className="flex items-center gap-3">
+                  <Clock className="w-6 h-6" style={{ color: '#F39C12' }} />
+                  <div>
+                    <p className="text-sm font-bold text-white">⚡ Seu mapa é válido por 10 minutos</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-3xl font-bold font-mono animate-timer-pulse" style={{ color: '#F39C12' }}>
+                    {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Main Profile Preview */}
@@ -198,33 +225,6 @@ const Resultado = () => {
             ))}
           </div>
 
-          {/* Urgency Timer */}
-          <div 
-            className="p-6 rounded-lg mb-6 animate-fade-in-up" 
-            style={{ 
-              animationDelay: "450ms",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              background: "rgba(230, 126, 34, 0.2)",
-              borderColor: "rgba(230, 126, 34, 0.3)",
-              boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.4)"
-            }}
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <Clock className="w-6 h-6" style={{ color: '#F39C12' }} />
-                <div>
-                  <p className="text-sm font-bold text-white">⚡ Oferta Especial Expira em:</p>
-                  <p className="text-xs text-white/70">Preço promocional por tempo limitado</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-bold font-mono animate-timer-pulse" style={{ color: '#F39C12' }}>
-                  {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
-                </p>
-              </div>
-            </div>
-          </div>
 
           {/* Main CTA with Pricing */}
           <div 
