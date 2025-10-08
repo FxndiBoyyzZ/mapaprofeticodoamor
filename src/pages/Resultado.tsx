@@ -139,13 +139,13 @@ const Resultado = () => {
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="text-center p-4 rounded-xl border border-white/10" style={{ background: "rgba(230, 126, 34, 0.1)" }}>
+                <div className="text-center p-4 rounded-xl border border-golden/20" style={{ background: "rgba(232, 221, 208, 0.15)" }}>
                   <Heart className="w-8 h-8 mx-auto mb-2" style={{ color: '#E67E22' }} />
                   <h4 className="text-sm font-semibold mb-1 text-white">Seu Perfil de Amor</h4>
-                  <p className="text-base font-bold" style={{ color: '#E67E22' }}>{profile.perfilAmor}</p>
+                  <p className="text-base font-bold" style={{ color: '#F39C12' }}>{profile.perfilAmor}</p>
                 </div>
 
-                <div className="text-center p-4 rounded-xl border border-white/10" style={{ background: "rgba(230, 126, 34, 0.1)" }}>
+                <div className="text-center p-4 rounded-xl border border-golden/20" style={{ background: "rgba(232, 221, 208, 0.15)" }}>
                   <Sparkles className="w-8 h-8 mx-auto mb-2" style={{ color: '#F39C12' }} />
                   <h4 className="text-sm font-semibold mb-1 text-white">Versículo-Chave</h4>
                   <p className="text-sm font-bold" style={{ color: '#F39C12' }}>{profile.versiculo}</p>
