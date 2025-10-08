@@ -7,6 +7,9 @@ import { Shield, CheckCircle2, Lock, Sparkles, Heart, Gift, ArrowRight, Clock } 
 import { useTracking } from "@/hooks/useTracking";
 import tracking from "@/lib/tracking";
 import quizBg from "@/assets/quiz-bg.png";
+import bonusGuia from "@/assets/bonus-guia-relacionamentos.png";
+import bonusDevocional from "@/assets/bonus-devocional-7dias.png";
+import bonusDiario from "@/assets/bonus-diario-oracao.png";
 
 const Checkout = () => {
   const CHECKOUT_URL = "https://pay.cakto.com.br/7k6p9n7_596897";
@@ -117,29 +120,80 @@ const Checkout = () => {
                 </div>
               </div>
 
-              {/* Bonuses */}
-              <div 
-                className="mb-8 p-6 rounded-lg"
-                style={{
-                  background: "rgba(230, 126, 34, 0.15)",
-                  border: "1px solid rgba(230, 126, 34, 0.3)"
-                }}
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <Gift className="w-5 h-5" style={{ color: '#F39C12' }} />
-                  <h3 className="text-white font-semibold">+ Bônus Exclusivos (R$ 120)</h3>
+              {/* Bonuses - Visual Cards */}
+              <div className="mb-8">
+                <div className="text-center mb-4">
+                  <Badge 
+                    className="mb-2 px-3 py-1 text-xs font-semibold" 
+                    style={{ background: '#E67E22', color: 'white' }}
+                  >
+                    🎁 + R$ 120 em Bônus Inclusos
+                  </Badge>
+                  <p className="text-xs text-white/70">
+                    Tudo isso pelos mesmos R$ 27
+                  </p>
                 </div>
-                <div className="space-y-2">
-                  {[
-                    "Guia Profético de Relacionamentos (R$ 40)",
-                    "Devocional Profético de 7 Dias (R$ 40)",
-                    "Diário de Oração e Reflexão (R$ 40)",
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4" style={{ color: '#F39C12' }} />
-                      <span className="text-sm text-white/90">{item}</span>
+
+                <div className="grid grid-cols-3 gap-3">
+                  <div 
+                    className="rounded-lg overflow-hidden group hover:scale-[1.02] transition-transform duration-200"
+                    style={{
+                      background: "rgba(40, 30, 25, 0.6)",
+                      border: "1px solid rgba(230, 126, 34, 0.2)"
+                    }}
+                  >
+                    <img 
+                      src={bonusGuia} 
+                      alt="Guia Profético" 
+                      className="w-full aspect-[3/4] object-cover"
+                    />
+                    <div className="p-2">
+                      <p className="text-xs font-semibold text-white text-center">
+                        Guia Profético
+                      </p>
+                      <p className="text-[10px] text-white/60 text-center">R$ 40</p>
                     </div>
-                  ))}
+                  </div>
+
+                  <div 
+                    className="rounded-lg overflow-hidden group hover:scale-[1.02] transition-transform duration-200"
+                    style={{
+                      background: "rgba(40, 30, 25, 0.6)",
+                      border: "1px solid rgba(230, 126, 34, 0.2)"
+                    }}
+                  >
+                    <img 
+                      src={bonusDevocional} 
+                      alt="Devocional 7 Dias" 
+                      className="w-full aspect-[3/4] object-cover"
+                    />
+                    <div className="p-2">
+                      <p className="text-xs font-semibold text-white text-center">
+                        Devocional 7 Dias
+                      </p>
+                      <p className="text-[10px] text-white/60 text-center">R$ 40</p>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="rounded-lg overflow-hidden group hover:scale-[1.02] transition-transform duration-200"
+                    style={{
+                      background: "rgba(40, 30, 25, 0.6)",
+                      border: "1px solid rgba(230, 126, 34, 0.2)"
+                    }}
+                  >
+                    <img 
+                      src={bonusDiario} 
+                      alt="Diário de Oração" 
+                      className="w-full aspect-[3/4] object-cover"
+                    />
+                    <div className="p-2">
+                      <p className="text-xs font-semibold text-white text-center">
+                        Diário de Oração
+                      </p>
+                      <p className="text-[10px] text-white/60 text-center">R$ 40</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
