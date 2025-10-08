@@ -239,91 +239,92 @@ const Quiz = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-secondary/20 via-lilac/5 to-secondary/20 pb-24 md:pb-20">
+    <div className="min-h-screen w-full pb-24 md:pb-20">
       <QuizProgress currentStep={step} totalSteps={totalSteps} />
 
       <div className="pt-[70px] px-4">
         <div className="container mx-auto max-w-2xl">
           <Card
-            className={`p-4 xs:p-6 md:p-8 shadow-card transition-all duration-150 border border-white/20 ${
+            className={`p-6 xs:p-8 md:p-10 shadow-2xl transition-all duration-150 border border-white/10 ${
               isTransitioning ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
             }`}
             style={{ 
-              backdropFilter: "blur(16px)", 
-              WebkitBackdropFilter: "blur(16px)",
-              background: "rgba(255, 255, 255, 0.15)",
-              boxShadow: "0 8px 32px 0 rgba(108, 74, 182, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.3)"
+              backdropFilter: "blur(20px)", 
+              WebkitBackdropFilter: "blur(20px)",
+              background: "rgba(40, 30, 25, 0.85)",
+              boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.4)"
             }}
           >
             {/* Question 1 */}
             {step === 1 && (
-              <div className="space-y-4">
-                <div className="text-center mb-4">
-                  <Sparkles className="w-8 h-8 text-golden mx-auto mb-2" />
-                  <h3 className="text-lg xs:text-xl font-bold text-[#3F3D56] mb-2 leading-tight">
-                    ✨ Como é que Deus está escrevendo sua vida amorosa hoje?
+              <div className="space-y-6">
+                <div className="text-center mb-8">
+                  <Sparkles 
+                    className="w-12 h-12 mx-auto mb-6" 
+                    style={{ color: '#E67E22' }}
+                  />
+                  <h3 
+                    className="text-[28px] xs:text-[32px] md:text-[36px] font-bold leading-[1.2] mb-4"
+                    style={{
+                      color: '#F5F0E8',
+                      fontFamily: 'Georgia, serif',
+                    }}
+                  >
+                    Em que tempo do seu caminhar amoroso você está hoje?
                   </h3>
                   <p
-                    className="text-sm text-[#7A7A8C] leading-[1.4]"
-                    style={{ marginTop: "8px", marginBottom: "16px" }}
+                    className="text-[15px] xs:text-[16px] leading-relaxed"
+                    style={{ 
+                      color: '#E8DDD0',
+                      opacity: 0.9
+                    }}
                   >
-                    Sua resposta moldará a direção profética do seu Mapa.
-                    <br />
-                    Seja sincero(a): Deus fala com quem abre o coração.
+                    Sua resposta vai moldar a direção profética do seu Mapa. Seja sincero(a), pois Deus fala com quem abre o coração
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {[
                     {
-                      text: "Solteiro(a), à espera do cumprimento da promessa",
+                      text: "Solteiro(a), à espera do propósito de Deus",
                       icon: Heart,
                       state: "solteiro" as const,
                     },
                     { text: "Em um relacionamento atualmente", icon: Users, state: "relacionamento" as const },
                     { text: "Vivendo um tempo confuso / em dúvida", icon: HelpCircle, state: "confuso" as const },
-                    {
-                      text: "Desacreditado(a), precisando de direção",
-                      icon: HeartCrack,
-                      state: "desacreditado" as const,
-                    },
                   ].map((option) => {
                     const IconComponent = option.icon;
                     const isSelected = quizData.momento === option.text;
                     return (
                       <button
                         key={option.text}
-                        className={`w-full p-3 rounded-xl flex items-center gap-3 transition-all duration-180 border ${
+                        className={`w-full p-4 rounded-2xl flex items-center gap-4 transition-all duration-200 border ${
                           isSelected
-                            ? "border-[#6C4AB6] border-2 shadow-md animate-option-select"
-                            : "border-[#B69FFF] border-1 hover:border-[#6C4AB6] hover:shadow-sm shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
+                            ? "border-[#E67E22] border-2 shadow-lg"
+                            : "border-[#E67E22]/30 border hover:border-[#E67E22]/60 hover:shadow-md"
                         }`}
                         style={{
-                          backdropFilter: "blur(12px)",
-                          WebkitBackdropFilter: "blur(12px)",
+                          backdropFilter: "blur(16px)",
+                          WebkitBackdropFilter: "blur(16px)",
                           background: isSelected 
-                            ? "rgba(244, 240, 255, 0.5)" 
-                            : "rgba(255, 255, 255, 0.3)",
+                            ? "rgba(230, 126, 34, 0.15)" 
+                            : "rgba(40, 30, 25, 0.6)",
                         }}
                         onClick={() => setQuizData({ ...quizData, momento: option.text, user_state: option.state })}
                       >
                         <IconComponent
-                          className={`w-5 h-5 flex-shrink-0 transition-colors duration-150 ${
-                            isSelected ? "text-[#6C4AB6]" : "text-[#3F3D56]"
-                          }`}
+                          className="w-6 h-6 flex-shrink-0"
+                          style={{ color: '#E67E22' }}
                         />
                         <span
-                          className={`text-base transition-all duration-150 text-left flex-1 ${
-                            isSelected ? "text-[#3F3D56] font-bold" : "text-[#3F3D56] font-normal"
-                          }`}
+                          className="text-[15px] xs:text-[16px] text-left flex-1"
+                          style={{
+                            color: '#F5F0E8',
+                            fontWeight: isSelected ? '600' : '400',
+                          }}
                         >
                           {option.text}
                         </span>
-                        {isSelected && (
-                          <span className="text-[14px]" style={{ opacity: 0.7 }}>
-                            ✨
-                          </span>
-                        )}
                       </button>
                     );
                   })}
@@ -935,15 +936,20 @@ const Quiz = () => {
                 size="lg"
                 onClick={handleNext}
                 disabled={!isStepValid()}
-                className={`flex-1 rounded-xl font-bold text-base transition-all duration-300 ${
-                  isStepValid()
-                    ? "bg-[#6C4AB6] text-white hover:bg-[#5A3D9A] hover:shadow-[0_0_24px_rgba(108,74,182,0.5)] hover:scale-[1.02] animate-[scale-in_300ms_ease-out]"
-                    : "bg-[#6C4AB6]/40 text-white/60 cursor-not-allowed opacity-60"
-                }`}
-                style={{ height: "52px" }}
+                className="flex-1 rounded-2xl font-bold text-base transition-all duration-300 border-0"
+                style={{
+                  height: "56px",
+                  background: isStepValid()
+                    ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
+                    : 'rgba(230, 126, 34, 0.4)',
+                  backgroundSize: '200% 100%',
+                  color: '#FFFFFF',
+                  boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                  cursor: isStepValid() ? 'pointer' : 'not-allowed',
+                }}
               >
-                {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo"}
-                {step === totalSteps ? null : <ArrowRight className="w-4 h-4 ml-2" />}
+                {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo →"}
               </Button>
             </div>
           </Card>
@@ -963,15 +969,20 @@ const Quiz = () => {
             size="lg"
             onClick={handleNext}
             disabled={!isStepValid()}
-            className={`rounded-xl font-bold text-base transition-all duration-300 ${step > 1 ? "flex-1" : "w-full"} ${
-              isStepValid()
-                ? "bg-[#6C4AB6] text-white hover:bg-[#5A3D9A] hover:shadow-[0_0_28px_rgba(108,74,182,0.6)] hover:scale-[1.02] animate-[scale-in_300ms_ease-out]"
-                : "bg-[#6C4AB6]/40 text-white/60 cursor-not-allowed opacity-60"
-            }`}
-            style={{ height: "56px" }}
+            className={`rounded-2xl font-bold text-base transition-all duration-300 border-0 ${step > 1 ? "flex-1" : "w-full"}`}
+            style={{
+              height: "56px",
+              background: isStepValid()
+                ? 'linear-gradient(135deg, #E67E22 0%, #F39C12 50%, #E67E22 100%)'
+                : 'rgba(230, 126, 34, 0.4)',
+              backgroundSize: '200% 100%',
+              color: '#FFFFFF',
+              boxShadow: isStepValid() ? '0 8px 24px rgba(230, 126, 34, 0.5)' : 'none',
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+              cursor: isStepValid() ? 'pointer' : 'not-allowed',
+            }}
           >
-            {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo"}
-            {step === totalSteps ? null : <ArrowRight className="w-5 h-5 ml-2" />}
+            {step === totalSteps ? "✨ Receber meu Mapa Profético Agora" : "Próximo →"}
           </Button>
         </div>
       </div>
