@@ -145,7 +145,7 @@ const Resultado = () => {
               
               <div className="relative aspect-video max-h-[480px]">
                 <iframe 
-                  src="https://player.vimeo.com/video/1126207484?badge=0&autopause=0&autoplay=1&controls=0&muted=1&loop=1&player_id=0&app_id=58479" 
+                  src="https://player.vimeo.com/video/1126207484?badge=0&autopause=0&autoplay=1&controls=0&muted=0&loop=1&player_id=0&app_id=58479" 
                   className="w-full h-full"
                   frameBorder="0" 
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
