@@ -338,7 +338,7 @@ const Resultado = () => {
 
             <Button 
               size="lg" 
-              className="w-full h-auto py-6 rounded-2xl font-bold text-lg md:text-xl shadow-2xl hover:scale-105 transition-all duration-300 animate-glow-pulse mb-6"
+              className="w-full h-auto py-6 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:scale-105 transition-all duration-300 animate-glow-pulse mb-6"
               style={{ 
                 background: 'linear-gradient(135deg, #D4A24C 0%, #F5E2B8 50%, #D4A24C 100%)',
                 color: '#3B2A1A',
@@ -346,8 +346,8 @@ const Resultado = () => {
               }}
               onClick={handleCheckoutClick}
             >
-              <Key className="w-6 h-6 flex-shrink-0" />
-              <span>✨ Desbloquear Meu Mapa Completo por R$27</span>
+              <Key className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+              <span className="text-center leading-tight">✨ Desbloquear Meu Mapa Completo por R$27</span>
             </Button>
 
             <div className="flex items-center justify-center gap-2 text-sm text-white/80 mb-4">
@@ -456,7 +456,7 @@ const Resultado = () => {
       >
         <Button 
           size="lg" 
-          className="w-full h-auto py-4 rounded-xl font-bold text-base animate-pulse-cta"
+          className="w-full h-auto py-4 rounded-xl font-bold text-sm leading-tight animate-pulse-cta"
           style={{ 
             background: 'linear-gradient(135deg, #D4A24C 0%, #F5E2B8 50%, #D4A24C 100%)',
             color: '#3B2A1A',
@@ -464,8 +464,8 @@ const Resultado = () => {
           }}
           onClick={handleCheckoutClick}
         >
-          <Key className="w-5 h-5" />
-          Desbloquear por R$27
+          <Key className="w-4 h-4 flex-shrink-0" />
+          <span className="text-center">Desbloquear por R$27</span>
         </Button>
       </div>
 
