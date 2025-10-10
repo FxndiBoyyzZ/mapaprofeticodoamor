@@ -14,7 +14,7 @@ import {
   Star,
   MessageCircle
 } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useTracking } from "@/hooks/useTracking";
 import quizBg from "@/assets/quiz-bg.png";
 import bonusGuia from "@/assets/bonus-guia-relacionamentos.png";
@@ -26,8 +26,6 @@ const Resultado = () => {
   const navigate = useNavigate();
   const { profile, quizData } = location.state || {};
   const { trackViewContent, trackEvent } = useTracking();
-  const videoRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     if (!profile) return;
@@ -42,16 +40,6 @@ const Resultado = () => {
     if (window.fbq) {
       window.fbq('trackCustom', 'quiz_loading_completed');
     }
-
-    // Setup Vimeo Player API for play/pause control
-    const script = document.createElement('script');
-    script.src = 'https://player.vimeo.com/api/player.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
   }, [profile]);
 
   if (!profile) {
@@ -64,23 +52,6 @@ const Resultado = () => {
       window.fbq('trackCustom', 'checkout_click', { value: 27, currency: 'BRL' });
     }
     navigate('/checkout');
-  };
-
-  const handleVideoClick = () => {
-    const iframe = videoRef.current?.querySelector('iframe');
-    if (!iframe || !(window as any).Vimeo) return;
-
-    const player = new (window as any).Vimeo.Player(iframe);
-    
-    player.getPaused().then((paused: boolean) => {
-      if (paused) {
-        player.play();
-        setIsPlaying(true);
-      } else {
-        player.pause();
-        setIsPlaying(false);
-      }
-    });
   };
 
   const testimonials = [
@@ -147,62 +118,6 @@ const Resultado = () => {
               <span>+1.247 pessoas desbloquearam seu Mapa esta semana</span>
               <span className="text-golden">• Dados atualizados hoje</span>
             </div>
-          </div>
-
-          {/* VSL Video Section */}
-          <div 
-            className="mb-12 animate-fade-in-up relative"
-            style={{
-              animationDelay: '450ms'
-            }}
-          >
-            <div 
-              className="relative max-w-full md:max-w-[60%] mx-auto rounded-2xl overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, rgba(63, 46, 23, 0.05) 0%, rgba(108, 74, 182, 0.05) 100%)',
-                boxShadow: '0 20px 60px rgba(212, 175, 55, 0.4)',
-                border: '2px solid rgba(212, 162, 76, 0.3)'
-              }}
-            >
-              {/* Golden glow effect */}
-              <div 
-                className="absolute -inset-4 blur-xl opacity-20 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle, rgba(212, 175, 55, 0.6) 0%, transparent 70%)'
-                }}
-              />
-              
-              <div 
-                ref={videoRef}
-                className="relative aspect-video max-h-[480px] cursor-pointer"
-                onClick={handleVideoClick}
-              >
-                <iframe 
-                  src="https://player.vimeo.com/video/1126207484?badge=0&autopause=0&autoplay=1&controls=0&muted=0&loop=1&player_id=0&app_id=58479" 
-                  className="w-full h-full pointer-events-none"
-                  frameBorder="0" 
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                  referrerPolicy="strict-origin-when-cross-origin" 
-                  title="VSL Mapa Profético"
-                  id="vimeo-player"
-                />
-              </div>
-
-              {/* Video played halo effect */}
-              <div 
-                className="absolute inset-0 pointer-events-none rounded-2xl"
-                style={{
-                  boxShadow: 'inset 0 0 60px rgba(212, 175, 55, 0.2)',
-                  border: '1px solid rgba(212, 175, 55, 0.2)'
-                }}
-              />
-            </div>
-
-            {/* Copy de apoio */}
-            <p className="text-center text-[#F8E7C2] text-base sm:text-lg font-medium mt-6 leading-snug max-w-2xl mx-auto">
-              ✨ Se essa mensagem falou ao seu coração, não ignore esse sinal.<br/>
-              <span className="text-[#FFD700] font-semibold">Clique abaixo</span> e desbloqueie agora o seu Mapa Profético completo.
-            </p>
           </div>
 
           {/* Card Principal - Resumo Profético */}
