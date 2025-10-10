@@ -14,7 +14,7 @@ import {
   Star,
   MessageCircle
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTracking } from "@/hooks/useTracking";
 import quizBg from "@/assets/quiz-bg.png";
 import bonusGuia from "@/assets/bonus-guia-relacionamentos.png";
@@ -26,6 +26,8 @@ const Resultado = () => {
   const navigate = useNavigate();
   const { profile, quizData } = location.state || {};
   const { trackViewContent, trackEvent } = useTracking();
+  const videoRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     if (!profile) return;
@@ -40,6 +42,16 @@ const Resultado = () => {
     if (window.fbq) {
       window.fbq('trackCustom', 'quiz_loading_completed');
     }
+
+    // Setup Vimeo Player API for play/pause control
+    const script = document.createElement('script');
+    script.src = 'https://player.vimeo.com/api/player.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, [profile]);
 
   if (!profile) {
@@ -52,6 +64,23 @@ const Resultado = () => {
       window.fbq('trackCustom', 'checkout_click', { value: 27, currency: 'BRL' });
     }
     navigate('/checkout');
+  };
+
+  const handleVideoClick = () => {
+    const iframe = videoRef.current?.querySelector('iframe');
+    if (!iframe || !(window as any).Vimeo) return;
+
+    const player = new (window as any).Vimeo.Player(iframe);
+    
+    player.getPaused().then((paused: boolean) => {
+      if (paused) {
+        player.play();
+        setIsPlaying(true);
+      } else {
+        player.pause();
+        setIsPlaying(false);
+      }
+    });
   };
 
   const testimonials = [
@@ -143,20 +172,19 @@ const Resultado = () => {
                 }}
               />
               
-              <div className="relative aspect-video max-h-[480px]">
+              <div 
+                ref={videoRef}
+                className="relative aspect-video max-h-[480px] cursor-pointer"
+                onClick={handleVideoClick}
+              >
                 <iframe 
                   src="https://player.vimeo.com/video/1126207484?badge=0&autopause=0&autoplay=1&controls=0&muted=0&loop=1&player_id=0&app_id=58479" 
-                  className="w-full h-full"
+                  className="w-full h-full pointer-events-none"
                   frameBorder="0" 
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                   referrerPolicy="strict-origin-when-cross-origin" 
                   title="VSL Mapa Profético"
-                  onPlay={() => {
-                    trackViewContent({ 
-                      content_name: 'VSL Mapa Profético', 
-                      content_category: 'video' 
-                    });
-                  }}
+                  id="vimeo-player"
                 />
               </div>
 
