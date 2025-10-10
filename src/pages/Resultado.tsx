@@ -338,7 +338,7 @@ const Resultado = () => {
 
             <Button 
               size="lg" 
-              className="w-full h-auto py-5 px-3 rounded-2xl font-bold text-sm md:text-xl shadow-2xl hover:scale-105 transition-all duration-300 animate-glow-pulse mb-6 flex-wrap"
+              className="w-full h-auto py-5 px-4 rounded-2xl font-bold text-sm md:text-xl shadow-2xl hover:scale-105 transition-all duration-300 animate-glow-pulse mb-6 whitespace-normal gap-2"
               style={{ 
                 background: 'linear-gradient(135deg, #D4A24C 0%, #F5E2B8 50%, #D4A24C 100%)',
                 color: '#3B2A1A',
@@ -346,8 +346,7 @@ const Resultado = () => {
               }}
               onClick={handleCheckoutClick}
             >
-              <Key className="w-0 h-0 md:w-6 md:h-6 flex-shrink-0" />
-              <span className="text-center leading-snug">✨ Desbloquear Meu Mapa Completo por R$27</span>
+              <span className="text-center leading-tight w-full">✨ Desbloquear Meu Mapa Completo por R$27</span>
             </Button>
 
             <div className="flex items-center justify-center gap-2 text-sm text-white/80 mb-4">
