@@ -128,7 +128,7 @@ const Resultado = () => {
             }}
           >
             <div 
-              className="relative max-w-[90%] md:max-w-[60%] mx-auto rounded-2xl overflow-hidden"
+              className="relative max-w-full md:max-w-[60%] mx-auto rounded-2xl overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, rgba(63, 46, 23, 0.05) 0%, rgba(108, 74, 182, 0.05) 100%)',
                 boxShadow: '0 20px 60px rgba(212, 175, 55, 0.4)',
